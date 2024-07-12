@@ -287,7 +287,7 @@ export const articles = [
           'The Executive Committee has the authority to form specialized Sub-Committees, appoint members, and delegate powers as needed for specific purposes within the Club.',
       },
       {
-        id: 9.1,
+        id: '9.10',
         content:
           'TThe Elected Officers of the Club shall be ex-officio members of all Club-Sub Committees and/ or ad hoc committees that are duly or may be constituted under the provisions of this Constitution.',
       },
@@ -350,7 +350,7 @@ export const articles = [
           'A Special General Meeting may be called by the Executive Committee, Board of Trustees, or upon written request by at least one quarter (1/4) of Full Members. If the Executive Committee fails to convene the meeting within fifteen (15) days, the Board of Trustees must do so within seven (7) days upon request.',
       },
       {
-        id: 10.1,
+        id: '10.10',
         content:
           'Only fully paid-up Members shall qualify to attend and vote at the General Meetings.',
       },
@@ -476,7 +476,7 @@ export const articles = [
           'The local rules shall be displayed on the Club Notice Boards or such other place as the Executive Committee shall deem appropriate. ',
       },
       {
-        id: 13.2,
+        id: 13.3,
         content:
           'The rules of play of all other indoor or outdoor games available at the club shall be in accordance with the prevailing rules of the said games as shall be amended from time to time in accordance with the internationally accepted regulations of the said games. ',
       },
@@ -604,7 +604,7 @@ export const articles = [
           'In case of resignation, incapacitation, death or leaving Uganda for a period longer than twelve (12) months a new Trustee shall be elected by the General Meeting.',
       },
       {
-        id: 18.1,
+        id: '18.10',
         content:
           'The services of a Trustee may also be terminated by a resolution of the General Meeting at any time. ',
       },

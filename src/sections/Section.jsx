@@ -77,7 +77,7 @@ const Section = ({
                 {article?.title}
               </div>
               {article?.details.map((section) => (
-                <div key={section?.id} className='my-1'>
+                <div key={section?.id} className='my-3'>
                   <div className='flex flex-row gap-2 font-medium mb-2 text-[20px]'>
                     <div>{section?.id}</div>
                     <div>{section?.title}</div>
@@ -86,7 +86,7 @@ const Section = ({
                     {section?.content}
                   </div>
                   <div className='flex flex-col gap-2 py-2'>
-                    <p className='font-normal'>Vote</p>
+                    <p className='font-normal text-[16px]'>Vote</p>
                     <div className='flex items-center mb-1'>
                       <input
                         id={`yes${article?.id}${section?.id}`}
@@ -99,12 +99,12 @@ const Section = ({
                         onChange={() =>
                           handleVoteChange('yes', article.id, section.id)
                         }
-                        className='text-indigo-600 h-4 w-4'
+                        className='text-indigo-600 h-4 w-4 cursor-pointer'
                         required
                       />
                       <label
                         htmlFor={`yes${article?.id}${section?.id}`}
-                        className='ml-2 text-sm font-extralight text-gray-700'
+                        className='ml-2 text-sm font-extralight text-gray-700 cursor-pointer'
                       >
                         Yes
                       </label>
@@ -121,12 +121,12 @@ const Section = ({
                         onChange={() =>
                           handleVoteChange('no', article.id, section.id)
                         }
-                        className='text-indigo-600 h-4 w-4'
+                        className='text-indigo-600 h-4 w-4 cursor-pointer'
                         required
                       />
                       <label
                         htmlFor={`no${article?.id}${section?.id}`}
-                        className='ml-2 text-sm font-extralight text-gray-700'
+                        className='ml-2 text-sm font-extralight text-gray-700 cursor-pointer'
                       >
                         No
                       </label>
@@ -160,24 +160,38 @@ const Section = ({
           ))}
         </div>
         <div className='flex gap-5 items-center justify-between md:justify-end'>
-          <Link to={`/section_${previousSection}`}>
-            <button type='button' className='border py-2 px-5 rounded-lg'>
-              Previous
-            </button>
-          </Link>
-          <button type='submit' className='border py-2 px-5 rounded-lg'>
-            Save
-          </button>
-          {allVoted && (
-            <Link to={`/section_${nextSection}`}>
+          {section !== 'one' ? (
+            <Link to={`/section_${previousSection}`}>
               <button
-                type='submit'
-                className=' flex gap-1 border py-2 px-5 rounded-lg'
+                type='button'
+                className='py-2 px-5 rounded-lg bg-green-50'
               >
-                <span className='hidden md:block'>Save and</span> Continue
+                Previous
               </button>
             </Link>
-          )}
+          ) : null}
+
+          <button type='submit' className='py-2 px-5 rounded-lg bg-green-50'>
+            Save
+          </button>
+          {allVoted ? (
+            section !== 'eight' ? (
+              <Link to={`/section_${nextSection}`}>
+                <button
+                  type='submit'
+                  className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50'
+                >
+                  <span className='hidden md:block'>Save and</span> Continue
+                </button>
+              </Link>
+            ) : (
+              <Link to={'/complete'}>
+                <button className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50'>
+                  Finish
+                </button>
+              </Link>
+            )
+          ) : null}
         </div>
       </form>
     </div>
