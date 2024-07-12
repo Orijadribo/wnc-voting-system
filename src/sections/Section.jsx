@@ -2,9 +2,21 @@ import React, { useState } from 'react';
 import { articles } from '../constants';
 import { Link } from 'react-router-dom';
 
-const Section = () => {
+const Section = ({
+  startArticle,
+  endArticle,
+  section,
+  previousSection,
+  nextSection,
+}) => {
   const [selectedVotes, setSelectedVotes] = useState({});
   const [reasons, setReasons] = useState({});
+
+  // Logic to filter articles based on startArticle and endArticle
+  const filteredArticles = articles.filter((article, index) => {
+    // Replace with your logic to match articles to sectionNumber
+    return article.id >= startArticle && article.id <= endArticle;
+  });
 
   const handleVoteChange = (vote, articleId, sectionId) => {
     setSelectedVotes((prevVotes) => ({
@@ -51,9 +63,11 @@ const Section = () => {
         onSubmit={handleSubmit}
         className='items-center justify-between max-w-2xl m-auto my-20 rounded-lg p-10 shadow-lg bg-white'
       >
-        <div className='text-center font-light text-[32px]'>Section One</div>
+        <div className='text-center font-light text-[32px] capitalize'>
+          Section {section}
+        </div>
         <div>
-          {articles.map((article) => (
+          {filteredArticles.map((article) => (
             <div key={article?.id} className='my-5'>
               <div className='font-thin text-[28px] my-3'>
                 {article?.article}
@@ -63,8 +77,9 @@ const Section = () => {
               </div>
               {article?.details.map((section) => (
                 <div key={section?.id} className='my-1'>
-                  <div className='font-medium mb-2 text-[20px]'>
-                    {section?.id}
+                  <div className='flex flex-row gap-2 font-medium mb-2 text-[20px]'>
+                    <div>{section?.id}</div>
+                    <div>{section?.title}</div>
                   </div>
                   <div className='font-extralight text-justify'>
                     {section?.content}
@@ -144,13 +159,15 @@ const Section = () => {
           ))}
         </div>
         <div className='flex gap-5 items-center justify-end'>
-          <button type='button' className='border py-2 px-5 rounded-lg'>
-            Previous
-          </button>
+          <Link to={`/section_${previousSection}`}>
+            <button type='button' className='border py-2 px-5 rounded-lg'>
+              Previous
+            </button>
+          </Link>
           <button type='submit' className='border py-2 px-5 rounded-lg'>
             Save
           </button>
-          <Link to={'/section_two'}>
+          <Link to={`/section_${nextSection}`}>
             <button type='submit' className='border py-2 px-5 rounded-lg'>
               Save and Continue
             </button>

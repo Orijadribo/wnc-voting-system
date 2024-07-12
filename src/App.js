@@ -4,26 +4,105 @@ import Login from './pages/Login';
 import Section from './sections/Section';
 
 function App() {
-
-  const sections = [
-    { path: '/', name: 'login', element: <Login /> }, // login as index
-    { path: '/section_one', name: 'section_one', element: <Section /> },
-    { path: '/section_two', name: 'section_two', element: <Section /> },
-    { path: '/section_three', name: 'section_three', element: <Section /> },
-    { path: '/section_four', name: 'section_four', element: <Section /> },
-    { path: '/section_five', name: 'section_five', element: <Section /> },
-    { path: '/section_six', name: 'section_six', element: <Section /> },
-    { path: '/section_seven', name: 'section_seven', element: <Section /> },
-    { path: '/section_eight', name: 'section_eight', element: <Section /> },
-  ];
-
   return (
     <div className='font-mulish'>
       <Router>
         <Routes>
-          {sections.map((section, index) => (
-            <Route key={index} path={section.path} element={section.element} />
-          ))}
+          <Route index element={<Login />} />
+          <Route
+            path='/section_one'
+            element={
+              <Section
+                startArticle={1}
+                endArticle={3}
+                section={'one'}
+                nextSection={'two'}
+              />
+            }
+          />
+          <Route
+            path='/section_two'
+            element={
+              <Section
+                startArticle={4}
+                endArticle={6}
+                previousSection={'one'}
+                section={'two'}
+                nextSection={'three'}
+              />
+            }
+          />
+          <Route
+            path='/section_three'
+            element={
+              <Section
+                startArticle={7}
+                endArticle={9}
+                previousSection={'two'}
+                section={'three'}
+                nextSection={'four'}
+              />
+            }
+          />
+          <Route
+            path='/section_four'
+            element={
+              <Section
+                startArticle={10}
+                endArticle={12}
+                previousSection={'three'}
+                section={'four'}
+                nextSection={'five'}
+              />
+            }
+          />
+          <Route
+            path='/section_five'
+            element={
+              <Section
+                startArticle={13}
+                endArticle={15}
+                previousSection={'four'}
+                section={'five'}
+                nextSection={'six'}
+              />
+            }
+          />
+          <Route
+            path='/section_six'
+            element={
+              <Section
+                startArticle={16}
+                endArticle={18}
+                previousSection={'five'}
+                section={'six'}
+                nextSection={'seven'}
+              />
+            }
+          />
+          <Route
+            path='/section_seven'
+            element={
+              <Section
+                startArticle={19}
+                endArticle={21}
+                previousSection={'six'}
+                section={'seven'}
+                nextSection={'eight'}
+              />
+            }
+          />
+          <Route
+            path='/section_eight'
+            element={
+              <Section
+                startArticle={22}
+                endArticle={24}
+                previousSection={'seven'}
+                section={'eight'}
+              />
+            }
+          />
         </Routes>
       </Router>
     </div>
