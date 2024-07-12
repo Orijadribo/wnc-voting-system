@@ -16,7 +16,7 @@ const Login = () => {
           <img className='w-32' src={WNGC_logo} alt='LSGA Logo' />
           {/* <img className='w-32' src={course} alt='WNGC Logo' /> */}
           <h1 className='py-5 font-light text-center text-[32px] w-full'>
-            WNC Voter's Login
+            WNC Constitution Voter's Login
           </h1>
         </div>
 
@@ -38,7 +38,7 @@ const Login = () => {
         </div>
 
         <Link to='/section_one'>
-          <button className=' border py-2 px-5 rounded-lg bg-green-50 text-lg'>Verify Subscription</button>
+          <button className=' border py-2 px-5 mt-5 rounded-lg bg-green-50 text-lg'>Verify Subscription</button>
         </Link>
       </div>
     </div>
