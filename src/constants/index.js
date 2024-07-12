@@ -302,112 +302,161 @@ export const articles = [
   {
     id: 10,
     article: 'Article 10',
-    title: 'MANAGEMENT OF THE CLUB',
+    title: 'MEETINGS',
     details: [
       {
         id: 10.1,
         content:
-          'The Management of the Club shall vest in the Executive Committee.',
+          'The General Meeting of the Members of the Club shall be the supreme policy making body of the Club; ',
       },
       {
         id: 10.2,
-        title: 'EXECUTIVE COMMITTEE',
         content:
-          'The Chairperson presides over Executive Committee meetings; in their absence, the Vice Chairperson assumes this role, and if both are absent, the committee elects another member to act as Chairperson.',
+          'The General Meeting of the Club shall be either an Annual General Meeting, a Special General Meeting or Emergency General Meeting. ',
       },
       {
         id: 10.3,
         content:
-          'Subject to the provisions of this Constitution, decisions by the Executive Committee are determined by a simple majority, with the presiding Member having a casting vote in case of a tie.',
+          'The Club shall hold an Annual General Meeting annually by January 31st, convened by the Executive Committee at the Clubhouse premises or virtually accessible to all eligible members, or a hybrid format combining physical and virtual attendance.',
       },
       {
         id: 10.4,
         content:
-          'The Executive Committee may co-opt any Club member to fill vacant posts, with elected officer appointments lasting up to two months until a Special General Meeting is convened to formally fill the vacancy.',
+          "The Annual General Meeting's agenda includes adopting Annual Reports and Audited Accounts, conducting elections and appointments as per the Constitution, and addressing any other pertinent business.",
       },
       {
         id: 10.5,
         content:
-          'The Executive Committee shall meet at least once every month. The Secretary shall notify the Executive Committee at least 7 days prior to the date fixed for the meeting.',
+          "The Annual General Meeting's agenda includes receiving minutes, the Chairman's report, Trustees report, discussing audited accounts, electing Executive Committee members, Disciplinary Committee members, Board of Trustees members, Appeals Committee members, internal auditors, appointing External Auditors, and addressing any other business.",
       },
       {
         id: 10.6,
         content:
-          'Failure to attend meetings of the Executive Committee for three consecutive times by any Executive Committee Member without any reasonable excuse shall constitute a disciplinary offence.',
+          'Notice of a General Meeting must be posted on the Club Notice Board and shared electronically by the Honorary Secretary at least fourteen (14) days before the meeting, including business particulars, detailed accounts of the past year, agenda, and meeting details.',
       },
       {
         id: 10.7,
         content:
-          'The quorum of any meeting of the Executive Committee shall be five (5) members comprising at least three (3) elected members.',
+          'Any Member wishing to propose a resolution at any General Meeting shall send a copy thereof to the Honorary Secretary at least seven (7) days before the meeting. The Honorary Secretary shall forthwith post a copy thereof on the Club Notice Board and share the same to members electronically.',
       },
       {
         id: 10.8,
         content:
-          'The Executive Committee has the authority, within the Constitution and game rules, to establish regulations governing club etiquette, conduct, management, and welfare, including penalties for rule violations.',
+          'A resolution may be moved at the meeting by any Member present at the meeting with the permission of the General Meeting subject to the provisions of Article 20 of this Constitution.',
       },
       {
         id: 10.9,
         content:
-          'TThe Elected Officers of the Club shall be ex-officio members of all Club-Sub Committees and/ or ad hoc committees that are duly or may be constituted under the provisions of this Constitution.',
+          'A Special General Meeting may be called by the Executive Committee, Board of Trustees, or upon written request by at least one quarter (1/4) of Full Members. If the Executive Committee fails to convene the meeting within fifteen (15) days, the Board of Trustees must do so within seven (7) days upon request.',
       },
       {
         id: 10.1,
         content:
-          'The Executive Committee has the authority to form specialized Sub-Committees, appoint members, and delegate powers as needed for specific purposes within the Club.',
+          'Only fully paid-up Members shall qualify to attend and vote at the General Meetings.',
       },
       {
         id: 10.11,
-        title: 'CLUB MANAGER',
         content:
-          'The Club may hire a Club Manager responsible for daily administration, supervised by the Executive Committee, with duties outlined in a contract prepared by the Committee, including oversight of staff, maintenance of Club property records, and acting as an agent for Club accounts.',
+          'The quorum for a General Meeting shall be either twenty-five (25) or one third (1/3) of all fully paid-up Members of the Club, whichever is lower.',
       },
       {
         id: 10.12,
-        title: 'CLUB MANAGER',
         content:
-          'The Club may hire a Club Manager responsible for daily administration, supervised by the Executive Committee, with duties outlined in a contract prepared by the Committee, including oversight of staff, maintenance of Club property records, and acting as an agent for Club accounts.',
+          'If one hour after the time appointed for a General Meeting convened upon the requisition of Members quorum shall not have been realized, the meeting so convened shall stand dissolved.',
       },
       {
         id: 10.13,
-        title: 'CLUB MANAGER',
         content:
-          'The Club may hire a Club Manager responsible for daily administration, supervised by the Executive Committee, with duties outlined in a contract prepared by the Committee, including oversight of staff, maintenance of Club property records, and acting as an agent for Club accounts.',
+          ' If the quorum is not realized at a General Meeting not requisitioned by Members, then the meeting shall stand adjourned to the same day next week at the same time and place.',
       },
       {
         id: 10.14,
-        title: 'CLUB MANAGER',
         content:
-          'The Club may hire a Club Manager responsible for daily administration, supervised by the Executive Committee, with duties outlined in a contract prepared by the Committee, including oversight of staff, maintenance of Club property records, and acting as an agent for Club accounts.',
+          ' If the quorum is not realized at such adjourned meeting, the meeting shall transact business for which it was called 15% of Members are present.',
       },
       {
         id: 10.15,
-        title: 'CLUB MANAGER',
         content:
-          'The Club may hire a Club Manager responsible for daily administration, supervised by the Executive Committee, with duties outlined in a contract prepared by the Committee, including oversight of staff, maintenance of Club property records, and acting as an agent for Club accounts.',
+          'Decision-making at General Meetings of the Club shall be determined by simple majority vote of Members present and voting. Voting is typically by show of hands, but a secret ballot can be used if proposed and seconded. In case of a tie, the presiding Chairperson casts the deciding vote. Proxy voting is permitted provided a member notifies the Secretary in writing at least 7 days before the meeting, and only full members can act as proxies.',
       },
       {
         id: 10.16,
-        title: 'CLUB MANAGER',
         content:
-          'The Club may hire a Club Manager responsible for daily administration, supervised by the Executive Committee, with duties outlined in a contract prepared by the Committee, including oversight of staff, maintenance of Club property records, and acting as an agent for Club accounts.',
+          ' In the absence of a Member of the Board of Trustees to preside as Chairperson at General Meeting, the Members present shall elect one of their members to preside at such meeting.',
       },
       {
         id: 10.17,
-        title: 'CLUB MANAGER',
         content:
-          'The Club may hire a Club Manager responsible for daily administration, supervised by the Executive Committee, with duties outlined in a contract prepared by the Committee, including oversight of staff, maintenance of Club property records, and acting as an agent for Club accounts.',
+          'The declaration of the Chairperson of the meeting that a motion has been lost or carried by a particular majority shall be final and conclusive and a resolution duly passed shall be binding on all Members.',
       },
       {
         id: 10.18,
-        title: 'CLUB MANAGER',
         content:
-          'The Club may hire a Club Manager responsible for daily administration, supervised by the Executive Committee, with duties outlined in a contract prepared by the Committee, including oversight of staff, maintenance of Club property records, and acting as an agent for Club accounts.',
+          'If at the end of the Annual General Meeting, the meeting is not satisfied with the audited accounts, then the accounts will be returned to the External Auditors for correction.',
       },
       {
         id: 10.19,
-        title: 'CLUB MANAGER',
         content:
-          'The Club may hire a Club Manager responsible for daily administration, supervised by the Executive Committee, with duties outlined in a contract prepared by the Committee, including oversight of staff, maintenance of Club property records, and acting as an agent for Club accounts.',
+          "Emergency General Meeting may be convened by the Executive Committee in urgent cases without the usual twenty one (21) days' notice, following quorum provisions for Annual General Meetings, with discussions limited to the notified subject matter.",
+      },
+    ],
+  },
+  {
+    id: 11,
+    article: 'Article 11',
+    title: 'FINANCE, ACCOUNTS AND AUDIT',
+    details: [
+      {
+        id: 11.1,
+        content:
+          'The financial year of the Club shall commence on 1st July and end on 31st June of each year.',
+      },
+      {
+        id: 11.2,
+        title: 'Funds of the Club',
+        content:
+          'The Club funds shall consist of membership and annual subscription fees, competition fees, green fees, guest fees, grants, contributions, donations, fundraising proceeds, income from Club-owned property, interest from investments, surplus from asset sales, and funds from any other sources.',
+      },
+      {
+        id: 11.3,
+        title: 'BANK ACCOUNTS AND USE OF FUNDS',
+        content:
+          'The Club shall maintain accounts with designated banks, with signatories including the Chairperson, Honorary Treasurer, and Honorary Secretary. These signatories can jointly operate the accounts as decided by the Executive Committee. Club funds are to be used for approved purposes, and the Executive Committee is accountable for their use to the General Meeting. The Honorary Treasurer manages petty cash with oversight from the Executive Committee. Members can inspect financial records upon request, and committee members may claim refunds for authorized expenditures. All Club funds must be banked, and electronic mediums may be used for transactions. The Treasurer must present financial statements monthly to the Committee and audited accounts annually at the AGM.',
+      },
+      {
+        id: 11.4,
+        title: 'AUDIT',
+        content:
+          "Club accounts are audited quarterly by internal Auditors based on management accounts and provided information, with reports on internal controls submitted bi-annually to Trustees and the Executive Committee. External Auditors are appointed by the Annual General Meeting on the Executive Committee's recommendation, ensuring timely audit of Club accounts as per the Constitution.",
+      },
+      {
+        id: 11.5,
+        title: 'BORROWING POWERS',
+        content:
+          'The Club may raise unsecured loans or loans secured by debentures through a resolution of three-fourths of Members at a General or Special General Meeting, potentially secured by a mortgage on Club property.',
+      },
+      {
+        id: 11.6,
+        title: 'INDEMNITY',
+        content:
+          'All acts authorized by the Executive Committee or any Sub-Committee shall bind the Club, not individual members, who shall be indemnified for costs incurred in their official duties.',
+      },
+    ],
+  },
+  {
+    id: 12,
+    article: 'Article 12',
+    title: 'FINANCE, ACCOUNTS AND AUDIT',
+    details: [
+      {
+        id: 12.1,
+        content:
+          'The Executive Committee may arrange or terminate reciprocity with other clubs, with details posted on the Club Notice Board and electronic media for member information, promptly notifying affected clubs.',
+      },
+      {
+        id: 12.2,
+        content:
+          'Members from a reciprocating Club shall be required to produce valid membership cards or sufficient evidence of membership of the said club.',
       },
     ],
   },
