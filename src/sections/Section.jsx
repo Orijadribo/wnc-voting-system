@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { articles } from '../constants';
 import { Link } from 'react-router-dom';
 
@@ -39,12 +39,13 @@ const Section = ({
     }));
   };
 
-  // Check if all articles and sections have been voted on
+  // Check if all articles and sections have been voted on and if no, there has to be a reason for "No"
   const allVoted = filteredArticles.every((article) =>
     article.details.every(
       (subArticle) =>
         selectedVotes[article.id]?.[subArticle.id] === 'yes' ||
-        selectedVotes[article.id]?.[subArticle.id] === 'no'
+        (selectedVotes[article.id]?.[subArticle.id] === 'no' &&
+          (reasons[article.id]?.[subArticle.id] || '').trim() !== '')
     )
   );
 
@@ -56,8 +57,6 @@ const Section = ({
       return;
     }
   };
-
-  console.log(allVoted);
 
   return (
     <div className='bg-green-50 border'>
