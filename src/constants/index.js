@@ -460,4 +460,252 @@ export const articles = [
       },
     ],
   },
+  {
+    id: 13,
+    article: 'Article 13',
+    title: 'RULES OF PLAY',
+    details: [
+      {
+        id: 13.1,
+        content:
+          'The game of golf shall be played at the Club following the rules of golf as laid down by the Royal and Ancient Golf Club of St. Andrews, the United States Golf Association and local rules approved by the Annual General Meeting.',
+      },
+      {
+        id: 13.2,
+        content:
+          'The local rules shall be displayed on the Club Notice Boards or such other place as the Executive Committee shall deem appropriate. ',
+      },
+      {
+        id: 13.2,
+        content:
+          'The rules of play of all other indoor or outdoor games available at the club shall be in accordance with the prevailing rules of the said games as shall be amended from time to time in accordance with the internationally accepted regulations of the said games. ',
+      },
+    ],
+  },
+  {
+    id: 14,
+    article: 'Article 14',
+    title: 'COMPETITIONS',
+    details: [
+      {
+        id: 14.1,
+        content:
+          'The Executive Committee decides and communicates the conditions for club competitions, including arrangements, conduct, postponement, continuation, or discontinuation, with specific consideration for prizes for Men and Lady competitors',
+      },
+      {
+        id: 14.2,
+        content:
+          'The Executive Committee shall however, make Rules for the appropriate organization and conduct of the competitions. Such Rules shall be displayed on the Club Notice Board.',
+      },
+    ],
+  },
+  {
+    id: 15,
+    article: 'Article 15',
+    title: 'PROFESSIONAL SERVICES TO THE CLUB ',
+    details: [
+      {
+        id: 15.1,
+        content:
+          'Executive Committee may from time to time, appoint a competent firm of Lawyers, External Auditors (on an interim basis as the case may be), Surveyors and other skilled professionals to render specialized professional services to the Club on such terms and conditions as the Executive Committee and such professional firms may agree upon.',
+      },
+    ],
+  },
+  {
+    id: 16,
+    article: 'Article 16',
+    title: 'THE PROPERTY OF THE CLUB',
+    details: [
+      {
+        id: 16.1,
+        content:
+          'The property of the Club shall belong to the Members and shall be registered in the names of the Registered Trustees of the Club. ',
+      },
+      {
+        id: 16.2,
+        content:
+          'Notwithstanding 16.1 above, no Member shall, by reason of his Membership only, have any assignable or transferable interest in such property. ',
+      },
+    ],
+  },
+  {
+    id: 17,
+    article: 'Article 17',
+    title: 'DISCIPLINARY MATTERS',
+    details: [
+      {
+        id: 17.1,
+        title: 'Discipline of Members',
+        content:
+          "The Executive Committee may provisionally discipline Members for conduct deemed injurious to the Club's interests, including warnings or suspensions up to 3 months. Members have the right to defend themselves before any disciplinary action is finalized, which may then be referred to the Disciplinary Committee for further adjudication.",
+      },
+      {
+        id: 17.2,
+        title: 'DISCIPLINARY COMMITTEE',
+        content:
+          'The Disciplinary Committee, appointed by the Annual General Meeting, adjudicates on discipline matters referred by the Executive Committee or Members, ensuring adherence to club rules and regulations. Appeals can be made to the Appeals Committee within seven days, except for matters involving golf etiquette or non-payment of dues.',
+      },
+      {
+        id: 17.3,
+        title: 'THE APPEALS COMMITTEE',
+        content:
+          'The Appeals Committee, including Trustees and two elected members, oversees appeals under the Constitution, ensuring fair decisions and finality. Dissatisfied members may request a Special General Meeting for Executive Committee oversight, barring dismissed members from re-application.',
+      },
+    ],
+  },
+  {
+    id: 18,
+    article: 'Article 18',
+    title: 'BOARD OF TRUSTEES',
+    details: [
+      {
+        id: 18.1,
+        content:
+          'There shall be a Board of Trustees for West Nile Club consisting of three (3) members, the majority of whom shall be Ugandan citizens',
+      },
+      {
+        id: 18.2,
+        content:
+          'For purposes of the Trustees Incorporation Act, the property of the Club shall be vested in three (3) trustees who shall be elected from amongst the Members at the General Meeting.',
+      },
+      {
+        id: 18.3,
+        content:
+          'The elected trustees shall, during their term of office, be “THE REGISTERED TRUSTEES OF WEST NILE CLUB.”',
+      },
+      {
+        id: 18.4,
+        content:
+          'Members of the Board of Trustees shall be distinguished members of the Club who are above the age of 45 years and who have been Members of the Club for a period of at least 10 years.',
+      },
+      {
+        id: 18.5,
+        content:
+          'The term of service of a Trustee shall be three (3) years but they shall be eligible for reelection for one further term only.',
+      },
+      {
+        id: 18.6,
+        content:
+          'The Members of the Board of Trustees shall be elected at the Annual General Meeting. The procedure for electing the Members of the Board of Trustees shall be the same as for the elected officers subject to Article 18.2.',
+      },
+      {
+        id: 18.7,
+        content:
+          'In the case of a vacancy occurring during the tenure of the Board, the remaining two Trustees shall have the power to nominate and appoint the third Trustee subject to the provision of Article 18.2.',
+      },
+      {
+        id: 18.8,
+        content:
+          'The Members of the Board of Trustees shall elect one of their numbers to preside over the Annual General Meeting, Special General Meeting, Emergency General Meetings and to preside over the meetings of the Board.',
+      },
+      {
+        id: 18.9,
+        content:
+          'In case of resignation, incapacitation, death or leaving Uganda for a period longer than twelve (12) months a new Trustee shall be elected by the General Meeting.',
+      },
+      {
+        id: 18.1,
+        content:
+          'The services of a Trustee may also be terminated by a resolution of the General Meeting at any time. ',
+      },
+      {
+        id: 18.11,
+        title: 'FUNCTIONS AND POWERS OF THE BOARD',
+        content:
+          'The Board of Trustees manages Club property, including land, under Club instructions, oversees legal matters, and collaborates with the Executive Committee on audits, reports, and decisions, presenting reports at AGMs.',
+      },
+    ],
+  },
+  {
+    id: 19,
+    article: 'Article 19',
+    title: 'AMENDMENT OF THE CONSTITUTION',
+    details: [
+      {
+        id: 19.1,
+        content:
+          'The powers to amend this Constitution shall be vested in the General Meeting. The Constitution may be amended by resolution of the Annual General Meeting or by resolution of a Special General Meeting called for that purpose.',
+      },
+      {
+        id: 19.2,
+        content:
+          'Any proposals for constitutional amendments shall be submitted to the Honorary Secretary of the Club in writing twenty one (21) days prior to the Annual General Meeting or Special General Meeting called for that purpose and such proposals shall be circulated to all the members at least Fourteen (14) days prior to the said meeting.',
+      },
+      {
+        id: 19.3,
+        content:
+          'Such notification specifying details of amendments to the Constitution may be proposed by the Executive Committee or through it.',
+      },
+      {
+        id: 19.4,
+        content:
+          'Any proposals for amendment or alteration of this Constitution shall stand approved if supported by two thirds of the Members present and voting at the meeting.',
+      },
+      {
+        id: 19.5,
+        title: 'Powers to make/amend Bye-Laws',
+        content:
+          'The Executive Committee can propose or modify Club rules, subject to General Meeting approval, and must display them for member review on the Club Notice Board for at least one month prior to ratification.',
+      },
+    ],
+  },
+  {
+    id: 20,
+    article: 'Article 20',
+    title: 'DISSOLUTION OF THE CLUB',
+    details: [
+      {
+        id: 20.1,
+        content:
+          'Dissolution of the Club shall be considered either at the Annual General Meeting or at an Special General Meeting called for that purpose.',
+      },
+      {
+        id: 20.2,
+        content:
+          'A motion to this effect shall not be entertained unless it is proposed in writing by not less that two thirds (2/3) of all fully paid up members.',
+      },
+      {
+        id: 20.3,
+        content:
+          'The Club shall be wound up and property thereof disposed of by a resolution passed at a General Meeting by a majority vote of not less than three fourths (3/4) of the total Membership of the Club present at the meeting.',
+      },
+      {
+        id: 20.4,
+        content:
+          'In the event of the dissolution of the Club, the Patron and the Trustees shall take charge of assets and liabilities thereof. They shall arrange for the evaluation of the assets, settlement of liabilities and equitable distribution of net assets and outstanding liabilities to fully paid-up members under the Chair of the Patron.',
+      },
+    ],
+  },
+  {
+    id: 21,
+    article: 'Article 21',
+    title: 'REPEAL, SAVING AND TRANSITIONAL CLAUSES',
+    details: [
+      {
+        id: 21.1,
+        content: 'The Constitution of West Nile Club is hereby repealed.',
+      },
+      {
+        id: 21.2,
+        content:
+          'Notwithstanding Clause 21.1 above, any lawful acts or omissions done or made under the existing Constitution of West Nile Club and all rights, liabilities, privileges and duties created under it and all things done under the said Constitution shall be deemed to have been done, issued, made or created under this Constitution.',
+      },
+      {
+        id: 21.3,
+        content:
+          'For the avoidance of doubt, the existing members of the Executive Committee, Board of Trustees and management of the Club at the time of adoption of this Constitution shall remain in office and continue to perform their functions until such a time when fresh office bearers are elected under this Constitution.',
+      },
+    ],
+  },
+  {
+    id: 22,
+    article: 'Article 21',
+    title: 'INTERPRETATION',
+    details: [
+      {
+        id: 22.1,
+        content: 'Any dispute as to the interpretation of this Constitution shall be referred to a General Meeting whose interpretation shall be final and binding on all Members.',
+      },
+    ],
+  },
 ];
