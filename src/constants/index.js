@@ -699,7 +699,7 @@ export const articles = [
   },
   {
     id: 22,
-    article: 'Article 21',
+    article: 'Article 22',
     title: 'INTERPRETATION',
     details: [
       {
