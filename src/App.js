@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import Section from './sections/Section';
+import Finish from './pages/finish/Finish';
 
 function App() {
   return (
@@ -103,6 +104,7 @@ function App() {
               />
             }
           />
+          <Route path='/complete' element={<Finish />} />
         </Routes>
       </Router>
     </div>
