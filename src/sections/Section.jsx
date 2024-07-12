@@ -39,23 +39,25 @@ const Section = ({
     }));
   };
 
+  // Check if all articles and sections have been voted on
+  const allVoted = filteredArticles.every((article) =>
+    article.details.every(
+      (subArticle) =>
+        selectedVotes[article.id]?.[subArticle.id] === 'yes' ||
+        selectedVotes[article.id]?.[subArticle.id] === 'no'
+    )
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Check if all articles and sections have been voted on
-    const allVoted = articles.every((article) =>
-      article.details.every(
-        (section) =>
-          selectedVotes[article.id]?.[section.id] === 'yes' ||
-          selectedVotes[article.id]?.[section.id] === 'no'
-      )
-    );
 
     if (!allVoted) {
       alert('Please vote on all sections of all articles.');
       return;
     }
   };
+
+  console.log(allVoted);
 
   return (
     <div className='bg-green-50 border'>
@@ -167,11 +169,16 @@ const Section = ({
           <button type='submit' className='border py-2 px-5 rounded-lg'>
             Save
           </button>
-          <Link to={`/section_${nextSection}`}>
-            <button type='submit' className=' flex gap-1 border py-2 px-5 rounded-lg'>
-              <span className='hidden md:block'>Save and</span> Continue
-            </button>
-          </Link>
+          {allVoted && (
+            <Link to={`/section_${nextSection}`}>
+              <button
+                type='submit'
+                className=' flex gap-1 border py-2 px-5 rounded-lg'
+              >
+                <span className='hidden md:block'>Save and</span> Continue
+              </button>
+            </Link>
+          )}
         </div>
       </form>
     </div>
