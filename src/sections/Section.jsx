@@ -61,7 +61,7 @@ const Section = ({
     <div className='bg-green-50 border'>
       <form
         onSubmit={handleSubmit}
-        className='items-center justify-between max-w-2xl m-auto my-20 rounded-lg p-10 shadow-lg bg-white'
+        className='items-center justify-between max-w-2xl m-auto my-20 rounded-lg p-6 md:p-10 shadow-lg bg-white'
       >
         <div className='text-center font-light text-[32px] capitalize'>
           Section {section}
@@ -158,7 +158,7 @@ const Section = ({
             </div>
           ))}
         </div>
-        <div className='flex gap-5 items-center justify-end'>
+        <div className='flex gap-5 items-center justify-between md:justify-end'>
           <Link to={`/section_${previousSection}`}>
             <button type='button' className='border py-2 px-5 rounded-lg'>
               Previous
@@ -168,8 +168,8 @@ const Section = ({
             Save
           </button>
           <Link to={`/section_${nextSection}`}>
-            <button type='submit' className='border py-2 px-5 rounded-lg'>
-              Save and Continue
+            <button type='submit' className=' flex gap-1 border py-2 px-5 rounded-lg'>
+              <span className='hidden md:block'>Save and</span> Continue
             </button>
           </Link>
         </div>
