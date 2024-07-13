@@ -1,8 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { WNC_course, WNGC_logo } from '../../assets';
+import db from '../../api/firebaseConfig';
+import { getDocs, collection } from 'firebase/firestore';
 
 const Login = () => {
+
+
+  const trialCollectionRef = collection(db, 'trial');
+
+
+
+  const getTrial = async () => {
+    try {
+      const data = await getDocs(trialCollectionRef);
+      const myData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      console.log(myData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  getTrial();
+
+
+
   return (
     <div
       className='flex items-center justify-center w-screen m-auto h-screen bg-[#F4F6F9]'
