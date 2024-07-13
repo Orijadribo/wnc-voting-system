@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { WNC_course, WNGC_logo } from '../assets';
+import { WNC_course, WNGC_logo } from '../../assets';
 
 const Login = () => {
   return (
