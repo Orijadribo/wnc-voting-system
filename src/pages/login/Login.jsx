@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { WNC_course, WNGC_logo } from '../../assets';
 import db from '../../api/firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
+import dayjs from 'dayjs';
 
 const Login = () => {
   const [labelClass, setLabelClass] = useState({
@@ -19,6 +20,9 @@ const Login = () => {
       await addDoc(trialCollectionRef, {
         firstName: firstName,
         lastName: lastName,
+        startTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        endTime: '',
+        votes: {},
       });
     } catch (err) {
       console.log(err);
@@ -35,14 +39,14 @@ const Login = () => {
   };
 
   // Revert the class name only if the input is empty
- const handleInputBlur = (label, value) => {
-   if (value.trim() === '') {
-     setLabelClass((prevClasses) => ({
-       ...prevClasses,
-       [label]: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
-     }));
-   }
- };
+  const handleInputBlur = (label, value) => {
+    if (value.trim() === '') {
+      setLabelClass((prevClasses) => ({
+        ...prevClasses,
+        [label]: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
+      }));
+    }
+  };
 
   return (
     <div
@@ -73,7 +77,7 @@ const Login = () => {
               type='text'
               value={firstName}
               onFocus={() => handleInputFocus('firstName')}
-              onBlur={() => handleInputBlur('firstName',firstName)}
+              onBlur={() => handleInputBlur('firstName', firstName)}
               onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
@@ -88,7 +92,7 @@ const Login = () => {
               className='border p-2 rounded-md'
               value={lastName}
               onFocus={() => handleInputFocus('lastName')}
-              onBlur={() => handleInputBlur('lastName',lastName)}
+              onBlur={() => handleInputBlur('lastName', lastName)}
               onChange={(e) => setLastName(e.target.value)}
             />
           </div>
