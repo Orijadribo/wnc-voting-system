@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { articles } from '../constants';
 import { Link } from 'react-router-dom';
 
@@ -11,12 +11,20 @@ const Section = ({
 }) => {
   const [selectedVotes, setSelectedVotes] = useState({});
   const [reasons, setReasons] = useState({});
+  const [votes, setVotes] = useState([]);
+  const [reasonActive, setReasonActive] = useState(false);
+  const [reasonAvailable, setReasonAvailable] = useState(false);
 
   // Logic to filter articles based on startArticle and endArticle
   const filteredArticles = articles.filter((article, index) => {
     return article.id >= startArticle && article.id <= endArticle;
   });
 
+  useEffect(() => {
+    console.log(votes);
+  }, [votes]);
+
+  //Function to hanlde change of a vote
   const handleVoteChange = (vote, articleId, sectionId) => {
     setSelectedVotes((prevVotes) => ({
       ...prevVotes,
@@ -25,10 +33,30 @@ const Section = ({
         [sectionId]: vote,
       },
     }));
+
+    //Saving the vote in an object
+    setVotes((prevVotes) => ({
+      ...prevVotes,
+      [articleId]: {
+        ...prevVotes[articleId],
+        [sectionId]: {
+          ...prevVotes[articleId]?.[sectionId],
+          vote: vote,
+        },
+      },
+    }));
   };
 
+  //Function to hanlde change in a voter's reply for a "no" vote
   const handleReasonChange = (e, articleId, sectionId) => {
     const { value } = e.target;
+
+    if (value.trim() === '') {
+      setReasonAvailable(false);
+    }else{
+      setReasonAvailable(true)
+    }
+
     setReasons((prevReasons) => ({
       ...prevReasons,
       [articleId]: {
@@ -36,6 +64,20 @@ const Section = ({
         [sectionId]: value,
       },
     }));
+
+    if (!reasonActive) {
+      //Saving the response of the voter
+      setVotes((prevVotes) => ({
+        ...prevVotes,
+        [articleId]: {
+          ...prevVotes[articleId],
+          [sectionId]: {
+            ...prevVotes[articleId]?.[sectionId],
+            reason: value,
+          },
+        },
+      }));
+    }
   };
 
   // Check if all articles and sections have been voted on and if no, there has to be a reason for "No"
@@ -56,6 +98,8 @@ const Section = ({
       return;
     }
   };
+
+  console.log(reasonAvailable);
 
   return (
     <div className='bg-green-50 border'>
@@ -131,20 +175,24 @@ const Section = ({
                       </label>
                     </div>
                     {selectedVotes[article?.id]?.[section?.id] === 'no' && (
-                      <div className='flex flex-col'>
+                      <div className='flex flex-col relative'>
                         <label
                           htmlFor={`reasonForNo${article?.id}${section?.id}`}
-                          className='font-normal'
+                          className={`font-normal absolute -top-2 left-2 bg-white text-[12px] py-[0.15rem] px-2 rounded-sm text-[#b2b2b2] ${
+                            reasonAvailable ? 'block' : 'hidden'
+                          }`}
                         >
-                          Give a reason for voting 'No'
+                          Reason for voting "No" ...
                         </label>
                         <textarea
                           name='reasonForNo'
                           id={`reasonForNo${article?.id}${section?.id}`}
-                          placeholder='Give a reason for voting "No"... (250 characters maximum)'
+                          placeholder='Reason for voting "No"... (250 characters maximum)'
                           maxLength='250'
                           required
                           value={reasons[article?.id]?.[section?.id] || ''}
+                          // onFocus={setReasonActive(true)}
+                          // onBlur={setReasonActive(false)}
                           onChange={(e) =>
                             handleReasonChange(e, article.id, section.id)
                           }
