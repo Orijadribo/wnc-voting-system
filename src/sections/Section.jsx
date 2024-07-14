@@ -14,7 +14,6 @@ const Section = ({
 
   // Logic to filter articles based on startArticle and endArticle
   const filteredArticles = articles.filter((article, index) => {
-    // Replace with your logic to match articles to sectionNumber
     return article.id >= startArticle && article.id <= endArticle;
   });
 
@@ -137,12 +136,12 @@ const Section = ({
                           htmlFor={`reasonForNo${article?.id}${section?.id}`}
                           className='font-normal'
                         >
-                          Give a reason for voting No
+                          Give a reason for voting 'No'
                         </label>
                         <textarea
                           name='reasonForNo'
                           id={`reasonForNo${article?.id}${section?.id}`}
-                          placeholder='Give a reason for voting No... (250 characters maximum)'
+                          placeholder='Give a reason for voting "No"... (250 characters maximum)'
                           maxLength='250'
                           required
                           value={reasons[article?.id]?.[section?.id] || ''}
