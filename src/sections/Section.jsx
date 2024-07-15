@@ -12,17 +12,17 @@ const Section = ({
   const [selectedVotes, setSelectedVotes] = useState({});
   const [reasons, setReasons] = useState({});
   const [votes, setVotes] = useState([]);
-  const [reasonActive, setReasonActive] = useState(false);
-  const [reasonAvailable, setReasonAvailable] = useState(false);
+  const [reasonActive, setReasonActive] = useState({});
+  const [reasonAvailable, setReasonAvailable] = useState({});
 
   // Logic to filter articles based on startArticle and endArticle
   const filteredArticles = articles.filter((article, index) => {
     return article.id >= startArticle && article.id <= endArticle;
   });
 
-  useEffect(() => {
-    console.log(votes);
-  }, [votes]);
+  // useEffect(() => {
+  // }, [votes]);
+  console.log(votes);
 
   //Function to hanlde change of a vote
   const handleVoteChange = (vote, articleId, sectionId) => {
@@ -57,6 +57,11 @@ const Section = ({
       setReasonAvailable(true);
     }
 
+    setReasonAvailable((prevAvailable) => ({
+      ...prevAvailable,
+      [`${articleId}-${sectionId}`]: value.trim() !== '',
+    }));
+
     setReasons((prevReasons) => ({
       ...prevReasons,
       [articleId]: {
@@ -65,20 +70,21 @@ const Section = ({
       },
     }));
 
-    if (!reasonActive) {
-      //Saving the response of the voter
-      setVotes((prevVotes) => ({
-        ...prevVotes,
-        [articleId]: {
-          ...prevVotes[articleId],
-          [sectionId]: {
-            ...prevVotes[articleId]?.[sectionId],
-            reason: value,
-          },
+    // Saving the response of the voter
+    setVotes((prevVotes) => ({
+      ...prevVotes,
+      [articleId]: {
+        ...prevVotes[articleId],
+        [sectionId]: {
+          ...prevVotes[articleId]?.[sectionId],
+          reason: value,
         },
-      }));
-    }
+      },
+    }));
+ 
+    console.log(value);
   };
+  console.log(reasonActive);
 
   // Check if all articles and sections have been voted on and if no, there has to be a reason for "No"
   const allVoted = filteredArticles.every((article) =>
@@ -100,10 +106,19 @@ const Section = ({
   };
 
   // Handle focus and blur events
-  const handleFocus = () => setReasonActive(true);
-  const handleBlur = () => setReasonActive(false);
+  const handleFocus = (articleId, sectionId) => {
+    setReasonActive((prevActive) => ({
+      ...prevActive,
+      [`${articleId}-${sectionId}`]: true,
+    }));
+  };
 
-  console.log(reasonAvailable);
+  const handleBlur = (articleId, sectionId) => {
+    setReasonActive((prevActive) => ({
+      ...prevActive,
+      [`${articleId}-${sectionId}`]: false,
+    }));
+  };
 
   return (
     <div className='bg-green-50 border'>
@@ -183,7 +198,9 @@ const Section = ({
                         <label
                           htmlFor={`reasonForNo${article?.id}${section?.id}`}
                           className={`font-normal absolute -top-2 left-2 bg-white text-[12px] py-[0.15rem] px-2 rounded-sm text-[#b2b2b2] ${
-                            reasonAvailable ? 'block' : 'hidden'
+                            reasonAvailable[`${article.id}-${section.id}`]
+                              ? 'block'
+                              : 'hidden'
                           }`}
                         >
                           Reason for voting "No" ...
@@ -195,8 +212,8 @@ const Section = ({
                           maxLength='250'
                           required
                           value={reasons[article?.id]?.[section?.id] || ''}
-                          onFocus={handleFocus}
-                          onBlur={handleBlur}
+                          onFocus={() => handleFocus(article.id, section.id)}
+                          onBlur={() => handleBlur(article.id, section.id)}
                           onChange={(e) =>
                             handleReasonChange(e, article.id, section.id)
                           }
