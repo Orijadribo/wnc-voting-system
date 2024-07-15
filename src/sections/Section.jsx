@@ -53,8 +53,8 @@ const Section = ({
 
     if (value.trim() === '') {
       setReasonAvailable(false);
-    }else{
-      setReasonAvailable(true)
+    } else {
+      setReasonAvailable(true);
     }
 
     setReasons((prevReasons) => ({
@@ -98,6 +98,10 @@ const Section = ({
       return;
     }
   };
+
+  // Handle focus and blur events
+  const handleFocus = () => setReasonActive(true);
+  const handleBlur = () => setReasonActive(false);
 
   console.log(reasonAvailable);
 
@@ -191,8 +195,8 @@ const Section = ({
                           maxLength='250'
                           required
                           value={reasons[article?.id]?.[section?.id] || ''}
-                          // onFocus={setReasonActive(true)}
-                          // onBlur={setReasonActive(false)}
+                          onFocus={handleFocus}
+                          onBlur={handleBlur}
                           onChange={(e) =>
                             handleReasonChange(e, article.id, section.id)
                           }
