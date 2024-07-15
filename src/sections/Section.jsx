@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { articles } from '../constants';
 import { Link } from 'react-router-dom';
 
@@ -14,15 +14,16 @@ const Section = ({
   const [votes, setVotes] = useState([]);
   const [reasonActive, setReasonActive] = useState({});
   const [reasonAvailable, setReasonAvailable] = useState({});
+  const debounceTimeout = useRef(null);
 
   // Logic to filter articles based on startArticle and endArticle
   const filteredArticles = articles.filter((article, index) => {
     return article.id >= startArticle && article.id <= endArticle;
   });
 
-  // useEffect(() => {
-  // }, [votes]);
-  console.log(votes);
+  useEffect(() => {
+    console.log(votes);
+  }, [votes]);
 
   //Function to hanlde change of a vote
   const handleVoteChange = (vote, articleId, sectionId) => {
@@ -70,21 +71,26 @@ const Section = ({
       },
     }));
 
-    // Saving the response of the voter
-    setVotes((prevVotes) => ({
-      ...prevVotes,
-      [articleId]: {
-        ...prevVotes[articleId],
-        [sectionId]: {
-          ...prevVotes[articleId]?.[sectionId],
-          reason: value,
+    // Clear the previous debounce timeout
+    if (debounceTimeout.current) {
+      clearTimeout(debounceTimeout.current);
+    }
+
+    // Set a new debounce timeout
+    debounceTimeout.current = setTimeout(() => {
+      // Saving the response of the voter
+      setVotes((prevVotes) => ({
+        ...prevVotes,
+        [articleId]: {
+          ...prevVotes[articleId],
+          [sectionId]: {
+            ...prevVotes[articleId]?.[sectionId],
+            reason: value,
+          },
         },
-      },
-    }));
- 
-    console.log(value);
+      }));
+    }, 1000);
   };
-  console.log(reasonActive);
 
   // Check if all articles and sections have been voted on and if no, there has to be a reason for "No"
   const allVoted = filteredArticles.every((article) =>
