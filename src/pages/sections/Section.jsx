@@ -119,7 +119,7 @@ const Section = ({
 
     if (!userDocId) {
       alert('You must be logged in to submit your votes.');
-      navigate('/login');
+      navigate('/');
       return;
     }
 
