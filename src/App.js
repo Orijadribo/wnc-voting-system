@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/login/Login';
 import Section from './pages/sections/Section';
@@ -6,12 +6,28 @@ import Finish from './pages/finish/Finish';
 import Verification from './pages/login/Verification';
 
 function App() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
   return (
     <div className='font-mulish'>
       <Router>
         <Routes>
-          <Route index element={<Verification />} />
-          <Route path='/login' element={<Login />} />
+          <Route
+            index
+            element={
+              <Verification
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+              />
+            }
+          />
+          <Route
+            path='/login'
+            element={<Login firstName={firstName} lastName={lastName} />}
+          />
           <Route
             path='/section_one'
             element={

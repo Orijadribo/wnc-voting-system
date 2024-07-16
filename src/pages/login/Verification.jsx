@@ -1,43 +1,26 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { WNC_course, WNGC_logo } from '../../assets';
-import { db, auth } from '../../api/firebaseConfig';
-import { addDoc, collection } from 'firebase/firestore';
-import dayjs from 'dayjs';
+import { db } from '../../api/firebaseConfig';
+import { collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
-const Verification = () => {
+const Verification = ({ firstName, setFirstName, lastName, setLastName }) => {
   const [labelClass, setLabelClass] = useState({
     firstName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
     lastName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
   });
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
 
   const navigate = useNavigate();
+  const paidUpMembersCollectionRef = collection(db, 'paidUpMembers');
 
-  const trialCollectionRef = collection(db, 'trial');
-
-  const getTrial = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      await addDoc(trialCollectionRef, {
-        firstName: firstName,
-        lastName: lastName,
-        startTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-        endTime: '',
-        votes: {},
-      });
-      // Clear form fields
-      setFirstName('');
-      setLastName('');
+    //Logic to handle verification of the users (Cross check the name against that in the database)
 
-      //Navigate to login
-      navigate('/login');
-    } catch (err) {
-      console.log(err);
-    }
+    
+    //Navigate to login
+    navigate('/login');
   };
 
   // Update the class name when the input is focused or blurred
@@ -76,7 +59,10 @@ const Verification = () => {
         </div>
 
         {/* Player details */}
-        <form onSubmit={getTrial} className='flex flex-col gap-5 w-full mb-5'>
+        <form
+          onSubmit={handleLogin}
+          className='flex flex-col gap-5 w-full mb-5'
+        >
           <div className='flex flex-col gap-2 relative'>
             <label htmlFor='firstName' className={labelClass.firstName}>
               First Name

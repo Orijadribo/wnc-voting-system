@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { db, auth } from '../../api/firebaseConfig';
-import dayjs from 'dayjs';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import { BiSolidHide } from 'react-icons/bi';
 import { BiShow } from 'react-icons/bi';
 
-const Login = () => {
+const Login = ({ firstName, lastName }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -19,10 +18,23 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+  const votesCollectionRef = collection(db, 'votes');
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
+
+    try {
+      await addDoc(votesCollectionRef, {
+        firstName: firstName,
+        lastName: lastName,
+        startTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        endTime: '',
+        votes: {},
+      });
+    } catch (err) {
+      console.log(err);
+    }
 
     try {
       // Fetch the email associated with the username from Firestore
