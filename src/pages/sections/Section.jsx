@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { articles } from '../constants';
+import { articles } from '../../constants';
 import { Link } from 'react-router-dom';
+import { db,auth } from '../../api/firebaseConfig';
 
 const Section = ({
   startArticle,

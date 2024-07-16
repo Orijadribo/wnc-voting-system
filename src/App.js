@@ -1,15 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/login/Login';
-import Section from './sections/Section';
+import Section from './pages/sections/Section';
 import Finish from './pages/finish/Finish';
+import Verification from './pages/login/Verification';
 
 function App() {
   return (
     <div className='font-mulish'>
       <Router>
         <Routes>
-          <Route index element={<Login />} />
+          <Route index element={<Verification />} />
+          <Route path='/login' element={<Login />} />
           <Route
             path='/section_one'
             element={
