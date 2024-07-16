@@ -33,12 +33,25 @@ const Section = ({
       [articleId]: vote,
     }));
 
+    if (vote === 'yes') {
+      // Remove the reason if the vote is changed to "Yes"
+      setReasons((prevReasons) => {
+        const { [articleId]: removed, ...rest } = prevReasons;
+        return rest;
+      });
+      setReasonAvailable((prevAvailable) => {
+        const { [articleId]: removed, ...rest } = prevAvailable;
+        return rest;
+      });
+    }
+
     // Saving the vote in the state
     setVotes((prevVotes) => ({
       ...prevVotes,
       [articleId]: {
         ...prevVotes[articleId],
         vote: vote,
+        reason: vote === 'yes' ? '' : prevVotes[articleId]?.reason,
       },
     }));
   };
@@ -53,10 +66,10 @@ const Section = ({
       setReasonAvailable(true);
     }
 
-     setReasonAvailable((prevAvailable) => ({
-       ...prevAvailable,
-       [`${articleId}`]: value.trim() !== '',
-     }));
+    setReasonAvailable((prevAvailable) => ({
+      ...prevAvailable,
+      [`${articleId}`]: value.trim() !== '',
+    }));
 
     setReasons((prevReasons) => ({
       ...prevReasons,
