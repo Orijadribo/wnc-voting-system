@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { articles } from '../../constants';
 import { Link } from 'react-router-dom';
 import { db, auth } from '../../api/firebaseConfig';
+import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const Section = ({
   startArticle,
@@ -9,6 +11,7 @@ const Section = ({
   section,
   previousSection,
   nextSection,
+  userDocId,
 }) => {
   const [selectedVotes, setSelectedVotes] = useState({});
   const [reasons, setReasons] = useState({});
@@ -16,6 +19,9 @@ const Section = ({
   const [reasonActive, setReasonActive] = useState({});
   const [reasonAvailable, setReasonAvailable] = useState({});
   const debounceTimeout = useRef(null);
+
+  const navigate = useNavigate();
+  const votesCollectionRef = collection(db, 'votes');
 
   // Logic to filter articles based on startArticle and endArticle
   const filteredArticles = articles.filter((article) => {
@@ -102,12 +108,27 @@ const Section = ({
         (reasons[article.id] || '').trim() !== '')
   );
 
-  const handleSubmit = (e) => {
+  // Function to save votes to Firebase
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!allVoted) {
       alert('Please vote on all sections of all articles.');
       return;
+    }
+
+    if (!userDocId) {
+      alert('You must be logged in to submit your votes.');
+      navigate('/login');
+      return;
+    }
+
+    try {
+      const voteDocRef = doc(db, 'votes', userDocId);
+      await updateDoc(voteDocRef, { votes });
+      console.log('success');
+    } catch (err) {
+      console.log('Error updating votes:', err);
     }
   };
 

@@ -18,7 +18,6 @@ const Verification = ({ firstName, setFirstName, lastName, setLastName }) => {
 
     //Logic to handle verification of the users (Cross check the name against that in the database)
 
-    
     //Navigate to login
     navigate('/login');
   };

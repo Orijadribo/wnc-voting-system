@@ -8,6 +8,7 @@ import Verification from './pages/login/Verification';
 function App() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [userDocId, setUserDocId] = useState(null);
 
   return (
     <div className='font-mulish'>
@@ -26,7 +27,13 @@ function App() {
           />
           <Route
             path='/login'
-            element={<Login firstName={firstName} lastName={lastName} />}
+            element={
+              <Login
+                firstName={firstName}
+                lastName={lastName}
+                setUserDocId={setUserDocId}
+              />
+            }
           />
           <Route
             path='/section_one'
@@ -36,6 +43,7 @@ function App() {
                 endArticle={3}
                 section={'one'}
                 nextSection={'two'}
+                userDocId={userDocId}
               />
             }
           />
@@ -48,6 +56,7 @@ function App() {
                 previousSection={'one'}
                 section={'two'}
                 nextSection={'three'}
+                userDocId={userDocId}
               />
             }
           />
@@ -60,6 +69,7 @@ function App() {
                 previousSection={'two'}
                 section={'three'}
                 nextSection={'four'}
+                userDocId={userDocId}
               />
             }
           />
@@ -72,6 +82,7 @@ function App() {
                 previousSection={'three'}
                 section={'four'}
                 nextSection={'five'}
+                userDocId={userDocId}
               />
             }
           />
@@ -84,6 +95,7 @@ function App() {
                 previousSection={'four'}
                 section={'five'}
                 nextSection={'six'}
+                userDocId={userDocId}
               />
             }
           />
@@ -96,6 +108,7 @@ function App() {
                 previousSection={'five'}
                 section={'six'}
                 nextSection={'seven'}
+                userDocId={userDocId}
               />
             }
           />
@@ -108,6 +121,7 @@ function App() {
                 previousSection={'six'}
                 section={'seven'}
                 nextSection={'eight'}
+                userDocId={userDocId}
               />
             }
           />
@@ -119,6 +133,7 @@ function App() {
                 endArticle={24}
                 previousSection={'seven'}
                 section={'eight'}
+                userDocId={userDocId}
               />
             }
           />

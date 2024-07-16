@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { BiSolidHide } from 'react-icons/bi';
 import { BiShow } from 'react-icons/bi';
 
-const Login = ({ firstName, lastName }) => {
+const Login = ({ firstName, lastName, setUserDocId }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -23,18 +23,6 @@ const Login = ({ firstName, lastName }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
-
-    try {
-      await addDoc(votesCollectionRef, {
-        firstName: firstName,
-        lastName: lastName,
-        startTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-        endTime: '',
-        votes: {},
-      });
-    } catch (err) {
-      console.log(err);
-    }
 
     try {
       // Fetch the email associated with the username from Firestore
@@ -53,11 +41,38 @@ const Login = ({ firstName, lastName }) => {
       // Sign in with email and password
       await signInWithEmailAndPassword(auth, email, password);
 
+      // Check if a votes document already exists for the user
+      const votesQuery = query(
+        votesCollectionRef,
+        where('firstName', '==', firstName),
+        where('lastName', '==', lastName)
+      );
+      const votesSnapshot = await getDocs(votesQuery);
+
+      let userDocId;
+
+      if (votesSnapshot.empty) {
+        // Create a new votes document if none exists
+        const votesDoc = await addDoc(votesCollectionRef, {
+          firstName: firstName,
+          lastName: lastName,
+          startTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+          endTime: '',
+          votes: {},
+        });
+        userDocId = votesDoc.id;
+      } else {
+        // Use the existing document
+        userDocId = votesSnapshot.docs[0].id;
+      }
+
+      setUserDocId(userDocId);
+
       // Clear form fields
       setUsername('');
       setPassword('');
 
-      //Navigate to section one
+      // Navigate to section one
       navigate('/section_one');
     } catch (err) {
       setError('Invalid username or password');
