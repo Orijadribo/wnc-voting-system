@@ -29,7 +29,7 @@ const Section = ({
   });
 
   useEffect(() => {
-    console.log(votes);
+    // console.log(votes);
   }, [votes]);
 
   // Function to handle change of a vote
@@ -126,7 +126,7 @@ const Section = ({
     try {
       const voteDocRef = doc(db, 'votes', userDocId);
       await updateDoc(voteDocRef, { votes });
-      console.log('success');
+      // console.log('success');
     } catch (err) {
       console.log('Error updating votes:', err);
     }
