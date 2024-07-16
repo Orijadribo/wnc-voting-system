@@ -5,11 +5,14 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { BiSolidHide } from 'react-icons/bi';
+import { BiShow } from 'react-icons/bi';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [labelClass, setLabelClass] = useState({
     username: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
     password: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
@@ -68,6 +71,11 @@ const Login = () => {
     }
   };
 
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prevVisible) => !prevVisible);
+  };
+
   return (
     <div className='flex items-center justify-center w-screen m-auto h-screen bg-[#F4F6F9]'>
       <div className='flex flex-col items-center justify-center rounded-lg w-[350px] md:w-[400px] bg-white p-10  shadow-xl'>
@@ -101,8 +109,16 @@ const Login = () => {
             <label htmlFor='password' className={labelClass.password}>
               Password
             </label>
+            <div className='absolute top-2 right-0'>
+              <div className={`${passwordVisible ? 'block' : 'hidden'}`}>
+                <BiSolidHide />
+              </div>
+              <div className={`${passwordVisible ? 'hidden' : 'block'}`}>
+                <BiShow />
+              </div>
+            </div>
             <input
-              type='password'
+              type={passwordVisible ? 'text' : 'password'}
               name='password'
               id='password'
               className='border p-2 rounded-md'
