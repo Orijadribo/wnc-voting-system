@@ -48,7 +48,7 @@ const Login = () => {
       //Navigate to section one
       navigate('/section_one');
     } catch (err) {
-      setError(err.message);
+      setError('Invalid username or password');
     }
   };
 
@@ -109,12 +109,15 @@ const Login = () => {
             <label htmlFor='password' className={labelClass.password}>
               Password
             </label>
-            <div className='absolute top-2 right-0'>
+            <div
+              onClick={togglePasswordVisibility}
+              className='absolute flex top-3 right-3 cursor-pointer'
+            >
               <div className={`${passwordVisible ? 'block' : 'hidden'}`}>
-                <BiSolidHide />
+                <BiSolidHide className='text-xl' />
               </div>
               <div className={`${passwordVisible ? 'hidden' : 'block'}`}>
-                <BiShow />
+                <BiShow className='text-xl' />
               </div>
             </div>
             <input
