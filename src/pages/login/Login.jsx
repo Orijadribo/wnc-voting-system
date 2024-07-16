@@ -1,31 +1,51 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { WNC_course, WNGC_logo } from '../../assets';
-import db from '../../api/firebaseConfig';
-import { addDoc, collection } from 'firebase/firestore';
+import { db, auth } from '../../api/firebaseConfig';
 import dayjs from 'dayjs';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [labelClass, setLabelClass] = useState({
-    firstName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
-    lastName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
+    username: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
+    password: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
   });
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
 
-  const trialCollectionRef = collection(db, 'trial');
+  const navigate = useNavigate();
 
-  const getTrial = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError('');
+
     try {
-      await addDoc(trialCollectionRef, {
-        firstName: firstName,
-        lastName: lastName,
-        startTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-        endTime: '',
-        votes: {},
-      });
+      // Fetch the email associated with the username from Firestore
+      const usernamesRef = collection(db, 'usernames');
+      const q = query(usernamesRef, where('username', '==', username));
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        setError('Invalid username or password');
+        return;
+      }
+
+      const userDoc = querySnapshot.docs[0];
+      const email = userDoc.data().email;
+
+      // Sign in with email and password
+      await signInWithEmailAndPassword(auth, email, password);
+
+      // Clear form fields
+      setUsername('');
+      setPassword('');
+
+      //Navigate to section one
+      navigate('/section_one');
     } catch (err) {
-      console.log(err);
+      setError(err.message);
     }
   };
 
@@ -49,80 +69,75 @@ const Login = () => {
   };
 
   return (
-    <div
-      className='flex items-center justify-center w-screen m-auto h-screen bg-[#F4F6F9]'
-      style={{
-        backgroundImage: `url(${WNC_course})`,
-        backgroundSize: 'cover',
-      }}
-    >
+    <div className='flex items-center justify-center w-screen m-auto h-screen bg-[#F4F6F9]'>
       <div className='flex flex-col items-center justify-center rounded-lg w-[350px] md:w-[400px] bg-white p-10  shadow-xl'>
         <div className='flex flex-col items-center justify-center'>
-          <img className='w-32' src={WNGC_logo} alt='WNGC_logo' />
-          <h1 className='py-5 font-light text-center text-[32px] w-full'>
-            WNC Constitution Voter's Login
-          </h1>
+          <h2 className='py-5 font-light text-center text-[32px] w-full'>
+            Login
+          </h2>
         </div>
-
         {/* Player details */}
-        <div className='flex flex-col gap-5 w-full mb-5'>
+        <form
+          onSubmit={handleLogin}
+          className='flex flex-col gap-5 w-full mb-5'
+        >
           <div className='flex flex-col gap-2 relative'>
-            <label htmlFor='firstName' className={labelClass.firstName}>
-              First Name
+            <label htmlFor='username' className={labelClass.username}>
+              Username
             </label>
             <input
               className='border p-2 rounded-md'
-              name='firstName'
-              id='firstName'
+              name='username'
+              id='username'
               type='text'
-              value={firstName}
-              onFocus={() => handleInputFocus('firstName')}
-              onBlur={() => handleInputBlur('firstName', firstName)}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={username}
+              onFocus={() => handleInputFocus('username')}
+              onBlur={() => handleInputBlur('username', username)}
+              onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
           <div className='flex flex-col gap-2 relative'>
-            <label htmlFor='lastName' className={labelClass.lastName}>
-              Last Name
+            <label htmlFor='password' className={labelClass.password}>
+              Password
             </label>
             <input
-              type='text'
-              name='lastName'
-              id='lastName'
+              type='password'
+              name='password'
+              id='password'
               className='border p-2 rounded-md'
-              value={lastName}
-              onFocus={() => handleInputFocus('lastName')}
-              onBlur={() => handleInputBlur('lastName', lastName)}
-              onChange={(e) => setLastName(e.target.value)}
+              value={password}
+              onFocus={() => handleInputFocus('password')}
+              onBlur={() => handleInputBlur('password', password)}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete='current-password'
             />
+          </div>{' '}
+          {error && <p className='text-red-500 text-sm'>{error}</p>}
+          <div className='flex gap-4 items-center justify-between w-full pb-'>
+            <a className='text-[12px] underline' href=''>
+              Forgot your password?
+            </a>
+            <div className='flex items-center justify-center'>
+              <input
+                type='checkbox'
+                id='remember'
+                name='remember'
+                value='Remember me'
+              />
+              <label className='pl-2 text-[12px]' htmlFor='remember'>
+                Remember me?
+              </label>
+            </div>
           </div>
-        </div>
-
-        <div className='flex gap-4 items-center justify-between w-full pb-'>
-          <a className='text-[12px] underline' href=''>
-            Forgot your password?
-          </a>
-          <div className='flex items-center justify-center'>
-            <input
-              type='checkbox'
-              id='remember'
-              name='remember'
-              value='Remember me'
-            />
-            <label className='pl-2 text-[12px]' htmlFor='remember'>
-              Remember me?
-            </label>
-          </div>
-        </div>
-
-        <Link to='/section_one'>
           <button
-            onClick={getTrial}
+            type='submit'
             className='border py-2 px-5 mt-5 rounded-lg bg-green-50 text-lg'
           >
-            Verify Subscription
+            Login
           </button>
-        </Link>
+        </form>
       </div>
     </div>
   );
