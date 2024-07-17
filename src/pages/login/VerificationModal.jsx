@@ -56,6 +56,17 @@ const VerificationModal = ({
               </div>
               <div className=''>please pay up your subscription to vote</div>
               <div>you can pay using the following channels</div>
+              <div className='flex flex-col md:flex-row gap-5'>
+                <div className='flex-1 bg-green-50 rounded-lg p-5'>
+                  <span className='font-bold'>MTN momo Account </span>-154348-
+                  Piwang Rajab. The momo account is being fully managed by the
+                  treasurer-Afayoa Hillary Abdelaziz
+                </div>
+                <div className='flex-1 bg-green-50 rounded-lg p-5'>
+                  <span className='font-bold'>Bank Account </span> is in DFCU
+                  Bank-01981021003248
+                </div>
+              </div>
             </div>
           </div>
         )}

@@ -33,8 +33,6 @@ const Verification = ({ firstName, setFirstName, lastName, setLastName }) => {
     getPlayers();
   }, []);
 
-  console.log(paidUpMembers);
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -52,8 +50,6 @@ const Verification = ({ firstName, setFirstName, lastName, setLastName }) => {
       setIsVerified(false);
     }
     setShowModal(true);
-
-    console.log(user);
   };
 
   // Update the class name when the input is focused or blurred

@@ -18,7 +18,7 @@ export const articles = [
     article: 'Article 3',
     title: 'ESTABLISHMENT AND COLOURS OF THE CLUB',
     content:
-      '"The Constitution establishes the "West Nile Club," referred to as "the Club." It specifies that the Club is exclusively for members (Members\' only club) and is a voluntary social association, emphasizing its non-political nature. The Club\'s headquarters are located at Plot No. 59 Weatherhead Park Lane, Arua City, Uganda. The official colors of the Club are to be determined, and the Club\'s emblem is defined in the schedule attached to the constitution. "',
+      'The Constitution establishes the "West Nile Club," referred to as "the Club." It specifies that the Club is exclusively for members (Members\' only club) and is a voluntary social association, emphasizing its non-political nature. The Club\'s headquarters are located at Plot No. 59 Weatherhead Park Lane, Arua City, Uganda. The official colors of the Club are to be determined, and the Club\'s emblem is defined in the schedule attached to the constitution.',
   },
   {
     id: 4,
