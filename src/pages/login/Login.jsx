@@ -71,12 +71,16 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
 
       setUserDocId(userDocId);
 
-      // Clear form fields
-      setUsername('');
-      setPassword('');
+      if (isChecked) {
+        // Clear form fields
+        setUsername('');
+        setPassword('');
 
-      // Navigate to section one
-      navigate('/section_one');
+        // Navigate to section one
+        navigate('/section_one');
+      } else{
+        alert('Please read and accept the terms and conditions')
+      }
     } catch (err) {
       setError('Invalid username or password');
     }
