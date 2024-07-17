@@ -79,7 +79,7 @@ export const articles = [
   {
     id: 12,
     article: 'Article 12',
-    title: 'FINANCE, ACCOUNTS AND AUDIT',
+    title: 'RECIPROCITY AND COMITY',
     content:
       "The Executive Committee is authorized to establish or end reciprocity agreements with other clubs. Details of such decisions must be posted on the Club Notice Board or electronic media for members' awareness, with prompt notification to the affected club. Members from reciprocating clubs must present valid membership cards or adequate proof of membership.",
   },
@@ -130,7 +130,7 @@ export const articles = [
     article: 'Article 19',
     title: 'AMENDMENT OF THE CONSTITUTION',
     content:
-      'The authority to amend the Constitution of West Nile Club rests with the General Meeting, which can pass resolutions for amendments at either the Annual General Meeting or a specially convened Special General Meeting. Proposed amendments must be submitted in writing to the Honorary Secretary at least twenty-one days before the meeting, and circulated to all members at least fourteen days prior to ensure transparency. Amendments require the support of two-thirds of the members present and voting at the meeting to be approved. Additionally, the Executive Committee is empowered to propose or amend bye-laws, regulations, or rules related to Club operations, which must be ratified by a General Meeting after being posted on the Club Notice Board for at least one month.',
+      'The authority to amend the Constitution of West Nile Club rests with the General Meeting, which can pass resolutions for amendments at either the Annual General Meeting or a specially convened Special General Meeting. Proposed amendments must be submitted in writing to the Honorary Secretary at least twenty one (21) days before the meeting, and circulated to all members at least fourteen (14) days  prior to ensure transparency. Amendments require the support of two-thirds of the members present and voting at the meeting to be approved. Additionally, the Executive Committee is empowered to propose or amend bye-laws, regulations, or rules related to Club operations, which must be ratified by a General Meeting after being posted on the Club Notice Board for at least one month.',
   },
   {
     id: 20,
