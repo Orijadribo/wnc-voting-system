@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoClose } from 'react-icons/io5';
+import TermsAndConditions from './TermsAndConditions';
 
 const LoginModal = ({ setShowModal, isChecked, setIsChecked }) => {
   const handleCloseModal = () => {
@@ -18,8 +19,8 @@ const LoginModal = ({ setShowModal, isChecked, setIsChecked }) => {
         <div className='flex items-center justify-center'>
           <div className='flex flex-col gap-2 items-center justify-center capitalize text-center'>
             <div className=' flex flex-row justify-between w-full'>
-              <div className='flex flex-1 flex-col font-semibold'>
-                terms and conditions
+              <div className='flex flex-1 flex-col font-bold'>
+                Terms and Conditions
               </div>
               <div
                 className='cursor-pointer hover:bg-red-600 hover:text-white p-1 rounded-md border hover:border-red-600'
@@ -30,76 +31,7 @@ const LoginModal = ({ setShowModal, isChecked, setIsChecked }) => {
             </div>
             <div className='flex flex-col gap-2 max-h-[30rem] overflow-y-auto rounded-lg pb-2'>
               <div className='bg-gray-100 p-2 rounded-lg text-justify'>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
-                <p>
-                  'At the Annual General Meeting of West Nile Club held on …………
-                  2024, this Revised Constitution was adopted by resolution of
-                  the members of West Nile Club.',
-                </p>
+                <TermsAndConditions />
               </div>
               <div className='flex gap-1 md:gap-2 items-center py-2'>
                 <input
@@ -110,7 +42,7 @@ const LoginModal = ({ setShowModal, isChecked, setIsChecked }) => {
                   onChange={handleCheckboxChange}
                 />
                 <label htmlFor='terms' className='text-xs'>
-                  i have read and understood the terms and conditions
+                  i have read, understood and agree to the terms and conditions.
                 </label>
               </div>
             </div>
