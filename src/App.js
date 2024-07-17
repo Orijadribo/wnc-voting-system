@@ -44,6 +44,7 @@ function App() {
                 section={'one'}
                 nextSection={'two'}
                 userDocId={userDocId}
+                firstName={firstName}
               />
             }
           />
@@ -57,6 +58,7 @@ function App() {
                 section={'two'}
                 nextSection={'three'}
                 userDocId={userDocId}
+                firstName={firstName}
               />
             }
           />
@@ -70,6 +72,7 @@ function App() {
                 section={'three'}
                 nextSection={'four'}
                 userDocId={userDocId}
+                firstName={firstName}
               />
             }
           />
@@ -83,6 +86,7 @@ function App() {
                 section={'four'}
                 nextSection={'five'}
                 userDocId={userDocId}
+                firstName={firstName}
               />
             }
           />
@@ -96,6 +100,7 @@ function App() {
                 section={'five'}
                 nextSection={'six'}
                 userDocId={userDocId}
+                firstName={firstName}
               />
             }
           />
@@ -109,6 +114,7 @@ function App() {
                 section={'six'}
                 nextSection={'seven'}
                 userDocId={userDocId}
+                firstName={firstName}
               />
             }
           />
@@ -122,6 +128,7 @@ function App() {
                 section={'seven'}
                 nextSection={'eight'}
                 userDocId={userDocId}
+                firstName={firstName}
               />
             }
           />
@@ -134,6 +141,7 @@ function App() {
                 previousSection={'seven'}
                 section={'eight'}
                 userDocId={userDocId}
+                firstName={firstName}
               />
             }
           />

@@ -12,6 +12,7 @@ const Section = ({
   previousSection,
   nextSection,
   userDocId,
+  firstName,
 }) => {
   const [selectedVotes, setSelectedVotes] = useState({});
   const [reasons, setReasons] = useState({});
@@ -147,11 +148,34 @@ const Section = ({
     }));
   };
 
+  // Function to handle log out
+  const handleLogOut = async () => {
+    try {
+      await auth.signOut();
+      // Redirect to verification page after logout
+      navigate('/');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
   return (
     <div className='bg-green-50 border'>
+      <div className='flex items-center justify-between bg-white sticky top-0 left-0 py-3 px-5 my-5 max-w-2xl m-auto shadow-lg rounded-lg'>
+        <div className=''>
+          hello,{' '}
+          <span className='capitalize text-lg font-extrabold'>{firstName}</span>
+        </div>
+        <button
+          onClick={handleLogOut}
+          className='border rounded-lg p-2 capitalize hover:bg-green-200'
+        >
+          log out
+        </button>
+      </div>
       <form
         onSubmit={handleSubmit}
-        className='items-center justify-between max-w-2xl m-auto my-20 rounded-lg p-6 md:p-10 shadow-lg bg-white'
+        className='items-center justify-between max-w-2xl m-auto my-10 rounded-lg p-6 md:p-10 shadow-lg bg-white'
       >
         <div className='text-center font-light text-[32px] capitalize'>
           Section {section}
@@ -165,7 +189,9 @@ const Section = ({
               <div className='font-semibold text-lg my-3 font capitalize'>
                 {article.title}
               </div>
-              {article.content}
+              <div className='text-justify  text-[#000000]/[0.6]'>
+                {article.content}
+              </div>
               <div className='flex flex-col gap-2 py-2'>
                 <p className='font-normal text-[16px]'>Vote</p>
                 <div className='flex items-center mb-1'>
