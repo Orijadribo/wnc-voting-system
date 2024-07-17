@@ -22,7 +22,7 @@ const LoginModal = ({ setShowModal, isChecked, setIsChecked }) => {
                 terms and conditions
               </div>
               <div
-                className='cursor-pointer hover:bg-red-600 hover:text-white p-1 rounded-md'
+                className='cursor-pointer hover:bg-red-600 hover:text-white p-1 rounded-md border hover:border-red-600'
                 onClick={handleCloseModal}
               >
                 <IoClose />
