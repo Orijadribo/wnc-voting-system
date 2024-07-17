@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { WNC_course, WNGC_logo } from '../../assets';
 import { db } from '../../api/firebaseConfig';
-import { collection } from 'firebase/firestore';
+import { getDocs, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import VerificationModal from './VerificationModal';
 
@@ -10,20 +10,50 @@ const Verification = ({ firstName, setFirstName, lastName, setLastName }) => {
     firstName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
     lastName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
   });
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [paidUpMembers, setPaidUpMembers] = useState([]);
+  const [isVerified, setIsVerified] = useState(false);
 
   const navigate = useNavigate();
   const paidUpMembersCollectionRef = collection(db, 'paidUpMembers');
+
+  useEffect(() => {
+    const getPlayers = async () => {
+      try {
+        const data = await getDocs(paidUpMembersCollectionRef);
+        const userData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setPaidUpMembers(userData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getPlayers();
+  }, []);
+
+  console.log(paidUpMembers);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     //Logic to handle verification of the users (Cross check the name against that in the database)
-setShowModal(true)
+    // Logic to handle verification of the users
+    const user = paidUpMembers.find(
+      (member) =>
+        member.firstName.toLowerCase() === firstName.toLowerCase() &&
+        member.lastName.toLowerCase() === lastName.toLowerCase()
+    );
 
+    if (user) {
+      setIsVerified(true);
+    } else {
+      setIsVerified(false);
+    }
+    setShowModal(true);
 
-    //Navigate to login
-    // navigate('/login');
+    console.log(user);
   };
 
   // Update the class name when the input is focused or blurred
@@ -108,7 +138,12 @@ setShowModal(true)
       </div>
       <div className='z-40'>
         {showModal && (
-          <VerificationModal firstName={firstName} lastName={lastName} />
+          <VerificationModal
+            firstName={firstName}
+            lastName={lastName}
+            isVerified={isVerified}
+            setShowModal={setShowModal}
+          />
         )}
       </div>
     </div>
