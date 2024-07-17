@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import { BiSolidHide } from 'react-icons/bi';
 import { BiShow } from 'react-icons/bi';
+import LoginModal from './LoginModal';
 
 const Login = ({ firstName, lastName, setUserDocId }) => {
   const [username, setUsername] = useState('');
@@ -16,6 +17,7 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
     username: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
     password: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
   });
+  const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
   const votesCollectionRef = collection(db, 'votes');
@@ -103,6 +105,9 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
 
+  //Terms ans conditions
+  const handleTerms = () => {setShowModal(true)};
+
   return (
     <div className='flex items-center justify-center w-screen m-auto h-screen bg-[#F4F6F9]'>
       <div className='flex flex-col items-center justify-center rounded-lg w-[350px] md:w-[400px] bg-white p-10  shadow-xl'>
@@ -161,6 +166,10 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
             />
           </div>{' '}
           {error && <p className='text-red-500 text-sm'>{error}</p>}
+          {/* Terms and conditions */}
+          <div onClick={handleTerms} className='text-sm capitalize cursor-pointer'>
+            terms and conditions
+          </div>
           <div className='flex gap-4 items-center justify-between w-full pb-'>
             <a className='text-[12px] underline' href=''>
               Forgot your password?
@@ -184,6 +193,11 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
             Login
           </button>
         </form>
+      </div>
+      <div className='z-40'>
+        {showModal && (
+          <LoginModal setShowModal={setShowModal}/>
+        )}
       </div>
     </div>
   );
