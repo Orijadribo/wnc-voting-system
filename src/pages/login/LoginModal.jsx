@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IoClose } from 'react-icons/io5';
 
-const LoginModal = ({setShowModal}) => {
-  const [terms, setTerms] = useState('');
+const LoginModal = ({ setShowModal, isChecked, setIsChecked }) => {
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
-  const handleCloseModal=()=>{setShowModal(false)}
+  // Handle checkbox change
+  const handleCheckboxChange = (event) => {
+    const checked = event.target.checked;
+    setIsChecked(checked);
+  };
 
   return (
     <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
@@ -96,7 +102,13 @@ const LoginModal = ({setShowModal}) => {
                 </p>
               </div>
               <div className='flex gap-1 md:gap-2 items-center py-2'>
-                <input type='checkbox' name='terms' id='terms' />
+                <input
+                  type='checkbox'
+                  name='terms'
+                  id='terms'
+                  checked={isChecked}
+                  onChange={handleCheckboxChange}
+                />
                 <label htmlFor='terms' className='text-xs'>
                   i have read and understood the terms and conditions
                 </label>

@@ -11,6 +11,7 @@ import LoginModal from './LoginModal';
 const Login = ({ firstName, lastName, setUserDocId }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
   const [error, setError] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [labelClass, setLabelClass] = useState({
@@ -106,7 +107,9 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
   };
 
   //Terms ans conditions
-  const handleTerms = () => {setShowModal(true)};
+  const handleTerms = () => {
+    setShowModal(true);
+  };
 
   return (
     <div className='flex items-center justify-center w-screen m-auto h-screen bg-[#F4F6F9]'>
@@ -167,7 +170,10 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
           </div>{' '}
           {error && <p className='text-red-500 text-sm'>{error}</p>}
           {/* Terms and conditions */}
-          <div onClick={handleTerms} className='text-sm capitalize cursor-pointer'>
+          <div
+            onClick={handleTerms}
+            className='text-sm capitalize cursor-pointer'
+          >
             terms and conditions
           </div>
           <div className='flex gap-4 items-center justify-between w-full pb-'>
@@ -196,7 +202,11 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
       </div>
       <div className='z-40'>
         {showModal && (
-          <LoginModal setShowModal={setShowModal}/>
+          <LoginModal
+            setShowModal={setShowModal}
+            setIsChecked={setIsChecked}
+            isChecked={isChecked}
+          />
         )}
       </div>
     </div>
