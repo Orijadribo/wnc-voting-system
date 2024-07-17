@@ -129,6 +129,7 @@ const Section = ({
       await updateDoc(voteDocRef, { votes });
       // console.log('success');
     } catch (err) {
+      alert('Error updating votes:', err);
       console.log('Error updating votes:', err);
     }
   };
@@ -175,7 +176,7 @@ const Section = ({
       </div>
       <form
         onSubmit={handleSubmit}
-        className='items-center justify-between max-w-2xl m-auto my-10 rounded-lg p-6 md:p-10 shadow-lg bg-white'
+        className='items-center justify-between max-w-2xl m-auto my-5 rounded-lg p-6 md:p-10 shadow-lg bg-white'
       >
         <div className='text-center font-light text-[32px] capitalize'>
           Section {section}
@@ -285,7 +286,10 @@ const Section = ({
               </Link>
             ) : (
               <Link to={'/complete'}>
-                <button className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50'>
+                <button
+                  type='submit'
+                  className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50'
+                >
                   Finish
                 </button>
               </Link>
