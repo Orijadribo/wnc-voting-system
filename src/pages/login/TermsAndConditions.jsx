@@ -27,7 +27,17 @@ const TermsAndConditions = () => {
         </li>
       </div>
       <div className='py-2'>
-        <p className='font-semibold'>3. User Account </p>
+        <p className='font-semibold'>
+          3. Understanding of the Constitution Document
+        </p>
+        <p className='text-sm'>
+          We hope that you have read and understood the entire constitution
+          document that was shared. This voting exercise only includes the
+          summary of the constitution.
+        </p>
+      </div>
+      <div className='py-2'>
+        <p className='font-semibold'>4. User Account </p>
         <li className='text-sm list-inside'>
           You are responsible for maintaining the confidentiality of your
           account information, including your password.
@@ -42,7 +52,7 @@ const TermsAndConditions = () => {
         </li>
       </div>
       <div className='py-2'>
-        <p className='font-semibold'>4. Voting Process </p>
+        <p className='font-semibold'>5. Voting Process </p>
         <li className='text-sm'>
           Each registered user is entitled to one vote per election unless
           otherwise specified.
@@ -56,7 +66,7 @@ const TermsAndConditions = () => {
         </li>
       </div>
       <div className='py-2'>
-        <p className='font-semibold'>5. Data Privacy</p>
+        <p className='font-semibold'>6. Data Privacy</p>
         <li className='text-sm'>
           We are committed to protecting your privacy. All personal data will be
           handled in accordance with our Privacy Policy.
@@ -67,7 +77,7 @@ const TermsAndConditions = () => {
         </li>
       </div>
       <div className='py-2'>
-        <p className='font-semibold'>6. Security </p>
+        <p className='font-semibold'>7. Security </p>
         <li className='text-sm'>
           We implement appropriate technical and organizational measures to
           ensure the security of the voting process and the data collected.
@@ -78,7 +88,7 @@ const TermsAndConditions = () => {
         </li>
       </div>
       <div className='py-2'>
-        <p className='font-semibold'>7. Prohibited Conduct</p>
+        <p className='font-semibold'>8. Prohibited Conduct</p>
         <li className='text-sm'>
           You agree not to engage in any activity that interferes with or
           disrupts the operation of the platform.
@@ -90,7 +100,7 @@ const TermsAndConditions = () => {
         </li>
       </div>
       <div className='py-2'>
-        <p className='font-semibold'>8. Termination</p>
+        <p className='font-semibold'>9. Termination</p>
         <li className='text-sm'>
           We reserve the right to suspend or terminate your access to the
           platform at any time, with or without cause, and with or without
@@ -102,7 +112,7 @@ const TermsAndConditions = () => {
         </li>
       </div>
       <div className='py-2'>
-        <p className='font-semibold'>9. Contact Information </p>
+        <p className='font-semibold'>10. Contact Information </p>
         <li className='text-sm'>
           If you have any questions about these terms and conditions, please
           contact the chairman's office.
