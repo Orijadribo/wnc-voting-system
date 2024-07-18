@@ -169,8 +169,6 @@ const Section = ({
     try {
       const voteDocRef = doc(db, 'votes', userDocId);
       await updateDoc(voteDocRef, { votes });
-
-      console.log('successfully saved ');
     } catch (err) {
       alert('Error updating votes:', err);
       console.log('Error updating votes:', err);
@@ -198,7 +196,6 @@ const Section = ({
 
       // navigate to next page upon saving to the database
       navigate(`/section_${nextSection}`);
-      console.log('saved successfully and continued');
     } catch (err) {
       alert('Error updating votes:', err);
       console.log('Error updating votes:', err);
@@ -224,9 +221,11 @@ const Section = ({
       const voteDocRef = doc(db, 'votes', userDocId);
       await updateDoc(voteDocRef, { votes });
 
+      //Sign out user upon finish
+      await auth.signOut();
+
       // navigate to next page upon saving to the database
       navigate('/complete');
-      console.log('saved successfully and concluded');
     } catch (err) {
       alert('Error updating votes:', err);
       console.log('Error updating votes:', err);
