@@ -30,9 +30,7 @@ const Section = ({
     return article.id >= startArticle && article.id <= endArticle;
   });
 
-  useEffect(() => {
-    console.log(votes);
-  }, [votes]);
+  useEffect(() => {}, [votes]);
 
   // console.log(votes);
 
@@ -76,8 +74,6 @@ const Section = ({
 
     fetchVotes();
   }, []);
-
-  console.log(reasons);
 
   // Function to handle change of a vote
   const handleVoteChange = (vote, articleId) => {

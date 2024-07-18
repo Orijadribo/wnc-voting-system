@@ -35,7 +35,6 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
         where('username', '==', username),
         where('firstName', '==', firstName),
         where('lastName', '==', lastName)
-        // where('email', '==', email)
       );
       const querySnapshot = await getDocs(q);
 
