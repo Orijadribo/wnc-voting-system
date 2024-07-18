@@ -56,13 +56,14 @@ function App() {
                 endArticle={6}
                 previousSection={'one'}
                 section={'two'}
-                nextSection={'three'}
+                // Change back to three
+                nextSection={'eight'}
                 userDocId={userDocId}
                 firstName={firstName}
               />
             }
           />
-          <Route
+          {/* <Route
             path='/section_three'
             element={
               <Section
@@ -131,14 +132,15 @@ function App() {
                 firstName={firstName}
               />
             }
-          />
+          /> */}
           <Route
             path='/section_eight'
             element={
               <Section
                 startArticle={22}
                 endArticle={24}
-                previousSection={'seven'}
+                // change back to seven
+                previousSection={'two'}
                 section={'eight'}
                 userDocId={userDocId}
                 firstName={firstName}
