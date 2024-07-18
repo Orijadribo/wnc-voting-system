@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { articles } from '../../constants';
 import { Link } from 'react-router-dom';
 import { db, auth } from '../../api/firebaseConfig';
-import { collection,getDoc, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, getDoc, doc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 const Section = ({
@@ -31,8 +31,53 @@ const Section = ({
   });
 
   useEffect(() => {
-    // console.log(votes);
+    console.log(votes);
   }, [votes]);
+
+  // console.log(votes);
+
+  //Fetch votes from the database
+  useEffect(() => {
+    const fetchVotes = async () => {
+      if (!userDocId) return;
+
+      try {
+        const voteDocRef = doc(db, 'votes', userDocId);
+        const voteDoc = await getDoc(voteDocRef);
+
+        if (voteDoc.exists()) {
+          const voteData = voteDoc.data().votes;
+          setVotes(voteData);
+
+          //For every article vote, pick out the vote and add it to selectedVotes object
+          const initialVote = {};
+          for (const [key, value] of Object.entries(voteData)) {
+            initialVote[key] = value.vote;
+          }
+          setSelectedVotes(initialVote);
+
+          //For every article vote, pick out the reason if the vote is no and add it to reasons object
+          const initialReasons = {};
+          for (const [key, value] of Object.entries(voteData)) {
+            if (value.vote === 'no') {
+              initialReasons[key] = value.reason;
+            }
+          }
+          setReasons(initialReasons);
+        } else {
+          // If no votes exist yet, initialize selectedVotes and reasons to empty objects
+          setSelectedVotes({});
+          setReasons({});
+        }
+      } catch (error) {
+        console.error('Error fetching votes:', error);
+      }
+    };
+
+    fetchVotes();
+  }, []);
+
+  console.log(reasons);
 
   // Function to handle change of a vote
   const handleVoteChange = (vote, articleId) => {
@@ -128,7 +173,64 @@ const Section = ({
     try {
       const voteDocRef = doc(db, 'votes', userDocId);
       await updateDoc(voteDocRef, { votes });
-      // console.log('success');
+
+      console.log('successfully saved ');
+    } catch (err) {
+      alert('Error updating votes:', err);
+      console.log('Error updating votes:', err);
+    }
+  };
+
+  // Function to save votes to Firebase and continue to next section
+  const handleSubmitAndContinue = async (e) => {
+    e.preventDefault();
+
+    if (!allVoted) {
+      alert('Please vote on all sections of all articles.');
+      return;
+    }
+
+    if (!userDocId) {
+      alert('You must be logged in to submit your votes.');
+      navigate('/');
+      return;
+    }
+
+    try {
+      const voteDocRef = doc(db, 'votes', userDocId);
+      await updateDoc(voteDocRef, { votes });
+
+      // navigate to next page upon saving to the database
+      navigate(`/section_${nextSection}`);
+      console.log('saved successfully and continued');
+    } catch (err) {
+      alert('Error updating votes:', err);
+      console.log('Error updating votes:', err);
+    }
+  };
+
+  // Function to save votes to Firebase and conclude
+  const handleSubmitAndFinish = async (e) => {
+    e.preventDefault();
+
+    if (!allVoted) {
+      alert('Please vote on all sections of all articles.');
+      return;
+    }
+
+    if (!userDocId) {
+      alert('You must be logged in to submit your votes.');
+      navigate('/');
+      return;
+    }
+
+    try {
+      const voteDocRef = doc(db, 'votes', userDocId);
+      await updateDoc(voteDocRef, { votes });
+
+      // navigate to next page upon saving to the database
+      navigate('/complete');
+      console.log('saved successfully and concluded');
     } catch (err) {
       alert('Error updating votes:', err);
       console.log('Error updating votes:', err);
@@ -283,23 +385,23 @@ const Section = ({
           </button>
           {allVoted ? (
             section !== 'eight' ? (
-              <Link to={`/section_${nextSection}`}>
-                <button
-                  type='submit'
-                  className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
-                >
-                  <span className='hidden md:block'>Save and</span> Continue
-                </button>
-              </Link>
+              // <Link to={`/section_${nextSection}`}>
+              <button
+                onClick={handleSubmitAndContinue}
+                className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
+              >
+                <span className='hidden md:block'>Save and</span> Continue
+              </button>
             ) : (
-              <Link to={'/complete'}>
-                <button
-                  type='submit'
-                  className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
-                >
-                  Finish
-                </button>
-              </Link>
+              // </Link>
+              // <Link to={'/complete'}>
+              <button
+                onClick={handleSubmitAndFinish}
+                className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
+              >
+                Finish
+              </button>
+              // </Link>
             )
           ) : null}
         </div>
