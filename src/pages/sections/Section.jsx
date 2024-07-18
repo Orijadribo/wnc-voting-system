@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { articles } from '../../constants';
 import { Link } from 'react-router-dom';
 import { db, auth } from '../../api/firebaseConfig';
-import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection,getDoc, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 const Section = ({
@@ -20,6 +20,7 @@ const Section = ({
   const [reasonActive, setReasonActive] = useState({});
   const [reasonAvailable, setReasonAvailable] = useState({});
   const debounceTimeout = useRef(null);
+  const [fetchedData, setFetchedData] = useState({});
 
   const navigate = useNavigate();
   const votesCollectionRef = collection(db, 'votes');
@@ -163,13 +164,16 @@ const Section = ({
   return (
     <div className='bg-green-50 border'>
       <div className='flex items-center justify-between bg-white sticky top-0 left-0 py-3 px-5 my-5 max-w-2xl m-auto shadow-lg rounded-lg'>
-        <div className=''>
-          hello,{' '}
-          <span className='capitalize text-lg font-extrabold'>{firstName}</span>
+        <div className='font-extralight'>
+          hello,
+          <span className='capitalize text-lg font-extrabold'>
+            {' '}
+            {firstName}
+          </span>
         </div>
         <button
           onClick={handleLogOut}
-          className='border rounded-lg p-2 capitalize hover:bg-green-200'
+          className='border font-extralight rounded-lg p-2 capitalize hover:bg-green-200'
         >
           log out
         </button>
@@ -264,14 +268,17 @@ const Section = ({
             <Link to={`/section_${previousSection}`}>
               <button
                 type='button'
-                className='py-2 px-5 rounded-lg bg-green-50'
+                className='py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
               >
                 Previous
               </button>
             </Link>
           ) : null}
 
-          <button type='submit' className='py-2 px-5 rounded-lg bg-green-50'>
+          <button
+            type='submit'
+            className='py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
+          >
             Save
           </button>
           {allVoted ? (
@@ -279,7 +286,7 @@ const Section = ({
               <Link to={`/section_${nextSection}`}>
                 <button
                   type='submit'
-                  className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50'
+                  className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
                 >
                   <span className='hidden md:block'>Save and</span> Continue
                 </button>
@@ -288,7 +295,7 @@ const Section = ({
               <Link to={'/complete'}>
                 <button
                   type='submit'
-                  className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50'
+                  className=' flex gap-1 py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
                 >
                   Finish
                 </button>

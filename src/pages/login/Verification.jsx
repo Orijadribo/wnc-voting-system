@@ -126,7 +126,7 @@ const Verification = ({ firstName, setFirstName, lastName, setLastName }) => {
           </div>
           <button
             type='submit'
-            className='border py-2 px-5 mt-5 rounded-lg bg-green-50 text-lg'
+            className='border py-2 px-5 mt-5 rounded-lg bg-green-50 hover:bg-green-200 text-lg'
           >
             Verify Subscription
           </button>

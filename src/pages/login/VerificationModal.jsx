@@ -39,7 +39,7 @@ const VerificationModal = ({
                 </p>
               </div>
               <Link to='/login'>
-                <button className='border py-2 px-5 mt-5 rounded-lg bg-green-50 text-lg'>
+                <button className='border py-2 px-5 mt-5 rounded-lg bg-green-50 hover:bg-green-200 text-lg'>
                   Continue
                 </button>
               </Link>
@@ -58,13 +58,16 @@ const VerificationModal = ({
               <div>you can pay using the following channels</div>
               <div className='flex flex-col md:flex-row gap-5'>
                 <div className='flex-1 bg-green-50 rounded-lg p-5'>
-                  <span className='font-bold'>MTN momo Account </span>-154348-
-                  Piwang Rajab. The momo account is being fully managed by the
-                  treasurer-Afayoa Hillary Abdelaziz
+                  <p className='font-bold pb-2'>MTN momo</p>
+                  <p>154348 - Piwang Rajab</p>
+                  <p>
+                    The momo account is being fully managed by the treasurer -
+                    Afayoa Hillary Abdelaziz
+                  </p>
                 </div>
                 <div className='flex-1 bg-green-50 rounded-lg p-5'>
-                  <span className='font-bold'>Bank Account </span> is in DFCU
-                  Bank-01981021003248
+                  <p className='font-bold pb-2'>Bank Account </p>
+                  <p>DFCU Bank-01981021003248</p>
                 </div>
               </div>
             </div>
