@@ -49,7 +49,7 @@ const VerificationModal = ({
           <div className='flex items-center justify-center'>
             <div className='flex flex-col gap-3 items-center justify-center capitalize text-center'>
               <div className='flex flex-col text-red-600'>
-                <span className='font-bold text-black  text-[30px]'>
+                <span className='font-bold text-black text-[30px] capitalize'>
                   {firstName} {lastName}
                 </span>{' '}
                 you are not paid up
