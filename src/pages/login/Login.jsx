@@ -29,8 +29,14 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
 
     try {
       // Fetch the email associated with the username from Firestore
-      const usernamesRef = collection(db, 'usernames');
-      const q = query(usernamesRef, where('username', '==', username));
+      const paidUpMembersRef = collection(db, 'paidUpMembers');
+      const q = query(
+        paidUpMembersRef,
+        where('username', '==', username),
+        where('firstName', '==', firstName),
+        where('lastName', '==', lastName)
+        // where('email', '==', email)
+      );
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
@@ -78,8 +84,8 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
 
         // Navigate to section one
         navigate('/section_one');
-      } else{
-        alert('Please read and accept the terms and conditions')
+      } else {
+        alert('Please read and accept the terms and conditions');
       }
     } catch (err) {
       setError('Invalid username or password');
