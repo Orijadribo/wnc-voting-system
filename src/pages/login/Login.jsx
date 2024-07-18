@@ -147,6 +147,7 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
               onBlur={() => handleInputBlur('username', username)}
               onChange={(e) => setUsername(e.target.value)}
               required
+              autoComplete='on'
             />
           </div>
           <div className='flex flex-col gap-2 relative'>
