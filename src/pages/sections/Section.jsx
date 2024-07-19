@@ -270,7 +270,7 @@ const Section = ({
         </div>
         <button
           onClick={handleLogOut}
-          className='border font-extralight rounded-lg p-2 capitalize hover:bg-green-200'
+          className='border font-extralight rounded-lg p-2 capitalize hover:bg-green-200 cursor-pointer'
         >
           log out
         </button>
