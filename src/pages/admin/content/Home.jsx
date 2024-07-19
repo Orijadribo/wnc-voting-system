@@ -9,15 +9,21 @@ const Home = () => {
         style={{ height: 'calc(100vh - 220px)' }}
       >
         <div className='flex gap-5'>
-          <div className='flex-[1] bg-green-50/80 rounded-lg shadow-sm h-40'>
+          <div className='flex-[2] bg-green-50/80 rounded-lg shadow-sm h-56 cursor-pointer'>
             Active users
           </div>
-          <div className='flex-[2] bg-green-50/80 rounded-lg shadow-sm'>Previous Voters</div>
+          <div className='flex-[2] bg-green-50/80 rounded-lg shadow-sm cursor-pointer'>
+            Previous Voters
+          </div>
+          <div className='flex-[2] bg-green-50/80 rounded-lg shadow-sm cursor-pointer'>
+            Yet to vote
+          </div>
         </div>
         <div>
-          <div className='bg-green-50/80 rounded-lg shadow-sm h-40'>Votes each day</div>
+          <div className='bg-green-50/80 rounded-lg shadow-sm h-40'>
+            Votes each day
+          </div>
         </div>
-       
       </div>
     </div>
   );
