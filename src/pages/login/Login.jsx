@@ -8,7 +8,7 @@ import { BiSolidHide } from 'react-icons/bi';
 import { BiShow } from 'react-icons/bi';
 import LoginModal from './LoginModal';
 
-const Login = ({ firstName, lastName, setUserDocId }) => {
+const Login = ({ firstName, lastName, setUserDocId, user }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
@@ -26,6 +26,12 @@ const Login = ({ firstName, lastName, setUserDocId }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
+
+    //Incase user is admin
+    if (user === 'admin') {
+      setIsChecked(true);
+      navigate('/adminpanel')
+    }
 
     try {
       // Fetch the email associated with the username from Firestore

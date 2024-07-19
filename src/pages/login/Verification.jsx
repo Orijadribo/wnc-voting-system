@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { WNC_course, WNGC_logo } from '../../assets';
 import { db } from '../../api/firebaseConfig';
 import { getDocs, collection } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import VerificationModal from './VerificationModal';
 
-const Verification = ({ firstName, setFirstName, lastName, setLastName }) => {
+const Verification = ({
+  firstName,
+  setFirstName,
+  lastName,
+  setLastName,
+  setUser,
+}) => {
   const [labelClass, setLabelClass] = useState({
     firstName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
     lastName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
@@ -71,6 +77,12 @@ const Verification = ({ firstName, setFirstName, lastName, setLastName }) => {
     }
   };
 
+  //Incase user is admin
+  const handleAdmin = () => {
+    setUser('admin');
+    navigate('/login');
+  };
+
   return (
     <div
       className='flex items-center justify-center w-screen m-auto h-screen bg-[#F4F6F9]'
@@ -131,6 +143,9 @@ const Verification = ({ firstName, setFirstName, lastName, setLastName }) => {
             Verify Subscription
           </button>
         </form>
+        <div onClick={handleAdmin} className='cursor-pointer underline text-xs'>
+          Admin
+        </div>
       </div>
       <div className='z-40'>
         {showModal && (

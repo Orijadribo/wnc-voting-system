@@ -4,11 +4,13 @@ import Login from './pages/login/Login';
 import Section from './pages/sections/Section';
 import Finish from './pages/finish/Finish';
 import Verification from './pages/login/Verification';
+import AdminPanel from './pages/admin/AdminPanel';
 
 function App() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [userDocId, setUserDocId] = useState(null);
+  const [user, setUser] = useState('');
 
   return (
     <div className='font-mulish'>
@@ -22,6 +24,7 @@ function App() {
                 setFirstName={setFirstName}
                 lastName={lastName}
                 setLastName={setLastName}
+                setUser={setUser}
               />
             }
           />
@@ -32,9 +35,11 @@ function App() {
                 firstName={firstName}
                 lastName={lastName}
                 setUserDocId={setUserDocId}
+                user={user}
               />
             }
           />
+          <Route path='/adminpanel' element={<AdminPanel />} />
           <Route
             path='/section_one'
             element={
