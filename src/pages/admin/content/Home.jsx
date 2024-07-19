@@ -10,7 +10,7 @@ const Home = () => {
       >
         <div className='flex flex-col md:flex-row gap-5'>
           <div className='flex-[2] bg-green-50/80 rounded-lg shadow-sm cursor-pointer relative'>
-            <div className='sticky top-0 py-2 px-5 bg-white/90'>
+            <div className='sticky top-0 py-2 px-5 bg-white/60 backdrop-blur-sm'>
               Active users
             </div>
             <div className='py-2 px-5'>
@@ -33,7 +33,7 @@ const Home = () => {
             </div>
           </div>
           <div className='flex-[2] bg-green-50/80 rounded-lg shadow-sm cursor-pointer relative'>
-            <div className='sticky top-0 py-2 px-5 bg-white/90'>
+            <div className='sticky top-0 py-2 px-5 bg-white/60 backdrop-blur-sm'>
               Previous Voters
             </div>
             <div className='py-2 px-5'>
@@ -44,7 +44,7 @@ const Home = () => {
             </div>
           </div>
           <div className='flex-[2] bg-green-50/80 rounded-lg shadow-sm cursor-pointer relative'>
-            <div className='sticky top-0 py-2 px-5 bg-white/90'>
+            <div className='sticky top-0 py-2 px-5 bg-white/60 backdrop-blur-sm'>
               Yet to vote
             </div>
             <div className='py-2 px-5'>
@@ -57,7 +57,7 @@ const Home = () => {
         </div>
         <div>
           <div className='bg-green-50/80 rounded-lg shadow-sm h-40'>
-            <div className='sticky top-0 py-2 px-5 bg-white/90'>
+            <div className='sticky top-0 py-2 px-5 bg-white/60 backdrop-blur-sm'>
               Votes each day
             </div>
             <div className='py-2 px-5'>
