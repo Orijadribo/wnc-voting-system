@@ -30,18 +30,10 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
     //Incase user is admin
     if (user === 'admin') {
       setIsChecked(true);
-      navigate('/adminpanel')
-    }
 
-    try {
       // Fetch the email associated with the username from Firestore
-      const paidUpMembersRef = collection(db, 'paidUpMembers');
-      const q = query(
-        paidUpMembersRef,
-        where('username', '==', username),
-        where('firstName', '==', firstName),
-        where('lastName', '==', lastName)
-      );
+      const adminsRef = collection(db, 'admins');
+      const q = query(adminsRef, where('username', '==', username));
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
@@ -55,45 +47,71 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
       // Sign in with email and password
       await signInWithEmailAndPassword(auth, email, password);
 
-      // Check if a votes document already exists for the user
-      const votesQuery = query(
-        votesCollectionRef,
-        where('firstName', '==', firstName),
-        where('lastName', '==', lastName)
-      );
-      const votesSnapshot = await getDocs(votesQuery);
+      //Navigate to admin panel upon successfull login
+      navigate('/adminpanel');
+    } else {
+      try {
+        // Fetch the email associated with the username from Firestore
+        const paidUpMembersRef = collection(db, 'paidUpMembers');
+        const q = query(
+          paidUpMembersRef,
+          where('username', '==', username),
+          where('firstName', '==', firstName),
+          where('lastName', '==', lastName)
+        );
+        const querySnapshot = await getDocs(q);
 
-      let userDocId;
+        if (querySnapshot.empty) {
+          setError('Invalid username or password');
+          return;
+        }
 
-      if (votesSnapshot.empty) {
-        // Create a new votes document if none exists
-        const votesDoc = await addDoc(votesCollectionRef, {
-          firstName: firstName,
-          lastName: lastName,
-          startTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-          endTime: '',
-          votes: {},
-        });
-        userDocId = votesDoc.id;
-      } else {
-        // Use the existing document
-        userDocId = votesSnapshot.docs[0].id;
+        const userDoc = querySnapshot.docs[0];
+        const email = userDoc.data().email;
+
+        // Sign in with email and password
+        await signInWithEmailAndPassword(auth, email, password);
+
+        // Check if a votes document already exists for the user
+        const votesQuery = query(
+          votesCollectionRef,
+          where('firstName', '==', firstName),
+          where('lastName', '==', lastName)
+        );
+        const votesSnapshot = await getDocs(votesQuery);
+
+        let userDocId;
+
+        if (votesSnapshot.empty) {
+          // Create a new votes document if none exists
+          const votesDoc = await addDoc(votesCollectionRef, {
+            firstName: firstName,
+            lastName: lastName,
+            startTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+            endTime: '',
+            votes: {},
+          });
+          userDocId = votesDoc.id;
+        } else {
+          // Use the existing document
+          userDocId = votesSnapshot.docs[0].id;
+        }
+
+        setUserDocId(userDocId);
+
+        if (isChecked) {
+          // Clear form fields
+          setUsername('');
+          setPassword('');
+
+          // Navigate to section one
+          navigate('/section_one');
+        } else {
+          alert('Please read and accept the terms and conditions');
+        }
+      } catch (err) {
+        setError('Invalid username or password');
       }
-
-      setUserDocId(userDocId);
-
-      if (isChecked) {
-        // Clear form fields
-        setUsername('');
-        setPassword('');
-
-        // Navigate to section one
-        navigate('/section_one');
-      } else {
-        alert('Please read and accept the terms and conditions');
-      }
-    } catch (err) {
-      setError('Invalid username or password');
     }
   };
 
