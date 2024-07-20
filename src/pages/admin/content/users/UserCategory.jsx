@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AddMemberModal from './AddMemberModal';
 
 const UserCategory = ({ data, selection }) => {
-  const handleAddMember = () => {};
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleAddMember = () => {
+    setIsVisible(true);
+  };
   return (
     <div>
       <div className='relative'>
@@ -18,6 +23,7 @@ const UserCategory = ({ data, selection }) => {
           </div>
         )}
       </div>
+      {isVisible && <AddMemberModal />}
     </div>
   );
 };

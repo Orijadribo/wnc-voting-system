@@ -23,7 +23,7 @@ const AdminPanel = () => {
   return (
     <div className='bg-green-50 border h-screen'>
       <div className='max-w-[1080px] m-auto '>
-        <div className='flex items-center justify-between bg-white sticky top-0 left-0 py-3 px-5 my-5 mx-2 lg:mx-0 shadow-lg rounded-lg z-40'>
+        <div className='flex items-center justify-between bg-white sticky top-0 left-0 py-3 px-5 my-5 mx-2 lg:mx-0 shadow-lg rounded-lg z-20'>
           <div>Admin Panel</div>
           <div className='flex items-center gap-5'>
             <div>daniel</div>
