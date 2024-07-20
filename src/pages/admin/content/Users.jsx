@@ -6,27 +6,43 @@ const Users = () => {
   const [data, setData] = useState('');
 
   const paidUpMembers = [
-    'daniel',
-    'daniel',
-    'daniel',
-    'daniel',
-    'daniel',
-    'daniel',
-    'daniel',
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
+    { firstName: 'daniel' },
   ];
   const yetToVote = [
-    'peti',
-    'peti',
-    'peti',
-    'peti',
-    'peti',
-    'peti',
-    'peti',
-    'peti',
+    { firstName: 'peti' },
+    { firstName: 'peti' },
+    { firstName: 'peti' },
+    { firstName: 'peti' },
+    { firstName: 'peti' },
+    { firstName: 'peti' },
   ];
-  const voted = ['orija', 'orija', 'orija', 'orija'];
-
- 
+  const voted = [
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+  ];
 
   useEffect(() => {
     if (selection === 'paidUpMembers') {
@@ -36,8 +52,8 @@ const Users = () => {
     } else {
       setData(voted);
     }
-  }, [selection])
-  
+  }, [selection]);
+
   const handleSeclection = (selection) => {
     setSelection(selection);
   };
@@ -78,7 +94,7 @@ const Users = () => {
         className='flex flex-col gap-5 overflow-y-auto rounded-lg mt-5'
         style={{ height: 'calc(100vh - 290px)' }}
       >
-        <UserCategory data={data} />
+        <UserCategory data={data} selection={selection}/>
       </div>
     </div>
   );
