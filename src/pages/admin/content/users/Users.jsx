@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import UserCategory from '../../../components/UserCategory';
+import UserCategory from './UserCategory';
 
 const Users = () => {
   const [selection, setSelection] = useState('paidUpMembers');
@@ -94,7 +94,7 @@ const Users = () => {
         className='flex flex-col gap-5 overflow-y-auto rounded-lg mt-5'
         style={{ height: 'calc(100vh - 290px)' }}
       >
-        <UserCategory data={data} selection={selection}/>
+        <UserCategory data={data} selection={selection} />
       </div>
     </div>
   );

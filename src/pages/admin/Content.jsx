@@ -1,8 +1,8 @@
 import React from 'react';
-import Home from './content/Home';
-import Users from './content/Users';
-import Votes from './content/Votes';
-import Report from './content/Report';
+import Home from './content/home/Home';
+import Users from './content/users/Users';
+import Votes from './content/votes/Votes';
+import Report from './content/report/Report';
 
 const Content = ({ selectedScreen }) => {
   return (
