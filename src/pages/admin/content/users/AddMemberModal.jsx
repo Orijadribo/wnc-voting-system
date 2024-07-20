@@ -9,8 +9,16 @@ const AddMemberModal = ({ setIsVisible }) => {
     lastName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
   });
 
-  const closeUserAddModal = () => {setIsVisible(false)};
-  const handleMemberAdd = () => {};
+  const closeUserAddModal = () => {
+    setIsVisible(false);
+  };
+
+  //Function to handle one member add
+  const handleMemberAdd = () => {
+    setIsVisible(false);
+  };
+
+  //Function to handle multiple member add
   const handleMemberAddAndAnother = () => {};
 
   // Update the class name when the input is focused or blurred

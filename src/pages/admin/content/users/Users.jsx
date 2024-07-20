@@ -4,6 +4,7 @@ import UserCategory from './UserCategory';
 const Users = () => {
   const [selection, setSelection] = useState('paidUpMembers');
   const [data, setData] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
 
   const paidUpMembers = [
     { firstName: 'daniel' },
@@ -42,6 +43,21 @@ const Users = () => {
     { firstName: 'orija' },
     { firstName: 'orija' },
     { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
+    { firstName: 'orija' },
   ];
 
   useEffect(() => {
@@ -54,19 +70,41 @@ const Users = () => {
     }
   }, [selection]);
 
+  //Set the selction of the users to show
   const handleSeclection = (selection) => {
     setSelection(selection);
   };
 
+  //When add member is clicked, open the add member modal
+  const handleAddMember = () => {
+    setIsVisible(true);
+  };
+
   return (
     <div className=''>
-      <div className='mb-5 text-2xl'>Users</div>
+      <div className='flex items-center justify-between mb-5 '>
+        <div className='text-2xl p-2'>Users</div>
+        {selection === 'paidUpMembers' && (
+          <div className=''>
+            <button
+              onClick={handleAddMember}
+              className='border p-2 rounded-lg hover:bg-green-200'
+            >
+              Add Member
+            </button>
+          </div>
+        )}
+      </div>
       <div className='flex items-center justify-between max-w-lg m-auto bg-green-50 px-2 md:px-5 py-2 rounded-lg'>
         <div
           onClick={() => handleSeclection('paidUpMembers')}
           className='flex flex-1 flex-col gap-1 rounded-xl items-center justify-center cursor-pointer'
         >
-          <p className={`${selection === 'paidUpMembers' && 'font-bold'} text-center`}>
+          <p
+            className={`${
+              selection === 'paidUpMembers' && 'font-bold'
+            } text-center`}
+          >
             Paid Up
           </p>
           {selection === 'paidUpMembers' && (
@@ -77,7 +115,11 @@ const Users = () => {
           onClick={() => handleSeclection('yetToVote')}
           className='flex flex-1 flex-col gap-1 rounded-xl items-center justify-center cursor-pointer'
         >
-          <p className={`${selection === 'yetToVote' && 'font-bold'} text-center`}>
+          <p
+            className={`${
+              selection === 'yetToVote' && 'font-bold'
+            } text-center`}
+          >
             Not Voted
           </p>
           {selection === 'yetToVote' && (
@@ -88,7 +130,9 @@ const Users = () => {
           onClick={() => handleSeclection('voted')}
           className='flex flex-1 flex-col gap-1 rounded-xl items-center justify-center cursor-pointer'
         >
-          <p className={`${selection === 'voted' && 'font-bold'} text-center`}>Voted</p>
+          <p className={`${selection === 'voted' && 'font-bold'} text-center`}>
+            Voted
+          </p>
           {selection === 'voted' && (
             <div className='w-[80%] h-1 bg-green-300 rounded-xl'></div>
           )}
@@ -96,9 +140,14 @@ const Users = () => {
       </div>
       <div
         className='flex flex-col gap-5 overflow-y-auto rounded-lg mt-5'
-        style={{ height: 'calc(100vh - 290px)' }}
+        style={{ height: 'calc(100vh - 310px)' }}
       >
-        <UserCategory data={data} selection={selection} />
+        <UserCategory
+          isVisible={isVisible}
+          setIsVisible={setIsVisible}
+          data={data}
+          selection={selection}
+        />
       </div>
     </div>
   );
