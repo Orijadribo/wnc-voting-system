@@ -40,7 +40,10 @@ const AdminPanel = () => {
             className='flex-[1] bg-white shadow-lg rounded-lg'
             style={{ height: 'calc(100vh - 125px)' }}
           >
-            <SideBar setSelectedScreen={setSelectedScreen} />
+            <SideBar
+              selectedScreen={selectedScreen}
+              setSelectedScreen={setSelectedScreen}
+            />
           </div>
           <div
             className='flex-[6] md:flex-[4] bg-white shadow-lg rounded-lg'
