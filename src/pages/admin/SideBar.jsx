@@ -60,7 +60,7 @@ const SideBar = ({ setSelectedScreen }) => {
         </div>
       </div>
 
-      <div className='black md:hidden'>
+      <div className='md:hidden'>
         <div className='flex flex-col gap-3 py-5 px-2 mx-0 md:px-5 font-light'>
           <div
             className='flex gap-2 items-center justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
