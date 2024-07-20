@@ -21,7 +21,7 @@ const SideBar = ({ setSelectedScreen }) => {
     <div className='flex flex-col justify-between h-full text-[#000000]/[0.6]'>
       <div className='flex flex-col gap-3 py-5 px-2 mx-0 md:px-5 font-light'>
         <div
-          className='flex gap-2 items-center justify-center md:justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
+          className='flex gap-2 items-center justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
           onClick={() => handleScreenSelection('home')}
         >
           <div className='text-xl md:text-lg p-1'>
@@ -30,7 +30,7 @@ const SideBar = ({ setSelectedScreen }) => {
           <div className={`${isOpen ? 'hidden' : 'block'} md:block`}>Home</div>
         </div>
         <div
-          className='flex gap-2 items-center justify-center md:justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
+          className='flex gap-2 items-center justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
           onClick={() => handleScreenSelection('users')}
         >
           <div className='text-xl md:text-lg p-1'>
@@ -39,7 +39,7 @@ const SideBar = ({ setSelectedScreen }) => {
           <div className={`${isOpen ? 'hidden' : 'block'} md:block`}>Users</div>
         </div>
         <div
-          className='flex gap-2 items-center justify-center md:justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
+          className='flex gap-2 items-center justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
           onClick={() => handleScreenSelection('votes')}
         >
           <div className='text-xl md:text-lg p-1'>
@@ -48,7 +48,7 @@ const SideBar = ({ setSelectedScreen }) => {
           <div className={`${isOpen ? 'hidden' : 'block'} md:block`}>Votes</div>
         </div>
         <div
-          className='flex gap-2 items-center justify-center md:justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
+          className='flex gap-2 items-center justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
           onClick={() => handleScreenSelection('report')}
         >
           <div className='text-xl md:text-lg p-1'>
@@ -63,7 +63,7 @@ const SideBar = ({ setSelectedScreen }) => {
       <div className='black md:hidden'>
         <div className='flex flex-col gap-3 py-5 px-2 mx-0 md:px-5 font-light'>
           <div
-            className='flex gap-2 items-center justify-center md:justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
+            className='flex gap-2 items-center justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
             onClick={handleCloseSideBar}
           >
             <div className='text-xl md:text-lg p-1'>
