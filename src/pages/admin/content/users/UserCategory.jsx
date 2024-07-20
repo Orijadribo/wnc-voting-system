@@ -23,7 +23,7 @@ const UserCategory = ({ data, selection }) => {
           </div>
         )}
       </div>
-      {isVisible && <AddMemberModal />}
+      {isVisible && <AddMemberModal setIsVisible={setIsVisible} />}
     </div>
   );
 };
