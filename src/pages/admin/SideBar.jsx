@@ -18,7 +18,7 @@ const SideBar = ({ selectedScreen, setSelectedScreen }) => {
   };
 
   return (
-    <div className='flex flex-col justify-between h-full text-gray-400'>
+    <div className='flex flex-col justify-between h-full text-gray-500'>
       <div className='flex flex-col gap-3 py-2 md:py-5 px-2 mx-0 md:px-5 font-light'>
         <div
           className={`flex gap-2 items-center justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-50 rounded-md ${
