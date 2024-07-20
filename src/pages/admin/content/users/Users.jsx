@@ -83,7 +83,7 @@ const Users = () => {
   return (
     <div className=''>
       <div className='flex items-center justify-between mb-5 '>
-        <div className='text-2xl p-2'>Users</div>
+        <div className='text-2xl p-2 pl-0'>Users</div>
         {selection === 'paidUpMembers' && (
           <div className=''>
             <button

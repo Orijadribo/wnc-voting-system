@@ -6,7 +6,7 @@ import Report from './content/report/Report';
 
 const Content = ({ selectedScreen }) => {
   return (
-    <div className='flex flex-col gap-3 py-6 px-5 md:px-10'>
+    <div className='flex flex-col gap-3 py-3 md:py-6 px-5 md:px-10'>
       {selectedScreen === 'home' && <Home />}
       {selectedScreen === 'users' && <Users />}
       {selectedScreen === 'votes' && <Votes />}
