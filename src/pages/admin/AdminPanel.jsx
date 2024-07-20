@@ -43,7 +43,7 @@ const AdminPanel = () => {
             <SideBar setSelectedScreen={setSelectedScreen} />
           </div>
           <div
-            className='flex-[4] bg-white shadow-lg rounded-lg'
+            className='flex-[6] md:flex-[4] bg-white shadow-lg rounded-lg'
             style={{ height: 'calc(100vh - 125px)' }}
           >
             <Content selectedScreen={selectedScreen} />

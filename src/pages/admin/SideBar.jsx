@@ -19,7 +19,7 @@ const SideBar = ({ setSelectedScreen }) => {
 
   return (
     <div className='flex flex-col justify-between h-full text-[#000000]/[0.6]'>
-      <div className='flex flex-col gap-3 py-5 px-2 mx-2 md:px-5 font-light'>
+      <div className='flex flex-col gap-3 py-5 px-2 mx-0 md:px-5 font-light'>
         <div
           className='flex gap-2 items-center justify-center md:justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
           onClick={() => handleScreenSelection('home')}
@@ -61,7 +61,7 @@ const SideBar = ({ setSelectedScreen }) => {
       </div>
 
       <div className='black md:hidden'>
-        <div className='flex flex-col gap-3 py-5 px-2 mx-2 md:px-5 font-light'>
+        <div className='flex flex-col gap-3 py-5 px-2 mx-0 md:px-5 font-light'>
           <div
             className='flex gap-2 items-center justify-center md:justify-start cursor-pointer px-2 md:pl-4 py-1 hover:bg-green-100 rounded-md'
             onClick={handleCloseSideBar}
