@@ -66,27 +66,31 @@ const Users = () => {
           onClick={() => handleSeclection('paidUpMembers')}
           className='flex flex-1 flex-col gap-1 rounded-xl items-center justify-center cursor-pointer'
         >
-          <p className=''>Paid Up</p>
+          <p className={`${selection === 'paidUpMembers' && 'font-bold'} text-center`}>
+            Paid Up
+          </p>
           {selection === 'paidUpMembers' && (
-            <div className='w-[80%] h-1 bg-green-300'></div>
+            <div className='w-[80%] h-1 bg-green-300 rounded-xl'></div>
           )}
         </div>
         <div
           onClick={() => handleSeclection('yetToVote')}
           className='flex flex-1 flex-col gap-1 rounded-xl items-center justify-center cursor-pointer'
         >
-          <p>Not Voted</p>
+          <p className={`${selection === 'yetToVote' && 'font-bold'} text-center`}>
+            Not Voted
+          </p>
           {selection === 'yetToVote' && (
-            <div className='w-[80%] h-1 bg-green-300'></div>
+            <div className='w-[80%] h-1 bg-green-300 rounded-xl'></div>
           )}
         </div>
         <div
           onClick={() => handleSeclection('voted')}
           className='flex flex-1 flex-col gap-1 rounded-xl items-center justify-center cursor-pointer'
         >
-          <p>Voted</p>
+          <p className={`${selection === 'voted' && 'font-bold'} text-center`}>Voted</p>
           {selection === 'voted' && (
-            <div className='w-[80%] h-1 bg-green-300'></div>
+            <div className='w-[80%] h-1 bg-green-300 rounded-xl'></div>
           )}
         </div>
       </div>
