@@ -1,74 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import UserCategory from './UserCategory';
+import { collection, getDocs, onSnapshot } from 'firebase/firestore';
+import { db } from '../../../../api/firebaseConfig';
 
 const Users = () => {
   const [selection, setSelection] = useState('paidUpMembers');
-  const [data, setData] = useState('');
+  const [data, setData] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
 
-  const paidUpMembers = [
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-    { firstName: 'daniel' },
-  ];
-  const yetToVote = [
-    { firstName: 'peti' },
-    { firstName: 'peti' },
-    { firstName: 'peti' },
-    { firstName: 'peti' },
-    { firstName: 'peti' },
-    { firstName: 'peti' },
-  ];
-  const voted = [
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-    { firstName: 'orija' },
-  ];
-
+  //Fetch paid up members
   useEffect(() => {
-    if (selection === 'paidUpMembers') {
-      setData(paidUpMembers);
-    } else if (selection === 'yetToVote') {
-      setData(yetToVote);
-    } else {
-      setData(voted);
-    }
-  }, [selection]);
+    const unsub = onSnapshot(
+      collection(db, 'paidUpMembers'),
+      (members) => {
+        let list = [];
+        members.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setData(list);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      unsub();
+    };
+
+    // const fetchPaidUpMembers = async () => {
+    //   let list = [];
+
+    //   try {
+    //     const paidUpMembersCollectionRef = await getDocs(
+    //       collection(db, 'paidUpMembers')
+    //     );
+    //     paidUpMembersCollectionRef.forEach((doc) => {
+    //       list.push(doc.data());
+    //     });
+    //     setData(list);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // fetchPaidUpMembers();
+  }, []);
+
+  console.log(data);
+
+  // useEffect(() => {
+  //   if (selection === 'paidUpMembers') {
+  //     setData(paidUpMembers);
+  //   } else if (selection === 'yetToVote') {
+  //     setData(yetToVote);
+  //   } else {
+  //     setData(voted);
+  //   }
+  // }, [selection]);
 
   //Set the selction of the users to show
   const handleSeclection = (selection) => {

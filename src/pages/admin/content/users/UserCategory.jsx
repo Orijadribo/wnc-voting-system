@@ -6,7 +6,13 @@ const UserCategory = ({ isVisible, setIsVisible, data, selection }) => {
     <div>
       <div className='relative'>
         {data &&
-          data.map((user, index) => <div key={index}>{user.firstName}</div>)}
+          data.map((user, index) => (
+            <div key={index}>
+              <div>
+                {user.firstName} {user.lastName}
+              </div>
+            </div>
+          ))}
       </div>
       {isVisible && <AddMemberModal setIsVisible={setIsVisible} />}
     </div>
