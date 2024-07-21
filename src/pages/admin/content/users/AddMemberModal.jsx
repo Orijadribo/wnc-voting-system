@@ -1,25 +1,84 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../../../api/firebaseConfig';
 
 const AddMemberModal = ({ setIsVisible }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [labelClass, setLabelClass] = useState({
     firstName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
     lastName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
+    userName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
+    email: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
   });
+
+  //
+  useEffect(() => {
+    if (firstName || lastName) {
+      const newEmail = `${firstName}.${lastName}@wnc.com`.toLowerCase();
+      const newUsername = `${firstName}.${lastName}`.toLowerCase();
+
+      handleInputFocus('userName');
+      handleInputBlur('userName', userName);
+
+      handleInputFocus('email');
+      handleInputBlur('email', email);
+
+      setEmail(newEmail);
+      setUserName(newUsername);
+    } else {
+      setEmail('');
+      setUserName('');
+    }
+  }, [firstName, lastName]);
 
   const closeUserAddModal = () => {
     setIsVisible(false);
   };
 
   //Function to handle one member add
-  const handleMemberAdd = () => {
+  const handleMemberAdd = async (e) => {
+    e.preventDefault();
+
+    //Add member to the firestore
+    try {
+      await setDoc(doc(db, 'paidUpMembers', userName), {
+        firstName: firstName,
+        lastName: lastName,
+        userName: userName,
+        email: email,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
     setIsVisible(false);
   };
 
   //Function to handle multiple member add
-  const handleMemberAddAndAnother = () => {};
+  const handleMemberAddAndAnother = async (e) => {
+    e.preventDefault();
+
+    //Add member to the firestore
+    try {
+      await setDoc(doc(db, 'paidUpMembers', userName), {
+        firstName: firstName,
+        lastName: lastName,
+        userName: userName,
+        email: email,
+      });
+
+      setFirstName('');
+      setLastName('');
+      setUserName('');
+      setEmail('');
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // Update the class name when the input is focused or blurred
   const handleInputFocus = (label) => {
@@ -57,37 +116,77 @@ const AddMemberModal = ({ setIsVisible }) => {
           //   onSubmit={handleLogin}
           className='flex flex-col gap-5 w-full'
         >
-          <div className='flex flex-col gap-2 relative'>
-            <label htmlFor='firstName' className={labelClass.firstName}>
-              First Name
-            </label>
-            <input
-              className='border p-2 rounded-md'
-              name='firstName'
-              id='firstName'
-              type='text'
-              value={firstName}
-              required
-              onFocus={() => handleInputFocus('firstName')}
-              onBlur={() => handleInputBlur('firstName', firstName)}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
+          <div className='flex flex-col md:flex-row gap-3 justify-between'>
+            <div className='flex flex-col flex-1 gap-2 relative'>
+              <label htmlFor='firstName' className={labelClass.firstName}>
+                First Name
+              </label>
+              <input
+                className='border p-2 rounded-md'
+                name='firstName'
+                id='firstName'
+                type='text'
+                value={firstName}
+                required
+                onFocus={() => handleInputFocus('firstName')}
+                onBlur={() => handleInputBlur('firstName', firstName)}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div className='flex flex-col flex-1 gap-2 relative'>
+              <label htmlFor='lastName' className={labelClass.lastName}>
+                Last Name
+              </label>
+              <input
+                type='text'
+                name='lastName'
+                id='lastName'
+                className='border p-2 rounded-md'
+                value={lastName}
+                required
+                onFocus={() => handleInputFocus('lastName')}
+                onBlur={() => handleInputBlur('lastName', lastName)}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
           </div>
-          <div className='flex flex-col gap-2 relative'>
-            <label htmlFor='lastName' className={labelClass.lastName}>
-              Last Name
-            </label>
-            <input
-              type='text'
-              name='lastName'
-              id='lastName'
-              className='border p-2 rounded-md'
-              value={lastName}
-              required
-              onFocus={() => handleInputFocus('lastName')}
-              onBlur={() => handleInputBlur('lastName', lastName)}
-              onChange={(e) => setLastName(e.target.value)}
-            />
+          <div className='flex flex-col md:flex-row gap-3 justify-between'>
+            <div className='flex flex-col flex-1 gap-2 relative'>
+              <label htmlFor='userName' className={labelClass.userName}>
+                Username
+              </label>
+              <input
+                type='text'
+                name='userName'
+                id='userName'
+                className='border p-2 rounded-md bg-white'
+                value={userName}
+                required
+                onFocus={() => handleInputFocus('userName')}
+                onBlur={() => handleInputBlur('userName', userName)}
+                // onChange={(e) => setUserName(e.target.value)}
+                readOnly
+                disabled
+              />
+            </div>
+            <div className='flex flex-col flex-1 gap-2 relative'>
+              <label htmlFor='email' className={labelClass.email}>
+                Email
+              </label>
+              <input
+                type='text'
+                name='email'
+                id='email'
+                className='border p-2 rounded-md bg-white'
+                value={email}
+                required
+                onFocus={() => handleInputFocus('email')}
+                onBlur={() => handleInputBlur('email', email)}
+                // onChange={(e) => setEmail(e.target.value)}
+                readOnly
+                disabled
+              />
+            </div>
           </div>
           <div className='flex flex-row items-center justify-center gap-2'>
             <button
