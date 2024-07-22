@@ -74,9 +74,9 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
       <div className='h-screen flex flex-col items-center justify-center'>
         <div className='w-full'>
           <div className='flex items-center justify-between bg-white sticky top-0 left-0 py-3 px-5 my-5 max-w-2xl m-auto shadow-lg rounded-lg z-40'>
-            <div className='font-extralight'>
+            <div className='font-light'>
               hello,
-              <span className='capitalize text-lg font-extrabold'>
+              <span className='capitalize text-lg font-normal'>
                 {' '}
                 {firstName}
               </span>
