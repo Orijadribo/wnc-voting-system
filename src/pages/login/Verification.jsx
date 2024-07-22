@@ -109,7 +109,7 @@ const Verification = ({
               First Name
             </label>
             <input
-              className='border p-2 rounded-md'
+              className='border p-2 rounded-md bg-white'
               name='firstName'
               id='firstName'
               type='text'
@@ -128,7 +128,7 @@ const Verification = ({
               type='text'
               name='lastName'
               id='lastName'
-              className='border p-2 rounded-md'
+              className='border p-2 rounded-md bg-white'
               value={lastName}
               required
               onFocus={() => handleInputFocus('lastName')}

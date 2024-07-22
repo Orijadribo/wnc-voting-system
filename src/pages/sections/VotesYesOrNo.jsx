@@ -99,7 +99,7 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
               on all the articles
             </div>
             <div className='italic text-sm'>
-              (if you agree with all the articles)
+              (click 'yes' if you agree with all the articles)
             </div>
             <div className=' flex flex-col md:flex-row gap-2 wrap font-light text-[24px] w-full'>
               <button
