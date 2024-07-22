@@ -52,7 +52,7 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
       //Navigate to section one
       navigate(`/section_one`);
     } else {
-      alert('You are not logged !');
+      alert('You are not logged in !');
       //Redirect to finish
       navigate('/');
     }
@@ -97,6 +97,9 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
                 "yes"
               </span>{' '}
               on all the articles
+            </div>
+            <div className='italic text-sm'>
+              (if you agree with all the articles)
             </div>
             <div className=' flex flex-col md:flex-row gap-2 wrap font-light text-[24px] w-full'>
               <button
