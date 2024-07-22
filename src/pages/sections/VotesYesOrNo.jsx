@@ -21,7 +21,7 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
     return votes;
   };
 
-  // Function to save votes to Firebase and continue to next section
+  // Function to save votes to Firebase and navigate to complete
   const handleYesSelection = async (e) => {
     e.preventDefault();
 
@@ -38,13 +38,13 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
         console.log(error);
       }
     } else {
-      alert('You are not logged !');
+      alert('You are not logged in !');
       //Redirect to finish
       navigate('/');
     }
   };
 
-  // Function to save votes to Firebase and continue to next section
+  // Function navigate user to section one incase they select no
   const handleNoSelection = async (e) => {
     e.preventDefault();
 

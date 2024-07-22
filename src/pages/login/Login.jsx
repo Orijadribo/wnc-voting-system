@@ -204,12 +204,14 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
           </div>{' '}
           {error && <p className='text-red-500 text-sm'>{error}</p>}
           {/* Terms and conditions */}
-          <div
-            onClick={handleTerms}
-            className='text-sm capitalize cursor-pointer'
-          >
-            terms and conditions
-          </div>
+          {user !== 'admin' && (
+            <div
+              onClick={handleTerms}
+              className='text-sm capitalize cursor-pointer'
+            >
+              terms and conditions
+            </div>
+          )}
           <div className='flex gap-4 items-center justify-between w-full pb-'>
             <a className='text-[12px] underline' href=''>
               Forgot your password?
