@@ -30,7 +30,9 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
       try {
         const voteDocRef = doc(db, 'votes', userDocId);
         const newVotes = voteYesForAllArticles();
-        await updateDoc(voteDocRef, { votes: newVotes });
+        // await updateDoc(voteDocRef, { votes: newVotes });
+
+        alert('Vote successfully saved');
 
         //Redirect to finish
         navigate('/complete');

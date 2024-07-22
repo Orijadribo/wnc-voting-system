@@ -168,7 +168,9 @@ const Section = ({
 
     try {
       const voteDocRef = doc(db, 'votes', userDocId);
-      await updateDoc(voteDocRef, { votes });
+      // await updateDoc(voteDocRef, { votes });
+
+      alert('Vote successfully saved');
     } catch (err) {
       alert('Error updating votes:', err);
       console.log('Error updating votes:', err);
@@ -192,7 +194,9 @@ const Section = ({
 
     try {
       const voteDocRef = doc(db, 'votes', userDocId);
-      await updateDoc(voteDocRef, { votes });
+      // await updateDoc(voteDocRef, { votes });
+
+      alert('Vote successfully saved');
 
       // navigate to next page upon saving to the database
       navigate(`/section_${nextSection}`);
@@ -219,7 +223,9 @@ const Section = ({
 
     try {
       const voteDocRef = doc(db, 'votes', userDocId);
-      await updateDoc(voteDocRef, { votes });
+      // await updateDoc(voteDocRef, { votes });
+
+      alert('Vote successfully saved');
 
       //Sign out user upon finish
       await auth.signOut();
@@ -263,10 +269,7 @@ const Section = ({
       <div className='flex items-center justify-between bg-white sticky top-0 left-0 py-3 px-5 my-5 max-w-2xl m-auto shadow-lg rounded-lg z-40'>
         <div className='font-light'>
           hello,
-          <span className='capitalize text-lg font-normal'>
-            {' '}
-            {firstName}
-          </span>
+          <span className='capitalize text-lg font-normal'> {firstName}</span>
         </div>
         <button
           onClick={handleLogOut}
