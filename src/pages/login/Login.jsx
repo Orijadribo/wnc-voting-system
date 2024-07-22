@@ -105,7 +105,7 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
           setPassword('');
 
           // Navigate to section one
-          navigate('/section_one');
+          navigate('/vote');
         } else {
           alert('Please read and accept the terms and conditions');
         }

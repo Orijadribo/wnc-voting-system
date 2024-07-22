@@ -5,6 +5,7 @@ import Section from './pages/sections/Section';
 import Finish from './pages/finish/Finish';
 import Verification from './pages/login/Verification';
 import AdminPanel from './pages/admin/AdminPanel';
+import VotesYesOrNo from './pages/sections/VotesYesOrNo';
 
 function App() {
   const [firstName, setFirstName] = useState('');
@@ -40,6 +41,12 @@ function App() {
             }
           />
           <Route path='/adminpanel' element={<AdminPanel />} />
+          <Route
+            path='/vote'
+            element={
+              <VotesYesOrNo userDocId={userDocId} firstName={firstName} />
+            }
+          />
           <Route
             path='/section_one'
             element={

@@ -361,16 +361,16 @@ const Section = ({
           ))}
         </div>
         <div className='flex gap-5 items-center justify-between md:justify-end'>
-          {section !== 'one' ? (
-            <Link to={`/section_${previousSection}`}>
-              <button
-                type='button'
-                className='py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
-              >
-                Previous
-              </button>
-            </Link>
-          ) : null}
+          <Link
+            to={section !== 'one' ? `/section_${previousSection}` : `/vote`}
+          >
+            <button
+              type='button'
+              className='py-2 px-5 rounded-lg bg-green-50 hover:bg-green-200 border'
+            >
+              Previous
+            </button>
+          </Link>
 
           <button
             type='submit'
