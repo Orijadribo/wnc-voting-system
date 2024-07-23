@@ -23,8 +23,6 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
   const navigate = useNavigate();
   const votesCollectionRef = collection(db, 'votes');
 
-
-  console.log(firstName);
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
