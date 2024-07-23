@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import React from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-const Chart = () => {
+const Chart = ({ yesVote, noVote }) => {
   const data = [
-    { name: 'Yes', value: 400 },
-    { name: 'No', value: 300 },
+    { name: 'Yes', value: yesVote },
+    { name: 'No', value: noVote },
   ];
 
   const COLORS = ['#16a34a', '#4ade80'];
@@ -18,20 +18,29 @@ const Chart = () => {
     outerRadius,
     percent,
     index,
+    payload,
   }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    let x, y;
+
+    if (payload.value === 0) {
+      // Manually position the label for the zero value
+      x = 100;
+      y = 150;
+    } else {
+      x = cx + radius * Math.cos(-midAngle * RADIAN);
+      y = cy + radius * Math.sin(-midAngle * RADIAN);
+    }
 
     return (
       <text
         x={x}
         y={y}
-        fill='white'
-        textAnchor={x < cx ? 'start' : 'end'}
+        fill='#3A3B3C'
+        textAnchor={'center'}
         dominantBaseline='central'
       >
-        {`Yes ${(percent * 100).toFixed(0)}%`}
+        {`${payload.name} ${(percent * 100).toFixed(0)}%`}
       </text>
     );
   };
