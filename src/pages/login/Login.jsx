@@ -64,7 +64,7 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
-          setError('lie');
+          setError('Invalid username or password');
           return;
         }
 
