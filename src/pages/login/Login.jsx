@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { db, auth } from '../../api/firebaseConfig';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, serverTimestamp, where } from 'firebase/firestore';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
@@ -87,7 +87,7 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
           const votesDoc = await addDoc(votesCollectionRef, {
             firstName: firstName,
             lastName: lastName,
-            startTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+            startTime: serverTimestamp(),
             endTime: '',
             votes: {},
           });
