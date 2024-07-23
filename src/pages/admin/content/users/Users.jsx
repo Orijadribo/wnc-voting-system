@@ -14,8 +14,8 @@ const Users = () => {
       collection(db, 'paidUpMembers'),
       (members) => {
         let list = [];
-        members.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
+        members.docs.forEach((doc, index) => {
+          list.push({ id: index + 1, ...doc.data() });
         });
         setData(list);
       },
@@ -27,23 +27,6 @@ const Users = () => {
     return () => {
       unsub();
     };
-
-    // const fetchPaidUpMembers = async () => {
-    //   let list = [];
-
-    //   try {
-    //     const paidUpMembersCollectionRef = await getDocs(
-    //       collection(db, 'paidUpMembers')
-    //     );
-    //     paidUpMembersCollectionRef.forEach((doc) => {
-    //       list.push(doc.data());
-    //     });
-    //     setData(list);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchPaidUpMembers();
   }, []);
 
   console.log(data);
@@ -127,7 +110,7 @@ const Users = () => {
         </div>
       </div>
       <div
-        className='flex flex-col gap-5 overflow-y-auto rounded-lg mt-5'
+        className='flex flex-col gap-5 overflow-y-auto overflow-x-auto rounded-lg mt-5 w-full'
         style={{ height: 'calc(100vh - 310px)' }}
       >
         <UserCategory
