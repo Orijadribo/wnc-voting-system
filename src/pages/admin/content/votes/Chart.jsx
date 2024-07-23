@@ -27,7 +27,7 @@ const Chart = ({ yesVote, noVote }) => {
       // Manually position the label for the zero value
       x = 100;
       y = 150;
-    }  else {
+    } else {
       x = cx + radius * Math.cos(-midAngle * RADIAN);
       y = cy + radius * Math.sin(-midAngle * RADIAN);
     }
@@ -37,7 +37,6 @@ const Chart = ({ yesVote, noVote }) => {
         x={x}
         y={y}
         fill='#E0E5E5'
-        // fill='#3A3B3C'
         textAnchor={'center'}
         dominantBaseline='central'
       >
