@@ -60,8 +60,8 @@ const Votes = () => {
     },
     {
       article: 'Article 12',
-      yes: 10,
-      no: 0,
+      yes: 120,
+      no: 10,
     },
   ];
 
@@ -72,8 +72,8 @@ const Votes = () => {
         className='grid grid-cols-1 md:grid-cols-3 gap-5 overflow-y-auto rounded-lg'
         style={{ height: 'calc(100vh - 220px)' }}
       >
-        {votes.map((article) => (
-          <div className='rounded-lg shadow-sm bg-green-50/80 h-[250px] pt-2 px-5'>
+        {votes.map((article,index) => (
+          <div key={index} className='rounded-lg shadow-sm bg-green-50/80 h-[250px] pt-2 px-5'>
             <div className='text-xl font-light -mb-5'>{article.article}</div>
             <Chart yesVote={article.yes} noVote={article.no} />
           </div>

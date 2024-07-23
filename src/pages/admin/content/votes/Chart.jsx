@@ -23,7 +23,7 @@ const Chart = ({ yesVote, noVote }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     let x, y;
 
-    if (payload.value === 0) {
+    if (payload.value < 5) {
       // Manually position the label for the zero value
       x = 100;
       y = 150;
@@ -36,7 +36,8 @@ const Chart = ({ yesVote, noVote }) => {
       <text
         x={x}
         y={y}
-        fill='#3A3B3C'
+        fill='#E0E5E5'
+        // fill='#3A3B3C'
         textAnchor={'center'}
         dominantBaseline='central'
       >
