@@ -29,7 +29,6 @@ const Users = () => {
     };
   }, []);
 
-  console.log(data);
 
   // useEffect(() => {
   //   if (selection === 'paidUpMembers') {
