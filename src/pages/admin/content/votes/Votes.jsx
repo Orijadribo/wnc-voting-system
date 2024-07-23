@@ -1,4 +1,5 @@
 import React from 'react';
+import Chart from './Chart';
 
 const Votes = () => {
   const votes = [
@@ -71,7 +72,7 @@ const Votes = () => {
         className='grid grid-cols-1 md:grid-cols-3 gap-5 overflow-y-auto rounded-lg'
         style={{ height: 'calc(100vh - 220px)' }}
       >
-        {votes.map((article) => (
+        {/* {votes.map((article) => (
           <div className='rounded-lg shadow-sm bg-green-50/80 h-40  py-2 px-5'>
             <div className='text-xl'>{article.article}</div>
             <div>
@@ -79,7 +80,11 @@ const Votes = () => {
               <div>{article.no}</div>
             </div>
           </div>
-        ))}
+        ))} */}
+        <div className='rounded-lg shadow-sm bg-green-50/80 h-[250px] pt-2 px-5'>
+          <div className='text-xl -mb-5'>Article</div>
+          <Chart />
+        </div>
       </div>
     </div>
   );
