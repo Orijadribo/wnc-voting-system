@@ -23,6 +23,8 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
   const navigate = useNavigate();
   const votesCollectionRef = collection(db, 'votes');
 
+
+  console.log(firstName);
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
@@ -33,7 +35,7 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
 
       // Fetch the email associated with the username from Firestore
       const adminsRef = collection(db, 'admins');
-      const q = query(adminsRef, where('username', '==', username));
+      const q = query(adminsRef, where('userName', '==', username));
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
@@ -55,14 +57,14 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
         const paidUpMembersRef = collection(db, 'paidUpMembers');
         const q = query(
           paidUpMembersRef,
-          where('username', '==', username),
+          where('userName', '==', username),
           where('firstName', '==', firstName),
           where('lastName', '==', lastName)
         );
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
-          setError('Invalid username or password');
+          setError('lie');
           return;
         }
 
