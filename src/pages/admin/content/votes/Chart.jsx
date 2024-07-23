@@ -23,11 +23,11 @@ const Chart = ({ yesVote, noVote }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     let x, y;
 
-    if (payload.value < 5) {
+    if (payload.value == 0) {
       // Manually position the label for the zero value
       x = 100;
       y = 150;
-    } else {
+    }  else {
       x = cx + radius * Math.cos(-midAngle * RADIAN);
       y = cy + radius * Math.sin(-midAngle * RADIAN);
     }
