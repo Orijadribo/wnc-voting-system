@@ -84,11 +84,11 @@ const Report = () => {
 
           {/* Actual results  */}
           <div className='flex flex-col'>
-            <p className='flex items-center justify-center text-lg p-2'>
+            <p className='flex items-center justify-center text-lg'>
               Result Summary
             </p>
-            <div className='border'>
-              <div className='flex flex-col gap-2 my-5 p-5'>
+            <div className='border my-5 rounded-lg'>
+              <div className='flex flex-col gap-2 my-5 px-5'>
                 <p className='text-[28px] pb-5'>Article 1</p>
                 <div className='flex px-5 pb-5'>
                   <div className='flex flex-1 flex-col'>
@@ -99,7 +99,7 @@ const Report = () => {
                 </div>
                 <div className='flex flex-col gap-2'>
                   <p className='text-[20px]'>Reasons For No Vote</p>
-                  <div className='flex flex-col gap-2'>
+                  <div className='flex flex-col gap-3'>
                     <div className='flex'>
                       <p className='flex-1 flex items-center justify-start'>
                         Daniel
@@ -110,9 +110,9 @@ const Report = () => {
                         porro officia animi, ipsum magnam.
                       </p>
                     </div>
-                    <hr className=' border' />
+                    <hr className='border w-[90%] ' />
                   </div>
-                  <div className='flex flex-col gap-2'>
+                  <div className='flex flex-col gap-3'>
                     <div className='flex'>
                       <p className='flex-1 flex items-center justify-start'>
                         Orija
@@ -124,9 +124,9 @@ const Report = () => {
                         beatae magnam, hic dolorem libero amet! Et.
                       </p>
                     </div>
-                    <hr className=' border' />
+                    <hr className='border w-[90%] ' />
                   </div>
-                  <div className='flex flex-col gap-2'>
+                  <div className='flex flex-col gap-3'>
                     <div className='flex'>
                       <p className='flex-1 flex items-center justify-start'>
                         peti
@@ -136,7 +136,6 @@ const Report = () => {
                         elit. Est, dicta?
                       </p>
                     </div>
-                    <hr className=' border' />
                   </div>
                 </div>
               </div>
