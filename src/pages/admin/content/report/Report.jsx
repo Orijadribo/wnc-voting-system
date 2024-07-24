@@ -87,167 +87,65 @@ const Report = () => {
             <p className='flex items-center justify-center text-lg'>
               Result Summary
             </p>
-            <div className='border my-5 rounded-lg'>
-              <div className='flex flex-col gap-2 my-5 px-5'>
-                <p className='text-[28px] pb-5'>Article 1</p>
-                <div className='flex px-5 pb-5'>
-                  <div className='flex flex-1 flex-col'>
-                    <p>Voted Yes: 20</p>
-                    <p>Voted No: 10</p>
-                  </div>
-                  <div className='flex-[3]'>pie chart</div>
-                </div>
-                <div className='flex flex-col gap-2'>
-                  <p className='text-[20px]'>Reasons For No Vote</p>
-                  <div className='flex flex-col gap-3'>
-                    <div className='flex'>
-                      <p className='flex-1 flex items-center justify-start'>
-                        Daniel
-                      </p>
-                      <p className='flex-[4] text-justify'>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Illum sed vel nostrum nesciunt saepe repudiandae
-                        porro officia animi, ipsum magnam.
-                      </p>
+            {[1, 2, 3, 4, 5].map((article,index) => (
+              <div key={index} className='border my-5 rounded-lg'>
+                <div className='flex flex-col gap-2 my-5 px-5'>
+                  <p className='text-[28px] pb-5'>Article {article}</p>
+                  <div className='flex px-5 pb-5'>
+                    <div className='flex flex-1 flex-col'>
+                      <p>Voted Yes: 20</p>
+                      <p>Voted No: 10</p>
                     </div>
-                    <hr className='border w-[90%] ' />
-                  </div>
-                  <div className='flex flex-col gap-3'>
-                    <div className='flex'>
-                      <p className='flex-1 flex items-center justify-start'>
-                        Orija
-                      </p>
-                      <p className='flex-[4] text-justify'>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Earum odio ipsa pariatur sunt fuga distinctio
-                        voluptas itaque ex consequuntur iure in natus voluptate
-                        beatae magnam, hic dolorem libero amet! Et.
-                      </p>
-                    </div>
-                    <hr className='border w-[90%] ' />
-                  </div>
-                  <div className='flex flex-col gap-3'>
-                    <div className='flex'>
-                      <p className='flex-1 flex items-center justify-start'>
-                        peti
-                      </p>
-                      <p className='flex-[4] text-justify'>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Est, dicta?
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='border'>
-              <div className='flex flex-col gap-2 p-5'>
-                <p className='text-[28px]'>Article 1</p>
-                <div className='flex px-5'>
-                  <div className='flex flex-1 flex-col'>
-                    <p>Voted Yes: 20</p>
-                    <p>Voted No: 10</p>
-                  </div>
-                  <div className='flex-[3]'>pie chart</div>
-                </div>
-                <div className='flex flex-col gap-2'>
-                  <p className='text-[20px]'>Reasons For No Vote</p>
-                  <div className='flex flex-col gap-2'>
-                    <div className='flex'>
-                      <p className='flex-1 flex items-center justify-start'>
-                        Daniel
-                      </p>
-                      <p className='flex-[4] text-justify'>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Illum sed vel nostrum nesciunt saepe repudiandae
-                        porro officia animi, ipsum magnam.
-                      </p>
-                    </div>
-                    <hr className=' border' />
+                    <div className='flex-[3]'>pie chart</div>
                   </div>
                   <div className='flex flex-col gap-2'>
-                    <div className='flex'>
-                      <p className='flex-1 flex items-center justify-start'>
-                        Orija
-                      </p>
-                      <p className='flex-[4] text-justify'>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Earum odio ipsa pariatur sunt fuga distinctio
-                        voluptas itaque ex consequuntur iure in natus voluptate
-                        beatae magnam, hic dolorem libero amet! Et.
-                      </p>
+                    <p className='text-[20px]'>Reasons For No Vote</p>
+                    <div className='flex flex-col'>
+                      <div className='flex pb-2'>
+                        <p className='flex-1 flex items-center justify-start'>
+                          Daniel
+                        </p>
+                        <p className='flex-[4] text-justify'>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Illum sed vel nostrum nesciunt saepe repudiandae
+                          porro officia animi, ipsum magnam.
+                        </p>
+                      </div>
+                      <div className='flex ittems-center justify-center my-2'>
+                        <hr className='border w-[95%] ' />
+                      </div>
                     </div>
-                    <hr className=' border' />
-                  </div>
-                  <div className='flex flex-col gap-2'>
-                    <div className='flex'>
-                      <p className='flex-1 flex items-center justify-start'>
-                        peti
-                      </p>
-                      <p className='flex-[4] text-justify'>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Est, dicta?
-                      </p>
+                    <div className='flex flex-col'>
+                      <div className='flex pb-2'>
+                        <p className='flex-1 flex items-center justify-start'>
+                          Orija
+                        </p>
+                        <p className='flex-[4] text-justify'>
+                          Lorem ipsum, dolor sit amet consectetur adipisicing
+                          elit. Earum odio ipsa pariatur sunt fuga distinctio
+                          voluptas itaque ex consequuntur iure in natus
+                          voluptate beatae magnam, hic dolorem libero amet! Et.
+                        </p>
+                      </div>
+                      <div className='flex ittems-center justify-center my-2'>
+                        <hr className='border w-[95%] ' />
+                      </div>
                     </div>
-                    <hr className=' border' />
+                    <div className='flex flex-col'>
+                      <div className='flex pb-2'>
+                        <p className='flex-1 flex items-center justify-start'>
+                          peti
+                        </p>
+                        <p className='flex-[4] text-justify'>
+                          Lorem ipsum, dolor sit amet consectetur adipisicing
+                          elit. Est, dicta?
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className='border'>
-              <div className='flex flex-col gap-2 p-5'>
-                <p className='text-[28px]'>Article 1</p>
-                <div className='flex px-5'>
-                  <div className='flex flex-1 flex-col'>
-                    <p>Voted Yes: 20</p>
-                    <p>Voted No: 10</p>
-                  </div>
-                  <div className='flex-[3]'>pie chart</div>
-                </div>
-                <div className='flex flex-col gap-2'>
-                  <p className='text-[20px]'>Reasons For No Vote</p>
-                  <div className='flex flex-col gap-2'>
-                    <div className='flex'>
-                      <p className='flex-1 flex items-center justify-start'>
-                        Daniel
-                      </p>
-                      <p className='flex-[4] text-justify'>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Illum sed vel nostrum nesciunt saepe repudiandae
-                        porro officia animi, ipsum magnam.
-                      </p>
-                    </div>
-                    <hr className=' border' />
-                  </div>
-                  <div className='flex flex-col gap-2'>
-                    <div className='flex'>
-                      <p className='flex-1 flex items-center justify-start'>
-                        Orija
-                      </p>
-                      <p className='flex-[4] text-justify'>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Earum odio ipsa pariatur sunt fuga distinctio
-                        voluptas itaque ex consequuntur iure in natus voluptate
-                        beatae magnam, hic dolorem libero amet! Et.
-                      </p>
-                    </div>
-                    <hr className=' border' />
-                  </div>
-                  <div className='flex flex-col gap-2'>
-                    <div className='flex'>
-                      <p className='flex-1 flex items-center justify-start'>
-                        peti
-                      </p>
-                      <p className='flex-[4] text-justify'>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Est, dicta?
-                      </p>
-                    </div>
-                    <hr className=' border' />
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
