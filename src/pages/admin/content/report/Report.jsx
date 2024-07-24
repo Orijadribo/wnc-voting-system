@@ -103,7 +103,7 @@ const Report = () => {
             <p className='flex items-center justify-center text-lg'>
               Result Summary
             </p>
-            {[1, 2, 3, 4, 5].map((article,index) => (
+            {[1, 2, 3, 4, 5].map((article, index) => (
               <div key={index} className='border my-5 rounded-lg'>
                 <div className='flex flex-col gap-2 my-5 px-5'>
                   <p className='text-[28px] pb-5'>Article {article}</p>
@@ -162,6 +162,20 @@ const Report = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Chairman and Secretary signatures */}
+          <div className='flex gap-5 justify-between mt-20 px-10'>
+            <div className='flex flex-col items-center justify-center w-[40%]'>
+              <hr className='border w-full' />
+              <p>Chair Name</p>
+              <p>Chairman</p>
+            </div>
+            <div className='flex flex-col items-center justify-center w-[40%]'>
+              <hr className='border w-full' />
+              <p>Sec Name</p>
+              <p>General Secretary</p>
+            </div>
           </div>
         </div>
       </div>
