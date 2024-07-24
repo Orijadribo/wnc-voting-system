@@ -14,30 +14,46 @@ const Report = () => {
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
+      const margin = 10; // Set the top and bottom margin
       const imgData = canvas.toDataURL('image/png');
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
-      const ratio = pdfWidth / imgWidth;
+      const ratio = (pdfWidth - 2 * margin) / imgWidth; // Adjust width for margin
       const scaledHeight = imgHeight * ratio;
 
-      let position = 0;
+      let position = margin; // Start position with top margin
       let heightLeft = scaledHeight;
 
       // Add the first page
-      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, scaledHeight);
-      heightLeft -= pdfHeight;
+      pdf.addImage(
+        imgData,
+        'PNG',
+        margin,
+        position,
+        pdfWidth - 2 * margin,
+        scaledHeight
+      ); // Adjust width for margin
+      heightLeft -= pdfHeight - 2 * margin; // Adjust height for margins
 
       // Add additional pages if needed
       while (heightLeft > 0) {
-        position -= pdfHeight;
+        position -= pdfHeight - 2 * margin; // Adjust position for margins
         pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, scaledHeight);
-        heightLeft -= pdfHeight;
+        pdf.addImage(
+          imgData,
+          'PNG',
+          margin,
+          position,
+          pdfWidth - 2 * margin,
+          scaledHeight
+        ); // Adjust width for margin
+        heightLeft -= pdfHeight - 2 * margin; // Adjust height for margins
       }
 
       pdf.save('vote_results.pdf');
     });
   };
+
 
   return (
     <div>
