@@ -12,27 +12,24 @@ const Report = () => {
 
     html2canvas(input).then((canvas) => {
       const pdf = new jsPDF('p', 'mm', 'a4');
+      const margin = 10; // Set your desired margin in millimeters
+
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      const margin = 10; // Set the top and bottom margin
+      const usableWidth = pdfWidth - 2 * margin; // Adjust width for margins
+      const usableHeight = pdfHeight - 2 * margin; // Adjust height for margins
+
       const imgData = canvas.toDataURL('image/png');
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
-      const ratio = (pdfWidth - 2 * margin) / imgWidth; // Adjust width for margin
+      const ratio = usableWidth / imgWidth;
       const scaledHeight = imgHeight * ratio;
 
       let position = margin; // Start position with top margin
       let heightLeft = scaledHeight;
 
       // Add the first page
-      pdf.addImage(
-        imgData,
-        'PNG',
-        margin,
-        position,
-        pdfWidth - 2 * margin,
-        scaledHeight
-      ); // Adjust width for margin
+      pdf.addImage(imgData, 'PNG', margin, position, usableWidth, scaledHeight); // Adjust width for margin
       heightLeft -= pdfHeight - 2 * margin; // Adjust height for margins
 
       // Add additional pages if needed
@@ -44,7 +41,7 @@ const Report = () => {
           'PNG',
           margin,
           position,
-          pdfWidth - 2 * margin,
+          usableWidth,
           scaledHeight
         ); // Adjust width for margin
         heightLeft -= pdfHeight - 2 * margin; // Adjust height for margins
@@ -53,7 +50,6 @@ const Report = () => {
       pdf.save('vote_results.pdf');
     });
   };
-
 
   return (
     <div>
@@ -72,7 +68,7 @@ const Report = () => {
         className='flex flex-col gap-5 overflow-y-auto overflow-x-auto rounded-lg w-full border p-5'
         style={{ height: 'calc(100vh - 240px)' }}
       >
-        <div className='flex flex-col w-full p-5' ref={pdfRef}>
+        <div className='flex flex-col w-full p-5 border' ref={pdfRef}>
           <div className='flex justify-end pb-5'>
             <img className='h-24' src={WNGC_logo} alt='WNGC_logo' />
           </div>
