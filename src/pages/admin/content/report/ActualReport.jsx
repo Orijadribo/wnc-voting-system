@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: 20,
+    paddingVertical: 10,
   },
   article: {
     border: '1px solid #000',
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
   },
   reasonName: {
     display: 'flex',
-    paddingBottom:5,
+    paddingBottom: 5,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
