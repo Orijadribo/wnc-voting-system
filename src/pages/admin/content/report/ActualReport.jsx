@@ -18,11 +18,12 @@ const styles = StyleSheet.create({
   },
   pdfHeader: {
     display: 'flex',
-    justifyContent: 'flex-end',
-    paddingBottom: 20,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
   pdfHeaderImage: {
     height: 96,
+    width: 110,
   },
   pdfTitle: {
     display: 'flex',
@@ -51,12 +52,13 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   statLabel: {
-    fontWeight: 'bold',
+    fontWeight: 500,
   },
   pdfResults: {
     display: 'flex',
     flexDirection: 'column',
   },
+  title: { display: 'flex', alignItems: 'center', justifyContent: 'center' },
   sectionTitle: {
     display: 'flex',
     alignItems: 'center',
@@ -93,16 +95,19 @@ const styles = StyleSheet.create({
   },
   reason: {
     display: 'flex',
+    flexDirection: 'column',
     paddingBottom: 10,
   },
   reasonName: {
-    flex: 1,
     display: 'flex',
+    paddingBottom:5,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
   reasonComment: {
-    flex: 4,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
     textAlign: 'justify',
   },
   separator: {
@@ -174,7 +179,7 @@ const ActualReport = () => {
           <View style={styles.pdfStats}>
             <View style={styles.stat}>
               <Text style={styles.statLabel}>Period:</Text>
-              <Text>Monday 29th July 2024 - Wednesday 7th August 2024</Text>
+              <Text>29th July, 2024 - 7th August, 2024</Text>
             </View>
             <View style={styles.stat}>
               <Text style={styles.statLabel}>Verified Voters:</Text>
@@ -186,7 +191,9 @@ const ActualReport = () => {
             </View>
           </View>
           <View style={styles.pdfResults}>
-            <Text style={styles.sectionTitle}>Result Summary</Text>
+            <View style={styles.title}>
+              <Text style={styles.sectionTitle}>Result Summary</Text>
+            </View>
             {[1, 2, 3, 4, 5].map((article, index) => (
               <View key={index} style={styles.article}>
                 <Text style={styles.articleTitle}>Article {article}</Text>
@@ -200,7 +207,9 @@ const ActualReport = () => {
                   </View>
                 </View>
                 <View style={styles.reasons}>
-                  <Text style={styles.sectionTitle}>Reasons For No Vote</Text>
+                  <View style={styles.title}>
+                    <Text style={styles.sectionTitle}>Reasons For No Vote</Text>
+                  </View>
                   <View style={styles.reason}>
                     <Text style={styles.reasonName}>Daniel</Text>
                     <Text style={styles.reasonComment}>
