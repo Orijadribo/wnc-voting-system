@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   },
   pdfStats: {
     paddingBottom: 20,
+    fontSize: 16,
   },
   stat: {
     display: 'flex',
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   statLabel: {
-    fontWeight: 500,
+    fontWeight: 'extrabold',
   },
   pdfResults: {
     display: 'flex',
@@ -68,8 +69,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   article: {
-    border: '1px solid #000',
-    borderRadius: 8,
+    border: '1px solid #6b7280',
+    borderRadius: 4,
     marginBottom: 20,
     padding: 20,
   },
@@ -91,11 +92,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   voteCounts: {
-    flex: 1,
+    // flex: 1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+    fontSize: 12,
   },
   chart: {
     flex: 2,
@@ -111,6 +113,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     paddingBottom: 10,
+    fontSize: 14,
   },
   reasonName: {
     display: 'flex',
@@ -131,7 +134,7 @@ const styles = StyleSheet.create({
     margin: '10px 0',
   },
   separatorLine: {
-    border: '1px solid #000',
+    border: '1px solid #6b7280',
     width: '95%',
   },
   pdfSignatures: {
@@ -225,7 +228,7 @@ const ActualReport = ({ votes }) => {
                       <Text>Voted No: {article.no}</Text>
                     </View>
                     <View style={styles.chart}>
-                      {/* <Chart yesVote={article.yes} noVote={article.no} /> */}
+                      <Chart yesVote={article.yes} noVote={article.no} />
                     </View>
                   </View>
                 </View>
@@ -264,15 +267,48 @@ const ActualReport = ({ votes }) => {
               </View>
             ))}
           </View>
+
+          <View style={styles.article}>
+            <Text style={styles.articleTitle}>Article 1</Text>
+            <View style={styles.voteResultsContainer}>
+              <View style={styles.voteResults}>
+                <View style={styles.voteCounts}>
+                  <Text>Voted Yes: 20</Text>
+                  <Text>Voted No: 10</Text>
+                </View>
+                {/* <View style={styles.chart}>
+                  <Chart yesVote={article.yes} noVote={article.no} />
+                </View> */}
+              </View>
+            </View>
+            <View style={styles.reasons}>
+              <View style={styles.title}>
+                <Text style={styles.sectionTitle}>Reasons For No Vote</Text>
+              </View>
+              <View>
+                <View style={styles.reason}>
+                  <Text style={styles.reasonName}>Daniel Orija</Text>
+                  <Text style={styles.reasonComment}>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Excepturi, quod.
+                  </Text>
+                </View>
+                <View style={styles.separator}>
+                  <View style={styles.separatorLine} />
+                </View>
+              </View>
+            </View>
+          </View>
+
           <View style={styles.pdfSignatures}>
             <View style={styles.signature}>
               <View style={styles.signatureLine} />
-              <Text style={styles.signatureText}>Chair Name</Text>
+              <Text style={styles.signatureText}>Chairman Name</Text>
               <Text style={styles.signatureText}>Chairman</Text>
             </View>
             <View style={styles.signature}>
               <View style={styles.signatureLine} />
-              <Text style={styles.signatureText}>Sec Name</Text>
+              <Text style={styles.signatureText}>Secretary Name</Text>
               <Text style={styles.signatureText}>General Secretary</Text>
             </View>
           </View>

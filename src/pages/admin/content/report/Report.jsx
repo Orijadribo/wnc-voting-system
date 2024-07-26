@@ -65,11 +65,9 @@ const Report = () => {
     };
   }, []);
 
-  console.log(votes);
-
   return (
     <div>
-      <div className='flex items-center justify-between mb-5 '>
+      <div className='flex items-center justify-between mb-5'>
         <div className='text-2xl p-2 pl-0'>Report</div>
         <div className=''>
           <PDFDownloadLink
