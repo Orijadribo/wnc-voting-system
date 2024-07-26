@@ -8,6 +8,7 @@ import {
   Image,
 } from '@react-pdf/renderer';
 import { WNGC_logo } from '../../../../assets/index';
+import Chart from '../votes/Chart';
 
 const styles = StyleSheet.create({
   pdfContainer: {
@@ -76,18 +77,30 @@ const styles = StyleSheet.create({
     fontSize: 28,
     paddingBottom: 20,
   },
+  voteResultsContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   voteResults: {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'row',
+    gap: 20,
     paddingBottom: 20,
   },
   voteCounts: {
     flex: 1,
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'column',
   },
   chart: {
-    flex: 3,
+    flex: 2,
+    width: '100%',
+    height: '100%',
   },
   reasons: {
     display: 'flex',
@@ -152,9 +165,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'grey',
   },
+  noReasons: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
-const ActualReport = () => {
+const ActualReport = ({ votes }) => {
   return (
     <Document>
       <Page
@@ -195,52 +213,53 @@ const ActualReport = () => {
             <View style={styles.title}>
               <Text style={styles.sectionTitle}>Result Summary</Text>
             </View>
-            {[1, 2, 3, 4, 5].map((article, index) => (
+            {votes.map((article, index) => (
               <View key={index} style={styles.article}>
-                <Text style={styles.articleTitle}>Article {article}</Text>
-                <View style={styles.voteResults}>
-                  <View style={styles.voteCounts}>
-                    <Text>Voted Yes: 20</Text>
-                    <Text>Voted No: 10</Text>
-                  </View>
-                  <View style={styles.chart}>
-                    <Text>pie chart</Text>
+                <Text style={styles.articleTitle}>
+                  Article {article.article}
+                </Text>
+                <View style={styles.voteResultsContainer}>
+                  <View style={styles.voteResults}>
+                    <View style={styles.voteCounts}>
+                      <Text>Voted Yes: {article.yes}</Text>
+                      <Text>Voted No: {article.no}</Text>
+                    </View>
+                    <View style={styles.chart}>
+                      {/* <Chart yesVote={article.yes} noVote={article.no} /> */}
+                    </View>
                   </View>
                 </View>
                 <View style={styles.reasons}>
                   <View style={styles.title}>
                     <Text style={styles.sectionTitle}>Reasons For No Vote</Text>
                   </View>
-                  <View style={styles.reason}>
-                    <Text style={styles.reasonName}>Daniel</Text>
-                    <Text style={styles.reasonComment}>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Illum sed vel nostrum nesciunt saepe repudiandae porro
-                      officia animi, ipsum magnam.
-                    </Text>
-                  </View>
-                  <View style={styles.separator}>
-                    <View style={styles.separatorLine} />
-                  </View>
-                  <View style={styles.reason}>
-                    <Text style={styles.reasonName}>Orija</Text>
-                    <Text style={styles.reasonComment}>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Earum odio ipsa pariatur sunt fuga distinctio voluptas
-                      itaque ex consequuntur iure in natus voluptate beatae
-                      magnam, hic dolorem libero amet! Et.
-                    </Text>
-                  </View>
-                  <View style={styles.separator}>
-                    <View style={styles.separatorLine} />
-                  </View>
-                  <View style={styles.reason}>
-                    <Text style={styles.reasonName}>peti</Text>
-                    <Text style={styles.reasonComment}>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Est, dicta?
-                    </Text>
-                  </View>
+                  {article.voterReasons && article.voterReasons.length > 0 ? (
+                    article.voterReasons.map((voter, index) => (
+                      <View key={index}>
+                        {voter?.reason !== '' && (
+                          <View>
+                            <View style={styles.reason}>
+                              <Text style={styles.reasonName}>
+                                {voter?.voterName}
+                              </Text>
+                              <Text style={styles.reasonComment}>
+                                {voter?.reason}
+                              </Text>
+                            </View>
+                            <View style={styles.separator}>
+                              <View style={styles.separatorLine} />
+                            </View>
+                          </View>
+                        )}
+                      </View>
+                    ))
+                  ) : (
+                    <View style={styles.noReasons}>
+                      <Text style={styles.noReasonsText}>
+                        No reasons provided.
+                      </Text>
+                    </View>
+                  )}
                 </View>
               </View>
             ))}
