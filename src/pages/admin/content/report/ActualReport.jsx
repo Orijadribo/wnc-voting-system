@@ -267,39 +267,6 @@ const ActualReport = ({ votes }) => {
               </View>
             ))}
           </View>
-
-          <View style={styles.article}>
-            <Text style={styles.articleTitle}>Article 1</Text>
-            <View style={styles.voteResultsContainer}>
-              <View style={styles.voteResults}>
-                <View style={styles.voteCounts}>
-                  <Text>Voted Yes: 20</Text>
-                  <Text>Voted No: 10</Text>
-                </View>
-                {/* <View style={styles.chart}>
-                  <Chart yesVote={article.yes} noVote={article.no} />
-                </View> */}
-              </View>
-            </View>
-            <View style={styles.reasons}>
-              <View style={styles.title}>
-                <Text style={styles.sectionTitle}>Reasons For No Vote</Text>
-              </View>
-              <View>
-                <View style={styles.reason}>
-                  <Text style={styles.reasonName}>Daniel Orija</Text>
-                  <Text style={styles.reasonComment}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Excepturi, quod.
-                  </Text>
-                </View>
-                <View style={styles.separator}>
-                  <View style={styles.separatorLine} />
-                </View>
-              </View>
-            </View>
-          </View>
-
           <View style={styles.pdfSignatures}>
             <View style={styles.signature}>
               <View style={styles.signatureLine} />
