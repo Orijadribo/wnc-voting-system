@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'flex-end',
     justifyContent: 'center',
+    marginTop: -50,
   },
   pdfHeaderImage: {
     height: 96,
@@ -45,6 +46,11 @@ const styles = StyleSheet.create({
     fontWeight: 300,
   },
   pdfStats: {
+    display: 'flex',
+    alignItems: 'start',
+    justifyContent: 'center',
+    gap: 5,
+    flexDirection: 'column',
     paddingBottom: 20,
     fontSize: 16,
   },
@@ -134,7 +140,8 @@ const styles = StyleSheet.create({
     margin: '10px 0',
   },
   separatorLine: {
-    border: '1px solid #6b7280',
+    border: '0.8px solid #6b7280',
+    borderRadius: 8,
     width: '95%',
   },
   pdfSignatures: {
@@ -144,6 +151,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 80,
     padding: '0 40px',
+    fontSize: 16,
   },
   signature: {
     display: 'flex',
@@ -153,7 +161,8 @@ const styles = StyleSheet.create({
     width: '40%',
   },
   signatureLine: {
-    border: '1px solid #000',
+    border: '0.5px solid #6b7280',
+    borderRadius: 8,
     width: '100%',
   },
   signatureText: {
@@ -228,7 +237,7 @@ const ActualReport = ({ votes }) => {
                       <Text>Voted No: {article.no}</Text>
                     </View>
                     <View style={styles.chart}>
-                      <Chart yesVote={article.yes} noVote={article.no} />
+                      {/* <Chart yesVote={article.yes} noVote={article.no} /> */}
                     </View>
                   </View>
                 </View>
