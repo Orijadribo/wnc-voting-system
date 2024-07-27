@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { db, auth } from '../../api/firebaseConfig';
 import { addDoc, collection, getDocs, query, serverTimestamp, where } from 'firebase/firestore';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import { BiSolidHide } from 'react-icons/bi';
 import { BiShow } from 'react-icons/bi';

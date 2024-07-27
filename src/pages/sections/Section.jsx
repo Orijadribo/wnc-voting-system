@@ -32,8 +32,6 @@ const Section = ({
 
   useEffect(() => {}, [votes]);
 
-  // console.log(votes);
-
   //Fetch votes from the database
   useEffect(() => {
     const fetchVotes = async () => {

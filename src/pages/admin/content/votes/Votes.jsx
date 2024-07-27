@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Chart from './Chart';
-import { collection, getDocs, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../../api/firebaseConfig';
 
 const Votes = () => {
@@ -15,7 +15,7 @@ const Votes = () => {
         // Process each document in the collection
         voters.docs.forEach((doc) => {
           const data = doc.data();
-          const votes = data.votes; // Assuming votes is a map with article IDs as keys
+          const votes = data.votes;
 
           for (const [key, vote] of Object.entries(votes)) {
             const { vote: voteType } = vote;

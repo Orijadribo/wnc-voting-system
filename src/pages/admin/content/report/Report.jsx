@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ActualReport from './ActualReport';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import { collection, getDocs, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../../api/firebaseConfig';
 
 const Report = () => {

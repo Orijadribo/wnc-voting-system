@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { WNC_course, WNGC_logo } from '../../assets';
 import { db } from '../../api/firebaseConfig';
 import { getDocs, collection } from 'firebase/firestore';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import VerificationModal from './VerificationModal';
 
 const Verification = ({
