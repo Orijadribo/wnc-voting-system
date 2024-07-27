@@ -67,7 +67,7 @@ const Votes = () => {
         {votes.map((article, index) => (
           <div
             key={index}
-            className='rounded-lg shadow-sm bg-green-50/80 h-[250px] pt-2 px-5'
+            className='rounded-lg shadow-sm bg-green-50/80 h-[250px] pt-2 px-2'
           >
             <div className='text-xl font-light -mb-5'>
               Article {article.article}
