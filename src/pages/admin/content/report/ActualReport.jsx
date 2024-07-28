@@ -262,9 +262,11 @@ const ActualReport = ({ votes, voters, paidUpMembers }) => {
                                 {voter?.reason}
                               </Text>
                             </View>
-                            <View style={styles.separator}>
-                              <View style={styles.separatorLine} />
-                            </View>
+                            {voter?.reason.length > 1 && (
+                              <View style={styles.separator}>
+                                <View style={styles.separatorLine} />
+                              </View>
+                            )}
                           </View>
                         )}
                       </View>
