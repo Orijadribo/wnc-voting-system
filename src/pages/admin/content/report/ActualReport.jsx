@@ -36,14 +36,17 @@ const styles = StyleSheet.create({
   },
   mainTitle: {
     fontSize: 32,
+    textAlign: 'center',
   },
   subTitle: {
     fontSize: 28,
     fontWeight: 300,
+    textAlign: 'center',
   },
   resultsTitle: {
     fontSize: 24,
     fontWeight: 300,
+    textAlign: 'center',
   },
   pdfStats: {
     display: 'flex',
@@ -126,7 +129,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    textTransform:'capitalize'
+    textTransform: 'capitalize',
   },
   reasonComment: {
     display: 'flex',
