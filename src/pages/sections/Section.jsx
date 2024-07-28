@@ -158,12 +158,6 @@ const Section = ({
       return;
     }
 
-    if (!userDocId) {
-      alert('You must be logged in to submit your votes.');
-      navigate('/');
-      return;
-    }
-
     try {
       const voteDocRef = doc(db, 'votes', userDocId);
       // await updateDoc(voteDocRef, { votes });
@@ -181,12 +175,6 @@ const Section = ({
 
     if (!allVoted) {
       alert('Please vote on all sections of all articles.');
-      return;
-    }
-
-    if (!userDocId) {
-      alert('You must be logged in to submit your votes.');
-      navigate('/');
       return;
     }
 
@@ -210,12 +198,6 @@ const Section = ({
 
     if (!allVoted) {
       alert('Please vote on all sections of all articles.');
-      return;
-    }
-
-    if (!userDocId) {
-      alert('You must be logged in to submit your votes.');
-      navigate('/');
       return;
     }
 

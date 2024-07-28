@@ -25,24 +25,17 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
   const handleYesSelection = async (e) => {
     e.preventDefault();
 
-    // if user no logged in redirect to verification
-    if (userDocId) {
-      try {
-        const voteDocRef = doc(db, 'votes', userDocId);
-        const newVotes = voteYesForAllArticles();
-        // await updateDoc(voteDocRef, { votes: newVotes });
+    try {
+      const voteDocRef = doc(db, 'votes', userDocId);
+      const newVotes = voteYesForAllArticles();
+      // await updateDoc(voteDocRef, { votes: newVotes });
 
-        alert('Vote successfully saved');
+      alert('Vote successfully saved');
 
-        //Redirect to finish
-        navigate('/complete');
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      alert('You are not logged in !');
       //Redirect to finish
-      navigate('/');
+      navigate('/complete');
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -50,14 +43,8 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
   const handleNoSelection = async (e) => {
     e.preventDefault();
 
-    if (userDocId) {
-      //Navigate to section one
-      navigate(`/section_one`);
-    } else {
-      alert('You are not logged in !');
-      //Redirect to finish
-      navigate('/');
-    }
+    //Navigate to section one
+    navigate(`/section_one`);
   };
 
   // Function to handle log out
