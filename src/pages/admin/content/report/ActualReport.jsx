@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    textTransform:'capitalize'
   },
   reasonComment: {
     display: 'flex',
