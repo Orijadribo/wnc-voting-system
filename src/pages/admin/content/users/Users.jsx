@@ -3,42 +3,21 @@ import UserCategory from './UserCategory';
 import { collection, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../../api/firebaseConfig';
 
-const Users = () => {
+const Users = ({ paidUpMembers, yetToVote, voters }) => {
   const [selection, setSelection] = useState('paidUpMembers');
   const [data, setData] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
 
-  //Fetch paid up members
+  //Selection of the data to display
   useEffect(() => {
-    const unsub = onSnapshot(
-      collection(db, 'paidUpMembers'),
-      (members) => {
-        let list = [];
-        members.docs.forEach((doc, index) => {
-          list.push({ id: index + 1, ...doc.data() });
-        });
-        setData(list);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    return () => {
-      unsub();
-    };
-  }, []);
-
-
-  // useEffect(() => {
-  //   if (selection === 'paidUpMembers') {
-  //     setData(paidUpMembers);
-  //   } else if (selection === 'yetToVote') {
-  //     setData(yetToVote);
-  //   } else {
-  //     setData(voted);
-  //   }
-  // }, [selection]);
+    if (selection === 'paidUpMembers') {
+      setData(paidUpMembers);
+    } else if (selection === 'yetToVote') {
+      setData(yetToVote);
+    } else {
+      setData(voters);
+    }
+  }, [selection]);
 
   //Set the selction of the users to show
   const handleSeclection = (selection) => {

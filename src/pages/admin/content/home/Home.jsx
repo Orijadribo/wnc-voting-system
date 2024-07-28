@@ -1,69 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '../../../../api/firebaseConfig';
-import { collection, onSnapshot } from 'firebase/firestore';
+import React from 'react';
 
-const Home = () => {
-  const [voters, setVoters] = useState([]);
-  const [paidUpMembers, setPaidUpMembers] = useState([]);
-  const [yetToVote, setYetToVote] = useState([]);
-
-  //Fetch paid up members
-  useEffect(() => {
-    const unsub = onSnapshot(
-      collection(db, 'votes'),
-      (members) => {
-        let list = [];
-        members.docs.forEach((doc, index) => {
-          list.push({ id: index + 1, ...doc.data() });
-        });
-        setVoters(list);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    return () => {
-      unsub();
-    };
-  }, []);
-
-  //Fetch paid up members
-  useEffect(() => {
-    const unsub = onSnapshot(
-      collection(db, 'paidUpMembers'),
-      (members) => {
-        let list = [];
-        members.docs.forEach((doc, index) => {
-          list.push({ id: index + 1, ...doc.data() });
-        });
-        setPaidUpMembers(list);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    return () => {
-      unsub();
-    };
-  }, []);
-
-  // Sort the voters by startTime in descending order and get the latest 5 voters
-  const latestVoters = voters
-    .filter((voter) => voter.startTime)
-    .sort((a, b) => b.startTime - a.startTime)
-    .slice(0, 5);
-
-  // Compare voters and paid-up members
-  useEffect(() => {
-    const votedUsernames = voters.map((voter) => voter.userName);
-    const notVoted = paidUpMembers
-      .filter((member) => !votedUsernames.includes(member.userName))
-      .slice(0, 5);
-    setYetToVote(notVoted);
-  }, [voters, paidUpMembers]);
-
+const Home = ({ yetToVote, latestVoters }) => {
   return (
     <div className=''>
       <div className='mb-5 text-2xl'>Home</div>
@@ -89,7 +26,7 @@ const Home = () => {
               Previous Voters
             </div>
             <div className='py-2 px-5 capitalize'>
-              {latestVoters.map((voter) => (
+              {latestVoters.slice(0, 5).map((voter) => (
                 <div key={voter.id}>
                   {voter.firstName} {voter.lastName}
                 </div>
@@ -101,7 +38,7 @@ const Home = () => {
               Yet to vote
             </div>
             <div className='py-2 px-5 capitalize'>
-              {yetToVote.map((voter) => (
+              {yetToVote.slice(0, 5).map((voter) => (
                 <div key={voter.id}>
                   {voter.firstName} {voter.lastName}
                 </div>
