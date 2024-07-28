@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { db, auth } from '../../api/firebaseConfig';
-import { addDoc, collection, getDocs, query, serverTimestamp, where } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  serverTimestamp,
+  where,
+} from 'firebase/firestore';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { BiSolidHide } from 'react-icons/bi';
 import { BiShow } from 'react-icons/bi';
 import LoginModal from './LoginModal';
+import { AuthContext } from '../../context/AuthContext';
 
 const Login = ({ firstName, lastName, setUserDocId, user }) => {
   const [username, setUsername] = useState('');
@@ -18,6 +26,8 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
     password: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
   });
   const [showModal, setShowModal] = useState(false);
+
+  const { dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const votesCollectionRef = collection(db, 'votes');
@@ -44,10 +54,18 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
       const email = userDoc.data().email;
 
       // Sign in with email and password
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          //Signed in
+          const user = userCredential.user;
+          dispatch({ type: 'LOGIN', payload: user });
 
-      //Navigate to admin panel upon successfull login
-      navigate('/adminpanel');
+          //Navigate to admin panel upon successfull login
+          navigate('/adminpanel');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       try {
         // Fetch the email associated with the username from Firestore
@@ -69,7 +87,18 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
         const email = userDoc.data().email;
 
         // Sign in with email and password
-        await signInWithEmailAndPassword(auth, email, password);
+        await signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            //Signed in
+            const user = userCredential.user;
+            dispatch({ type: 'LOGIN', payload: user });
+
+            //Navigate to admin panel upon successfull login
+            navigate('/adminpanel');
+          })
+          .catch((error) => {
+            console.log(error);
+          });
 
         // Check if a votes document already exists for the user
         const votesQuery = query(
