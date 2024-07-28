@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../../../api/firebaseConfig';
+import { auth, db } from '../../../../api/firebaseConfig';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const AddMemberModal = ({ setIsVisible }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const [labelClass, setLabelClass] = useState({
     firstName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
     lastName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
     userName: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
-    email: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
+    password: 'absolute top-2 left-2 bg-white text-[#b2b2b2] cursor-text',
   });
 
-  //
+  //Code to create username and email based on the first and last name
   useEffect(() => {
     if (firstName || lastName) {
       const newEmail = `${firstName}.${lastName}@wnc.com`.toLowerCase();
@@ -43,14 +45,28 @@ const AddMemberModal = ({ setIsVisible }) => {
   const handleMemberAdd = async (e) => {
     e.preventDefault();
 
-    //Add member to the firestore
     try {
+      //Add member to the firestore
       await setDoc(doc(db, 'paidUpMembers', userName), {
         firstName: firstName,
         lastName: lastName,
         userName: userName,
         email: email,
       });
+
+      //Create a user / signing up a user using the email and password
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      setFirstName('');
+      setLastName('');
+      setUserName('');
+      setEmail('');
     } catch (err) {
       console.log(err);
     }
@@ -62,14 +78,23 @@ const AddMemberModal = ({ setIsVisible }) => {
   const handleMemberAddAndAnother = async (e) => {
     e.preventDefault();
 
-    //Add member to the firestore
     try {
+      //Add member to the firestore
       await setDoc(doc(db, 'paidUpMembers', userName), {
         firstName: firstName,
         lastName: lastName,
         userName: userName,
         email: email,
       });
+
+      //Create a user / signing up a user using the email and password
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
       setFirstName('');
       setLastName('');
@@ -170,21 +195,19 @@ const AddMemberModal = ({ setIsVisible }) => {
               />
             </div>
             <div className='flex flex-col flex-1 gap-2 relative'>
-              <label htmlFor='email' className={labelClass.email}>
-                Email
+              <label htmlFor='password' className={labelClass.password}>
+                Password
               </label>
               <input
                 type='text'
-                name='email'
-                id='email'
+                name='password'
+                id='password'
                 className='border p-2 rounded-md bg-white'
-                value={email}
+                value={password}
                 required
-                onFocus={() => handleInputFocus('email')}
-                onBlur={() => handleInputBlur('email', email)}
-                // onChange={(e) => setEmail(e.target.value)}
-                readOnly
-                disabled
+                onFocus={() => handleInputFocus('password')}
+                onBlur={() => handleInputBlur('password', password)}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>
