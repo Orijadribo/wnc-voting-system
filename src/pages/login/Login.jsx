@@ -58,7 +58,7 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
         .then((userCredential) => {
           //Signed in
           const user = userCredential.user;
-          dispatch({ type: 'LOGIN', payload: user });
+          dispatch({ type: 'ADMIN_LOGIN', payload: user });
 
           //Navigate to admin panel upon successfull login
           navigate('/adminpanel');
@@ -94,7 +94,7 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
             dispatch({ type: 'LOGIN', payload: user });
 
             //Navigate to admin panel upon successfull login
-            navigate('/adminpanel');
+            navigate('/vote');
           })
           .catch((error) => {
             console.log(error);

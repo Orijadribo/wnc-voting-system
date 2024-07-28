@@ -21,11 +21,6 @@ function App() {
 
   const { currentUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    console.log('Current User:', currentUser);
-    console.log('Path:', window.location.pathname);
-  }, [currentUser]);
-
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to='/' />;
   };
