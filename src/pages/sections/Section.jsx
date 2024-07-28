@@ -346,8 +346,8 @@ const Section = ({
                     <textarea
                       name='reasonForNo'
                       id={`reasonForNo${article.id}`}
-                      placeholder='Reason for voting "No"... (250 characters maximum)'
-                      maxLength='250'
+                      placeholder='Reason for voting "No"... (1000 characters maximum)'
+                      maxLength='1000'
                       required
                       value={reasons[article.id] || ''}
                       onFocus={() => handleFocus(article.id)}
