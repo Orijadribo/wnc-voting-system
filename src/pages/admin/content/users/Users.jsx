@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import UserCategory from './UserCategory';
-import { collection, getDocs, onSnapshot } from 'firebase/firestore';
-import { db } from '../../../../api/firebaseConfig';
 
 const Users = ({ paidUpMembers, yetToVote, voters }) => {
   const [selection, setSelection] = useState('paidUpMembers');
