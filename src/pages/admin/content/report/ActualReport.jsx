@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ActualReport = ({ votes }) => {
+const ActualReport = ({ votes, voters, paidUpMembers }) => {
   return (
     <Document>
       <Page
@@ -214,11 +214,11 @@ const ActualReport = ({ votes }) => {
             </View>
             <View style={styles.stat}>
               <Text style={styles.statLabel}>Verified Voters:</Text>
-              <Text>50</Text>
+              <Text>{paidUpMembers.length}</Text>
             </View>
             <View style={styles.stat}>
               <Text style={styles.statLabel}>Those Who Voted:</Text>
-              <Text>30</Text>
+              <Text>{voters.length}</Text>
             </View>
           </View>
           <View style={styles.pdfResults}>

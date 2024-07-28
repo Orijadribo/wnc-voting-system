@@ -57,7 +57,7 @@ const Content = ({ selectedScreen }) => {
   const latestVoters = voters
     .filter((voter) => voter.startTime)
     .sort((a, b) => b.startTime - a.startTime);
-    
+
   // Compare voters and paid-up members
   useEffect(() => {
     const votedUsernames = voters.map(
@@ -82,7 +82,9 @@ const Content = ({ selectedScreen }) => {
         />
       )}
       {selectedScreen === 'votes' && <Votes />}
-      {selectedScreen === 'report' && <Report />}
+      {selectedScreen === 'report' && (
+        <Report voters={voters} paidUpMembers={paidUpMembers} />
+      )}
     </div>
   );
 };

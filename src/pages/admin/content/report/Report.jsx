@@ -4,7 +4,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../../api/firebaseConfig';
 
-const Report = () => {
+const Report = ({ voters, paidUpMembers }) => {
   const [votes, setVotes] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Report = () => {
         // Process each document in the collection
         voters.docs.forEach((doc) => {
           const data = doc.data();
-          const { firstName, lastName, votes } = data; 
+          const { firstName, lastName, votes } = data;
 
           for (const [articleId, voteData] of Object.entries(votes)) {
             const { vote: voteType, reason } = voteData;
@@ -71,7 +71,13 @@ const Report = () => {
         <div className='text-2xl p-2 pl-0'>Report</div>
         <div className=''>
           <PDFDownloadLink
-            document={<ActualReport votes={votes} />}
+            document={
+              <ActualReport
+                votes={votes}
+                voters={voters}
+                paidUpMembers={paidUpMembers}
+              />
+            }
             fileName='vote_results_2024'
           >
             {({ loading }) =>
@@ -92,7 +98,11 @@ const Report = () => {
         className='flex flex-col gap-5 overflow-y-auto overflow-x-auto rounded-lg w-full border p-5'
         style={{ height: 'calc(100vh - 240px)' }}
       >
-        <ActualReport votes={votes} />
+        <ActualReport
+          votes={votes}
+          voters={voters}
+          paidUpMembers={paidUpMembers}
+        />
       </div>
     </div>
   );
