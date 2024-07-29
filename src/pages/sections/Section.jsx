@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import { articles } from '../../constants';
 import { Link } from 'react-router-dom';
 import { db, auth } from '../../api/firebaseConfig';
 import { collection, getDoc, doc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 const Section = ({
   startArticle,
@@ -12,7 +13,8 @@ const Section = ({
   previousSection,
   nextSection,
   userDocId,
-  firstName,
+  setUserDocId,
+  // userDetails,
 }) => {
   const [selectedVotes, setSelectedVotes] = useState({});
   const [reasons, setReasons] = useState({});
@@ -21,6 +23,8 @@ const Section = ({
   const [reasonAvailable, setReasonAvailable] = useState({});
   const debounceTimeout = useRef(null);
   const [fetchedData, setFetchedData] = useState({});
+
+  const { dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const votesCollectionRef = collection(db, 'votes');
@@ -31,6 +35,14 @@ const Section = ({
   });
 
   useEffect(() => {}, [votes]);
+
+  useEffect(() => {
+    // Retrieve userDocId from localStorage
+    const storedUserDocId = localStorage.getItem('userDocId');
+    if (storedUserDocId) {
+      setUserDocId(storedUserDocId);
+    }
+  }, []);
 
   //Fetch votes from the database
   useEffect(() => {
@@ -158,14 +170,17 @@ const Section = ({
       return;
     }
 
-    try {
-      const voteDocRef = doc(db, 'votes', userDocId);
-      // await updateDoc(voteDocRef, { votes });
+    //Wait for userDocId
+    if (userDocId) {
+      try {
+        const voteDocRef = doc(db, 'votes', userDocId);
+        await updateDoc(voteDocRef, { votes });
 
-      alert('Vote successfully saved');
-    } catch (err) {
-      alert('Error updating votes:', err);
-      console.log('Error updating votes:', err);
+        alert('Vote successfully saved');
+      } catch (err) {
+        alert('Error updating votes:', err);
+        console.log('Error updating votes:', err);
+      }
     }
   };
 
@@ -178,17 +193,20 @@ const Section = ({
       return;
     }
 
-    try {
-      const voteDocRef = doc(db, 'votes', userDocId);
-      // await updateDoc(voteDocRef, { votes });
+    //Wait for userDocId
+    if (userDocId) {
+      try {
+        const voteDocRef = doc(db, 'votes', userDocId);
+        await updateDoc(voteDocRef, { votes });
 
-      alert('Vote successfully saved');
+        alert('Vote successfully saved');
 
-      // navigate to next page upon saving to the database
-      navigate(`/section_${nextSection}`);
-    } catch (err) {
-      alert('Error updating votes:', err);
-      console.log('Error updating votes:', err);
+        // navigate to next page upon saving to the database
+        navigate(`/section_${nextSection}`);
+      } catch (err) {
+        alert('Error updating votes:', err);
+        console.log('Error updating votes:', err);
+      }
     }
   };
 
@@ -201,20 +219,25 @@ const Section = ({
       return;
     }
 
-    try {
-      const voteDocRef = doc(db, 'votes', userDocId);
-      // await updateDoc(voteDocRef, { votes });
+    //Wait for userDocId
+    if (userDocId) {
+      try {
+        const voteDocRef = doc(db, 'votes', userDocId);
+        await updateDoc(voteDocRef, { votes });
 
-      alert('Vote successfully saved');
+        alert('Vote successfully saved');
 
-      //Sign out user upon finish
-      await auth.signOut();
+        //Sign out user upon finish
+        await auth.signOut();
 
-      // navigate to next page upon saving to the database
-      navigate('/complete');
-    } catch (err) {
-      alert('Error updating votes:', err);
-      console.log('Error updating votes:', err);
+        dispatch({ type: 'LOGOUT' });
+
+        // navigate to next page upon saving to the database
+        navigate('/complete');
+      } catch (err) {
+        alert('Error updating votes:', err);
+        console.log('Error updating votes:', err);
+      }
     }
   };
 
@@ -237,6 +260,13 @@ const Section = ({
   const handleLogOut = async () => {
     try {
       await auth.signOut();
+
+      //Remove the user from local storage
+      dispatch({ type: 'LOGOUT' });
+
+      // Clear userDocId from localStorage
+      localStorage.removeItem('userDocId');
+
       // Redirect to verification page after logout
       navigate('/');
     } catch (error) {
@@ -249,7 +279,7 @@ const Section = ({
       <div className='flex items-center justify-between bg-white sticky top-0 left-0 py-3 px-5 my-5 max-w-2xl m-auto shadow-lg rounded-lg z-40'>
         <div className='font-light'>
           hello,
-          <span className='capitalize text-lg font-normal'> {firstName}</span>
+          {/* <span className='capitalize text-lg font-normal'> {userDetails.firstName}</span> */}
         </div>
         <button
           onClick={handleLogOut}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { db, auth } from '../../api/firebaseConfig';
 import {
   addDoc,
@@ -15,7 +15,14 @@ import { BiShow } from 'react-icons/bi';
 import LoginModal from './LoginModal';
 import { AuthContext } from '../../context/AuthContext';
 
-const Login = ({ firstName, lastName, setUserDocId, user }) => {
+const Login = ({
+  firstName,
+  lastName,
+  setUserDocId,
+  user,
+  currentUser,
+  userDetails,
+}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
@@ -64,10 +71,16 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
           navigate('/adminpanel');
         })
         .catch((error) => {
+          setError('Invalid username or password');
           console.log(error);
         });
     } else {
       try {
+        //Check if user has read the terms
+        if (!isChecked) {
+          alert('Please read and accept the terms and conditions');
+        }
+
         // Fetch the email associated with the username from Firestore
         const paidUpMembersRef = collection(db, 'paidUpMembers');
         const q = query(
@@ -93,10 +106,15 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
             const user = userCredential.user;
             dispatch({ type: 'LOGIN', payload: user });
 
-            //Navigate to admin panel upon successfull login
+            // Clear form fields
+            setUsername('');
+            setPassword('');
+
+            // Navigate to the vote yes to all or no page
             navigate('/vote');
           })
           .catch((error) => {
+            setError('Invalid username or password');
             console.log(error);
           });
 
@@ -125,18 +143,10 @@ const Login = ({ firstName, lastName, setUserDocId, user }) => {
           userDocId = votesSnapshot.docs[0].id;
         }
 
+        // Save userDocId to localStorage
+        localStorage.setItem('userDocId', userDocId);
+
         setUserDocId(userDocId);
-
-        if (isChecked) {
-          // Clear form fields
-          setUsername('');
-          setPassword('');
-
-          // Navigate to section one
-          navigate('/vote');
-        } else {
-          alert('Please read and accept the terms and conditions');
-        }
       } catch (err) {
         setError('Invalid username or password');
       }

@@ -18,12 +18,9 @@ function App() {
   const [lastName, setLastName] = useState('');
   const [userDocId, setUserDocId] = useState(null);
   const [user, setUser] = useState('');
+  // const [userDetails, setUserDetails] = useState('');
 
   const { currentUser } = useContext(AuthContext);
-
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
 
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to='/' />;
@@ -53,6 +50,8 @@ function App() {
                 lastName={lastName}
                 setUserDocId={setUserDocId}
                 user={user}
+                currentUser={currentUser}
+                // userDetails={userDetails}
               />
             }
           />
@@ -60,7 +59,12 @@ function App() {
             path='/adminpanel'
             element={
               <RequireAuth>
-                <AdminPanel />
+                <AdminPanel
+                  currentUser={currentUser}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
+                  // setUserDetails={setUserDetails}
+                />
               </RequireAuth>
             }
           />
@@ -68,7 +72,14 @@ function App() {
             path='/vote'
             element={
               <RequireAuth>
-                <VotesYesOrNo userDocId={userDocId} firstName={firstName} />
+                <VotesYesOrNo
+                  userDocId={userDocId}
+                  firstName={firstName}
+                  currentUser={currentUser}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
+                  // setUserDetails={setUserDetails}
+                />
               </RequireAuth>
             }
           />
@@ -82,7 +93,8 @@ function App() {
                   section={'one'}
                   nextSection={'two'}
                   userDocId={userDocId}
-                  firstName={firstName}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
                 />
               </RequireAuth>
             }
@@ -99,7 +111,8 @@ function App() {
                   // Change back to three
                   nextSection={'eight'}
                   userDocId={userDocId}
-                  firstName={firstName}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
                 />
               </RequireAuth>
             }
@@ -114,8 +127,9 @@ function App() {
               previousSection={'two'}
               section={'three'}
               nextSection={'four'}
-              userDocId={userDocId}
-              firstName={firstName}
+              userDocId={userDocId} setUserDocId={setUserDocId}
+                                // userDetails={userDetails}
+
             />
               </RequireAuth>
             }
@@ -130,8 +144,9 @@ function App() {
               previousSection={'three'}
               section={'four'}
               nextSection={'five'}
-              userDocId={userDocId}
-              firstName={firstName}
+              userDocId={userDocId} setUserDocId={setUserDocId}
+                                // userDetails={userDetails}
+
             />
               </RequireAuth>
             }
@@ -146,8 +161,9 @@ function App() {
                   previousSection={'four'}
                   section={'five'}
                   nextSection={'six'}
-                  userDocId={userDocId}
-                  firstName={firstName}
+                  userDocId={userDocId} setUserDocId={setUserDocId}
+                                    // userDetails={userDetails}
+
                 />
               </RequireAuth>
             }
@@ -162,8 +178,9 @@ function App() {
               previousSection={'five'}
               section={'six'}
               nextSection={'seven'}
-              userDocId={userDocId}
-              firstName={firstName}
+              userDocId={userDocId} setUserDocId={setUserDocId}
+                                // userDetails={userDetails}
+
             />
               </RequireAuth>
             }
@@ -178,8 +195,9 @@ function App() {
               previousSection={'six'}
               section={'seven'}
               nextSection={'eight'}
-              userDocId={userDocId}
-              firstName={firstName}
+              userDocId={userDocId} setUserDocId={setUserDocId}
+                                // userDetails={userDetails}
+
             />
               </RequireAuth>
             }
@@ -195,7 +213,8 @@ function App() {
                   previousSection={'two'}
                   section={'eight'}
                   userDocId={userDocId}
-                  firstName={firstName}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
                 />
               </RequireAuth>
             }

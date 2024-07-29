@@ -1,13 +1,74 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { db, auth } from '../../api/firebaseConfig';
-import { doc, updateDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { articles } from '../../constants';
+import { AuthContext } from '../../context/AuthContext';
 
-const VotesYesOrNo = ({ userDocId, firstName }) => {
-  //   const [votes, setVotes] = useState([]);
+const VotesYesOrNo = ({
+  userDocId,
+  setUserDocId,
+  firstName,
+  currentUser,
+  userDetails,
+  setUserDetails,
+}) => {
+  const [votes, setVotes] = useState([]);
+
+  const { dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Retrieve userDocId from localStorage
+    const storedUserDocId = localStorage.getItem('userDocId');
+    if (storedUserDocId) {
+      setUserDocId(storedUserDocId);
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   const getUserDetails = async () => {
+  //     try {
+  //       // Check if currentUser is not null
+  //       if (!currentUser) {
+  //         console.log('Current user is null');
+  //         return;
+  //       }
+
+  //       // Fetch the user details associated with the login email from admin collection in Firestore
+  //       const paidUp = collection(db, 'paidUpMembers');
+  //       const emailQuery = query(
+  //         paidUp,
+  //         where('email', '==', currentUser.email)
+  //       );
+  //       const emailQuerySnapshot = await getDocs(emailQuery);
+
+  //       if (emailQuerySnapshot.empty) {
+  //         console.log('User not available');
+  //         return;
+  //       }
+
+  //       // If there's only one user with the given email
+  //       const userData = emailQuerySnapshot.docs[0].data();
+
+  //       setUserDetails(userData);
+
+  //       // Set user details in the state
+  //     } catch (error) {
+  //       console.error('Error fetching user details:', error);
+  //     }
+  //   };
+
+  //   getUserDetails();
+  // }, []);
 
   // Function to set all votes to 'yes'
   const voteYesForAllArticles = () => {
@@ -28,9 +89,14 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
     try {
       const voteDocRef = doc(db, 'votes', userDocId);
       const newVotes = voteYesForAllArticles();
-      // await updateDoc(voteDocRef, { votes: newVotes });
+      await updateDoc(voteDocRef, { votes: newVotes });
 
       alert('Vote successfully saved');
+
+      //Sign out user upon finish
+      await auth.signOut();
+
+      dispatch({ type: 'LOGOUT' });
 
       //Redirect to finish
       navigate('/complete');
@@ -51,6 +117,13 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
   const handleLogOut = async () => {
     try {
       await auth.signOut();
+
+      //Remove the user from local storage
+      dispatch({ type: 'LOGOUT' });
+
+      // Clear userDocId from localStorage
+      localStorage.removeItem('userDocId');
+
       // Redirect to verification page after logout
       navigate('/');
     } catch (error) {
@@ -67,7 +140,7 @@ const VotesYesOrNo = ({ userDocId, firstName }) => {
               hello,
               <span className='capitalize text-lg font-normal'>
                 {' '}
-                {firstName}
+                {/* {userDetails.firstName} */}
               </span>
             </div>
             <button
