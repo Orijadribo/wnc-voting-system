@@ -108,7 +108,91 @@ function App() {
                   endArticle={6}
                   previousSection={'one'}
                   section={'two'}
-                  // Change back to three
+                  nextSection={'three'}
+                  userDocId={userDocId}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
+                />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path='/section_three'
+            element={
+              <RequireAuth>
+                <Section
+                  startArticle={7}
+                  endArticle={9}
+                  previousSection={'two'}
+                  section={'three'}
+                  nextSection={'four'}
+                  userDocId={userDocId}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
+                />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path='/section_four'
+            element={
+              <RequireAuth>
+                <Section
+                  startArticle={10}
+                  endArticle={12}
+                  previousSection={'three'}
+                  section={'four'}
+                  nextSection={'five'}
+                  userDocId={userDocId}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
+                />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path='/section_five'
+            element={
+              <RequireAuth>
+                <Section
+                  startArticle={13}
+                  endArticle={15}
+                  previousSection={'four'}
+                  section={'five'}
+                  nextSection={'six'}
+                  userDocId={userDocId}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
+                />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path='/section_six'
+            element={
+              <RequireAuth>
+                <Section
+                  startArticle={16}
+                  endArticle={18}
+                  previousSection={'five'}
+                  section={'six'}
+                  nextSection={'seven'}
+                  userDocId={userDocId}
+                  setUserDocId={setUserDocId}
+                  // userDetails={userDetails}
+                />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path='/section_seven'
+            element={
+              <RequireAuth>
+                <Section
+                  startArticle={19}
+                  endArticle={21}
+                  previousSection={'six'}
+                  section={'seven'}
                   nextSection={'eight'}
                   userDocId={userDocId}
                   setUserDocId={setUserDocId}
@@ -117,91 +201,6 @@ function App() {
               </RequireAuth>
             }
           />
-          {/* <Route
-            path='/section_three'
-            element={
-            <RequireAuth>                
-            <Section
-              startArticle={7}
-              endArticle={9}
-              previousSection={'two'}
-              section={'three'}
-              nextSection={'four'}
-              userDocId={userDocId} setUserDocId={setUserDocId}
-                                // userDetails={userDetails}
-
-            />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/section_four'
-            element={
-            <RequireAuth>                
-            <Section
-              startArticle={10}
-              endArticle={12}
-              previousSection={'three'}
-              section={'four'}
-              nextSection={'five'}
-              userDocId={userDocId} setUserDocId={setUserDocId}
-                                // userDetails={userDetails}
-
-            />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/section_five'
-            element={
-            <RequireAuth>
-                                <Section
-                  startArticle={13}
-                  endArticle={15}
-                  previousSection={'four'}
-                  section={'five'}
-                  nextSection={'six'}
-                  userDocId={userDocId} setUserDocId={setUserDocId}
-                                    // userDetails={userDetails}
-
-                />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/section_six'
-            element={
-            <RequireAuth>
-            <Section
-              startArticle={16}
-              endArticle={18}
-              previousSection={'five'}
-              section={'six'}
-              nextSection={'seven'}
-              userDocId={userDocId} setUserDocId={setUserDocId}
-                                // userDetails={userDetails}
-
-            />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/section_seven'
-            element={
-            <RequireAuth>
-            <Section
-              startArticle={19}
-              endArticle={21}
-              previousSection={'six'}
-              section={'seven'}
-              nextSection={'eight'}
-              userDocId={userDocId} setUserDocId={setUserDocId}
-                                // userDetails={userDetails}
-
-            />
-              </RequireAuth>
-            }
-          /> */}
           <Route
             path='/section_eight'
             element={
@@ -209,8 +208,7 @@ function App() {
                 <Section
                   startArticle={22}
                   endArticle={24}
-                  // change back to seven
-                  previousSection={'two'}
+                  previousSection={'seven'}
                   section={'eight'}
                   userDocId={userDocId}
                   setUserDocId={setUserDocId}
