@@ -207,7 +207,7 @@ const Login = ({
               value={username}
               onFocus={() => handleInputFocus('username')}
               onBlur={() => handleInputBlur('username', username)}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value.trim())}
               required
               autoComplete='on'
             />

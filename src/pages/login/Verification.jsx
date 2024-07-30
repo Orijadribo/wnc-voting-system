@@ -117,7 +117,7 @@ const Verification = ({
               required
               onFocus={() => handleInputFocus('firstName')}
               onBlur={() => handleInputBlur('firstName', firstName)}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value.trim())}
             />
           </div>
           <div className='flex flex-col gap-2 relative'>
@@ -133,7 +133,7 @@ const Verification = ({
               required
               onFocus={() => handleInputFocus('lastName')}
               onBlur={() => handleInputBlur('lastName', lastName)}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value.trim())}
             />
           </div>
           <button
