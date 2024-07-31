@@ -41,6 +41,33 @@ const AddMemberModal = ({ setIsVisible }) => {
     setIsVisible(false);
   };
 
+  useEffect(() => {
+    //Function to generate random passwords
+    const generatePassword = () => {
+      const lower = 'abcdefghijklmnpqrstuvwxyz';
+      const upper = 'ABCDEFGHIJKLMNPQRSTUVWXYZ';
+      const numbers = '123456789';
+      // const symbols = "/*@$";
+
+      const allCharacters = lower + numbers + upper;
+      const length = 6;
+
+      let password = '';
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * allCharacters.length);
+        password += allCharacters[randomIndex];
+      }
+
+      //Function to set password
+      setPassword(password);
+    };
+    generatePassword();
+
+    if (password) {
+      handleInputFocus('password');
+    }
+  }, []);
+
   //Function to handle one member add
   const handleMemberAdd = async (e) => {
     e.preventDefault();
@@ -155,7 +182,7 @@ const AddMemberModal = ({ setIsVisible }) => {
                 required
                 onFocus={() => handleInputFocus('firstName')}
                 onBlur={() => handleInputBlur('firstName', firstName)}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => setFirstName(e.target.value.trim())}
               />
             </div>
             <div className='flex flex-col flex-1 gap-2 relative'>
@@ -171,7 +198,7 @@ const AddMemberModal = ({ setIsVisible }) => {
                 required
                 onFocus={() => handleInputFocus('lastName')}
                 onBlur={() => handleInputBlur('lastName', lastName)}
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={(e) => setLastName(e.target.value.trim())}
               />
             </div>
           </div>
@@ -195,7 +222,7 @@ const AddMemberModal = ({ setIsVisible }) => {
               />
             </div>
             <div className='flex flex-col flex-1 gap-2 relative'>
-              <label htmlFor='password' className={labelClass.password}>
+              <label htmlFor='password' className={labelClass.firstName}>
                 Password
               </label>
               <input
@@ -205,9 +232,11 @@ const AddMemberModal = ({ setIsVisible }) => {
                 className='border p-2 rounded-md bg-white'
                 value={password}
                 required
-                onFocus={() => handleInputFocus('password')}
-                onBlur={() => handleInputBlur('password', password)}
-                onChange={(e) => setPassword(e.target.value)}
+                readOnly
+                disabled
+                // onFocus={() => handleInputFocus('password')}
+                // onBlur={() => handleInputBlur('password', password)}
+                // onChange={handlePasswordChange}
               />
             </div>
           </div>
