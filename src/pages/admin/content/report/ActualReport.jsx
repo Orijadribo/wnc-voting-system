@@ -246,31 +246,35 @@ const ActualReport = ({ votes, voters, paidUpMembers }) => {
                   </View>
                 </View>
                 <View style={styles.reasons}>
-                  <View style={styles.title}>
-                    <Text style={styles.sectionTitle}>Reasons For No Vote</Text>
-                  </View>
                   {article.voterReasons && article.voterReasons.length > 0 ? (
-                    article.voterReasons.map((voter, index) => (
-                      <View key={index}>
-                        {voter?.reason !== '' && (
-                          <View>
-                            <View style={styles.reason}>
-                              <Text style={styles.reasonName}>
-                                {voter?.voterName}
-                              </Text>
-                              <Text style={styles.reasonComment}>
-                                {voter?.reason}
-                              </Text>
-                            </View>
-                            {voter?.reason.length > 1 && (
-                              <View style={styles.separator}>
-                                <View style={styles.separatorLine} />
-                              </View>
-                            )}
-                          </View>
-                        )}
+                    <View style={styles.reasons}>
+                      <View style={styles.title}>
+                        <Text style={styles.sectionTitle}>
+                          Reasons For No Vote
+                        </Text>
                       </View>
-                    ))
+                      {article.voterReasons.map((voter, index) => (
+                        <View key={index}>
+                          {voter?.reason !== '' && (
+                            <View>
+                              <View style={styles.reason}>
+                                <Text style={styles.reasonName}>
+                                  {voter?.voterName}
+                                </Text>
+                                <Text style={styles.reasonComment}>
+                                  {voter?.reason}
+                                </Text>
+                              </View>
+                              {voter?.reason.length > 1 && (
+                                <View style={styles.separator}>
+                                  <View style={styles.separatorLine} />
+                                </View>
+                              )}
+                            </View>
+                          )}
+                        </View>
+                      ))}
+                    </View>
                   ) : (
                     <View style={styles.noReasons}>
                       <Text style={styles.noReasonsText}>
