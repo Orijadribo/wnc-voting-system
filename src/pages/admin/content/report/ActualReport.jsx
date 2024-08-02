@@ -246,7 +246,8 @@ const ActualReport = ({ votes, voters, paidUpMembers }) => {
                   </View>
                 </View>
                 <View style={styles.reasons}>
-                  {article.voterReasons && article.voterReasons.length > 0 ? (
+                  {article.voterReasons &&
+                  article.voterReasons.voter?.voterName !== '' ? (
                     <View style={styles.reasons}>
                       <View style={styles.title}>
                         <Text style={styles.sectionTitle}>
