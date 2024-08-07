@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    fontSize: 12,
+    fontSize: 16,
   },
   chart: {
     flex: 2,
@@ -114,9 +114,10 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   reasons: {
-    display: 'flex',
+    // display: 'flex',
     flexDirection: 'column',
     gap: 10,
+    // display:'none'
   },
   reason: {
     display: 'flex',
@@ -245,7 +246,7 @@ const ActualReport = ({ votes, voters, paidUpMembers }) => {
                     </View>
                   </View>
                 </View>
-                <View style={styles.reasons}>
+                {/* <View style={styles.reasons}>
                   {article.voterReasons &&
                   article.voterReasons.voter?.voterName !== '' ? (
                     <View style={styles.reasons}>
@@ -283,7 +284,7 @@ const ActualReport = ({ votes, voters, paidUpMembers }) => {
                       </Text>
                     </View>
                   )}
-                </View>
+                </View> */}
               </View>
             ))}
           </View>
