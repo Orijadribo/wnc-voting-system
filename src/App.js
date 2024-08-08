@@ -12,6 +12,7 @@ import Verification from './pages/login/Verification';
 import AdminPanel from './pages/admin/AdminPanel';
 import VotesYesOrNo from './pages/sections/VotesYesOrNo';
 import { AuthContext } from './context/AuthContext';
+import Closed from './pages/closed/Closed';
 
 function App() {
   const [firstName, setFirstName] = useState('');
@@ -30,8 +31,8 @@ function App() {
     <div className='font-mulish'>
       <Router>
         <Routes>
+          <Route index element={<Closed />} />
           <Route
-            index
             element={
               <Verification
                 firstName={firstName}
